@@ -34,7 +34,7 @@
     <link href="/2025/05/09/%E5%BB%BA%E7%AB%99/hexo+fluid/"/>
     <url>/2025/05/09/%E5%BB%BA%E7%AB%99/hexo+fluid/</url>
     
-    <content type="html"><![CDATA[<h1 id="前置环境"><a href="#前置环境" class="headerlink" title="前置环境"></a>前置环境</h1><p>git</p><p>node</p><h1 id="搭建基本流程"><a href="#搭建基本流程" class="headerlink" title="搭建基本流程"></a>搭建基本流程</h1><ol><li>在想要存放博客文件的目录中,打开cmd ,执行:<br><code>hexo init &quot;博客名&quot;</code><br>看到</li><li></li></ol><h1 id="github-vercel-部署"><a href="#github-vercel-部署" class="headerlink" title="github +vercel 部署"></a>github +vercel 部署</h1><h1 id="主题优化"><a href="#主题优化" class="headerlink" title="主题优化"></a>主题优化</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="前置环境"><a href="#前置环境" class="headerlink" title="前置环境"></a>前置环境</h1><p>git</p><p>node</p><p> 搭建基本流程</p><ol><li>在想要存放博客文件的目录中,打开cmd ,执行:<br><code>hexo init &quot;博客名&quot;</code><br>看到</li><li></li></ol><p> github +vercel 部署</p><p> 主题优化</p>]]></content>
     
     
     <categories>
