@@ -4,38 +4,64 @@
   
   
   <entry>
-    <title>first-blog</title>
-    <link href="/2025/05/09/first-blog/"/>
-    <url>/2025/05/09/first-blog/</url>
+    <title>测试</title>
+    <link href="/2025/05/09/%E6%B5%8B%E8%AF%95/"/>
+    <url>/2025/05/09/%E6%B5%8B%E8%AF%95/</url>
     
     <content type="html"><![CDATA[]]></content>
     
     
-    <categories>
-      
-      <category>建站</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>博客</tag>
-      
-    </tags>
     
   </entry>
   
   
   
   <entry>
-    <title>Hello World</title>
-    <link href="/2025/05/09/hello-world/"/>
-    <url>/2025/05/09/hello-world/</url>
+    <title>123</title>
+    <link href="/2025/05/09/123/"/>
+    <url>/2025/05/09/123/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[]]></content>
     
     
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2025/05/09/newpost/"/>
+    <url>/2025/05/09/newpost/</url>
+    
+    <content type="html"><![CDATA[module.exports = async (params) => {    const { quickAddApi, app } = params;    // --- 配置 ---    const hexoProjectRoot = "D:\\BlogFile\\cheems-blog"; // Hexo项目根目录    // --- 配置结束 ---    // 1. 检查 Shell Commands 插件是否已安装并启用    // 常见的插件 ID 有 'obsidian-shellcommands' 或 'shell-commands'    const scPlugin = app.plugins.plugins['obsidian-shellcommands'] || app.plugins.plugins['shell-commands'];    if (!scPlugin) {        new Notice("错误：Shell commands 插件未安装或未启用。", 5000);        console.error("Shell commands 插件未找到。请安装并启用它。");        return;    }    if (typeof scPlugin.executeShellCommand !== 'function') {        new Notice("错误：Shell commands 插件 API 不可用 (executeShellCommand 方法未找到)。", 5000);        console.error("Shell commands 插件的 executeShellCommand 方法未找到。可能插件版本不兼容或未完全加载。");        return;    }    // 2. 提示用户输入文章标题    const articleTitle = await quickAddApi.inputPrompt("请输入文章标题：", "例如：我的第一篇博客");    if (!articleTitle) {        new Notice("操作取消：未输入文章标题。", 3000);        return;    }    // 3. 对标题进行处理，防止特殊字符导致命令执行问题    //    在Windows CMD中，双引号内的双引号需要转义或处理。    //    一个简单的方法是替换标题中的双引号为单引号或其他安全字符。    const sanitizedTitle = articleTitle.replace(/"/g, "'");    // 4. 构建要执行的命令    //    cd /d "${hexoProjectRoot}" : /d 确保可以切换盘符    //    && hexo new "${sanitizedTitle}" : 然后执行hexo new命令    const commandToExecute = `cd /d "${hexoProjectRoot}" && hexo new "${sanitizedTitle}"`;    new Notice(`正在创建 Hexo 文章: "${sanitizedTitle}"...`, 3000);    console.log(`QuickAdd - Hexo New Post: 准备执行命令: ${commandToExecute}`);    // 5. 使用 Shell commands 插件执行命令    try {        // executeShellCommand 通常是异步的，但它可能不直接返回Promise        // 或者其完成不一定意味着命令的标准输出/错误流已结束。        // 对于 `hexo new` 这种快速完成的命令，通常还好。        await scPlugin.executeShellCommand(commandToExecute);                new Notice(`✅ Hexo 文章 "${sanitizedTitle}" 创建命令已发送！`, 5000);        console.log(`QuickAdd - Hexo New Post: 命令已发送: ${commandToExecute}`);        // 可选：尝试找到并打开新创建的文件        // Hexo 的文件名生成规则可能比较复杂（例如，基于 _config.yml 中的 new_post_name）        // 默认情况下，它会将标题转换为小写，并用连字符替换空格。        // 例如 "My First Blog" -> "my-first-blog.md"        const probableFileNameBase = sanitizedTitle            .toLowerCase()            .replace(/\s+/g, '-') // 替换空格为连字符            .replace(/[^\w\u4e00-\u9fa5-]+/g, ''); // 移除大部分非字母数字中日韩字符和连字符之外的字符        const probableFilePath = `source/_posts/${probableFileNameBase}.md`; //相对于Obsidian仓库根        // 注意：这里的路径是相对于Obsidian仓库根目录的。        // 你的Obsidian仓库根目录是 D:\BlogFile\cheems-blog\source\_posts        // 所以文件应该在 D:\BlogFile\cheems-blog\source\_posts\${probableFileNameBase}.md        // Hexo new 命令会在 D:\BlogFile\cheems-blog\source\_posts\ 下创建文件。        // QuickAdd 和 Obsidian 是在 D:\BlogFile\cheems-blog\source\_posts 这个仓库里运行。        // 所以文件路径相对于仓库根目录就是 `${probableFileNameBase}.md`                const abstractFilePath = `${probableFileNameBase}.md`;        const file = app.vault.getAbstractFileByPath(abstractFilePath);                if (file) {            await app.workspace.openLinkText(abstractFilePath, '', true);            new Notice(`已尝试打开新文件: ${abstractFilePath}`, 3000);        } else {            // 如果上面的简单规则找不到，可以给个提示，因为Hexo的 slugify 规则可能不同            new Notice(`文件创建后请手动在 "source/_posts" 文件夹中查找。`, 7000);            console.warn(`QuickAdd - Hexo New Post: 未能自动找到文件 ${abstractFilePath}。Hexo的标题转换规则可能与预期不同。`);        }    } catch (error) {        new Notice(`❌ 执行 Hexo 命令时出错: ${error.message}`, 10000);        console.error("QuickAdd - Hexo New Post: 执行命令时出错:", error);        console.error("QuickAdd - Hexo New Post: 出错的命令是:", commandToExecute);    }};]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo+fluid</title>
+    <link href="/2025/05/09/%E5%BB%BA%E7%AB%99/hexo+fluid/"/>
+    <url>/2025/05/09/%E5%BB%BA%E7%AB%99/hexo+fluid/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前置环境"><a href="#前置环境" class="headerlink" title="前置环境"></a>前置环境</h1><p>git</p><p>node</p><h1 id="搭建基本流程"><a href="#搭建基本流程" class="headerlink" title="搭建基本流程"></a>搭建基本流程</h1><ol><li>在想要存放博客文件的目录中,打开cmd ,执行:<br><code>hexo init &quot;博客名&quot;</code><br>看到</li><li></li></ol><h1 id="github-vercel-部署"><a href="#github-vercel-部署" class="headerlink" title="github +vercel 部署"></a>github +vercel 部署</h1><h1 id="主题优化"><a href="#主题优化" class="headerlink" title="主题优化"></a>主题优化</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>hexo建站</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术笔记</tag>
+      
+    </tags>
     
   </entry>
   

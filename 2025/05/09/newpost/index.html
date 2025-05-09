@@ -19,20 +19,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="first-blog">
-<meta property="og:url" content="http://example.com/2025/05/09/first-blog/index.html">
+    <meta name="description" content="module.exports &#x3D; async (params) &#x3D;&gt; {     const { quickAddApi, app } &#x3D; params;      &#x2F;&#x2F; --- 配置 ---     const hexoProjectRoot &#x3D; &quot;D:\\BlogFile\\cheems-blog&quot;; &#x2F;&#x2F; Hexo项目根目录     &#x2F;&#x2F; --- 配置结束 ---      &#x2F;&#x2F; 1. 检查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2025/05/09/newpost/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="module.exports &#x3D; async (params) &#x3D;&gt; {     const { quickAddApi, app } &#x3D; params;      &#x2F;&#x2F; --- 配置 ---     const hexoProjectRoot &#x3D; &quot;D:\\BlogFile\\cheems-blog&quot;; &#x2F;&#x2F; Hexo项目根目录     &#x2F;&#x2F; --- 配置结束 ---      &#x2F;&#x2F; 1. 检查">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-09T02:43:30.000Z">
-<meta property="article:modified_time" content="2025-05-09T03:25:09.419Z">
+<meta property="article:published_time" content="2025-05-09T06:35:13.136Z">
+<meta property="article:modified_time" content="2025-05-09T08:03:58.487Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="博客">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>first-blog - Hexo</title>
+  <title>Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -64,10 +65,6 @@
     <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-
-
-  
-<link rel="stylesheet" href="/css/macpanel.css">
 
 
 
@@ -202,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="first-blog"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -213,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-09 10:43" pubdate>
-          2025年5月9日 上午
+        <time datetime="2025-05-09 14:35" pubdate>
+          2025年5月9日 下午
         </time>
       </span>
     
@@ -225,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          766 字
         
       </span>
     
@@ -236,7 +233,7 @@
         
         
         
-          1 分钟
+          7 分钟
         
       </span>
     
@@ -273,12 +270,101 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">first-blog</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                
+                module.exports = async (params) => {
+    const { quickAddApi, app } = params;
+
+    // --- 配置 ---
+    const hexoProjectRoot = "D:\\BlogFile\\cheems-blog"; // Hexo项目根目录
+    // --- 配置结束 ---
+
+    // 1. 检查 Shell Commands 插件是否已安装并启用
+    // 常见的插件 ID 有 'obsidian-shellcommands' 或 'shell-commands'
+    const scPlugin = app.plugins.plugins['obsidian-shellcommands'] || app.plugins.plugins['shell-commands'];
+
+    if (!scPlugin) {
+        new Notice("错误：Shell commands 插件未安装或未启用。", 5000);
+        console.error("Shell commands 插件未找到。请安装并启用它。");
+        return;
+    }
+
+    if (typeof scPlugin.executeShellCommand !== 'function') {
+        new Notice("错误：Shell commands 插件 API 不可用 (executeShellCommand 方法未找到)。", 5000);
+        console.error("Shell commands 插件的 executeShellCommand 方法未找到。可能插件版本不兼容或未完全加载。");
+        return;
+    }
+
+    // 2. 提示用户输入文章标题
+    const articleTitle = await quickAddApi.inputPrompt("请输入文章标题：", "例如：我的第一篇博客");
+
+    if (!articleTitle) {
+        new Notice("操作取消：未输入文章标题。", 3000);
+        return;
+    }
+
+    // 3. 对标题进行处理，防止特殊字符导致命令执行问题
+    //    在Windows CMD中，双引号内的双引号需要转义或处理。
+    //    一个简单的方法是替换标题中的双引号为单引号或其他安全字符。
+    const sanitizedTitle = articleTitle.replace(/"/g, "'");
+
+    // 4. 构建要执行的命令
+    //    cd /d "${hexoProjectRoot}" : /d 确保可以切换盘符
+    //    && hexo new "${sanitizedTitle}" : 然后执行hexo new命令
+    const commandToExecute = `cd /d "${hexoProjectRoot}" && hexo new "${sanitizedTitle}"`;
+
+    new Notice(`正在创建 Hexo 文章: "${sanitizedTitle}"...`, 3000);
+    console.log(`QuickAdd - Hexo New Post: 准备执行命令: ${commandToExecute}`);
+
+    // 5. 使用 Shell commands 插件执行命令
+    try {
+        // executeShellCommand 通常是异步的，但它可能不直接返回Promise
+        // 或者其完成不一定意味着命令的标准输出/错误流已结束。
+        // 对于 `hexo new` 这种快速完成的命令，通常还好。
+        await scPlugin.executeShellCommand(commandToExecute);
+        
+        new Notice(`✅ Hexo 文章 "${sanitizedTitle}" 创建命令已发送！`, 5000);
+        console.log(`QuickAdd - Hexo New Post: 命令已发送: ${commandToExecute}`);
+
+        // 可选：尝试找到并打开新创建的文件
+        // Hexo 的文件名生成规则可能比较复杂（例如，基于 _config.yml 中的 new_post_name）
+        // 默认情况下，它会将标题转换为小写，并用连字符替换空格。
+        // 例如 "My First Blog" -> "my-first-blog.md"
+        const probableFileNameBase = sanitizedTitle
+            .toLowerCase()
+            .replace(/\s+/g, '-') // 替换空格为连字符
+            .replace(/[^\w\u4e00-\u9fa5-]+/g, ''); // 移除大部分非字母数字中日韩字符和连字符之外的字符
+
+        const probableFilePath = `source/_posts/${probableFileNameBase}.md`; //相对于Obsidian仓库根
+
+        // 注意：这里的路径是相对于Obsidian仓库根目录的。
+        // 你的Obsidian仓库根目录是 D:\BlogFile\cheems-blog\source\_posts
+        // 所以文件应该在 D:\BlogFile\cheems-blog\source\_posts\${probableFileNameBase}.md
+        // Hexo new 命令会在 D:\BlogFile\cheems-blog\source\_posts\ 下创建文件。
+        // QuickAdd 和 Obsidian 是在 D:\BlogFile\cheems-blog\source\_posts 这个仓库里运行。
+        // 所以文件路径相对于仓库根目录就是 `${probableFileNameBase}.md`
+        
+        const abstractFilePath = `${probableFileNameBase}.md`;
+        const file = app.vault.getAbstractFileByPath(abstractFilePath);
+        
+        if (file) {
+            await app.workspace.openLinkText(abstractFilePath, '', true);
+            new Notice(`已尝试打开新文件: ${abstractFilePath}`, 3000);
+        } else {
+            // 如果上面的简单规则找不到，可以给个提示，因为Hexo的 slugify 规则可能不同
+            new Notice(`文件创建后请手动在 "source/_posts" 文件夹中查找。`, 7000);
+            console.warn(`QuickAdd - Hexo New Post: 未能自动找到文件 ${abstractFilePath}。Hexo的标题转换规则可能与预期不同。`);
+        }
+
+    } catch (error) {
+        new Notice(`❌ 执行 Hexo 命令时出错: ${error.message}`, 10000);
+        console.error("QuickAdd - Hexo New Post: 执行命令时出错:", error);
+        console.error("QuickAdd - Hexo New Post: 出错的命令是:", commandToExecute);
+    }
+};
                 
               </div>
             
@@ -286,34 +372,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%BB%BA%E7%AB%99/" class="category-chain-item">建站</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="print-no-link">#博客</a>
-      
-    </div>
   
 </div>
 
@@ -323,8 +381,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>first-blog</div>
-      <div>http://example.com/2025/05/09/first-blog/</div>
+      <div></div>
+      <div>http://example.com/2025/05/09/newpost/</div>
     </div>
     <div class="license-meta">
       
@@ -368,12 +426,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2025/05/09/123/" title="123">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">123</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/09/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2025/05/09/%E5%BB%BA%E7%AB%99/hexo+fluid/" title="hexo+fluid">
+                        <span class="hidden-mobile">hexo+fluid</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
