@@ -29,30 +29,5 @@
   
   
   
-  <entry>
-    <title>hexofluid</title>
-    <link href="/2025/05/09/%E5%BB%BA%E7%AB%99/hexo+fluid/"/>
-    <url>/2025/05/09/%E5%BB%BA%E7%AB%99/hexo+fluid/</url>
-    
-    <content type="html"><![CDATA[<h1 id="前置环境"><a href="#前置环境" class="headerlink" title="前置环境"></a>前置环境</h1><p>git</p><p>node</p><p> 搭建基本流程</p><ol><li>在想要存放博客文件的目录中,打开cmd ,执行:<br><code>hexo init &quot;博客名&quot;</code><br>看到</li><li></li></ol><p> github +vercel 部署</p><p> 主题优化</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>hexo建站</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>技术笔记</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
   
 </search>
