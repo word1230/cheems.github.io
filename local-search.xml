@@ -4,11 +4,36 @@
   
   
   <entry>
+    <title>hexo+obsidian的实践</title>
+    <link href="/2025/05/11/%E5%BB%BA%E7%AB%99/hexo-obsidian%E7%9A%84%E5%AE%9E%E8%B7%B5/"/>
+    <url>/2025/05/11/%E5%BB%BA%E7%AB%99/hexo-obsidian%E7%9A%84%E5%AE%9E%E8%B7%B5/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>简介</p></blockquote><ol><li><p>如何使用obsidian来写hexo博客，集成terminal来发布</p></li><li><p>obsidian+picgo +cdn +github 图床 来保存图片<br>图片保存在本地太占用空间，而且博客想要发布在如csdn&#x2F;知乎等，又需要上传图片，很麻烦，所以使用图床来保存图片而不是在本地保存</p></li><li><p>使用quickadd +js脚本   发布 + 创建博客</p></li></ol><h1 id="集成terminal"><a href="#集成terminal" class="headerlink" title="集成terminal"></a>集成terminal</h1><ol><li>安装插件terminal </li><li>修改快捷键</li></ol><p>将 ctrl +t 快捷键 原本的功能删掉<br>改为打开根目录外部终端</p><p>这样使用 ctrl +t 就可以打开终端<br>进行hexo 命令</p><h1 id="picgo"><a href="#picgo" class="headerlink" title="picgo"></a>picgo</h1><ol><li>安装<br>进入安装界面 <a href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>  找到2.3.1版本<br>选择windows 的 exe 文件</li></ol><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225036.png" alt="image.png"></p><p>按照步骤进行安装</p><ol start="2"><li>配置</li></ol><p>打开picgo设置<br>我们只使用github做图床， 其他的不显示 ，其它的勾掉<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225142.png" alt="image.png"></p><p>图床设置 -&gt; github  填入参数<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225606.png" alt="image.png"></p><p>例如<br>仓库名：就是 <a href="https://github.com/abcde/picture">https://github.com/abcde/picture</a>  中 github.com 后面的<br>分支名： main<br>存储路径： 会有一个文件夹来存放， 比如 会将图片存储在 &#x2F;resource目录下<br>自定义域名： 使用cdn 进行加速<br>    格式： <a href="https://cdn.jsdelivr.net/gh/">https://cdn.jsdelivr.net/gh/</a> + 仓库名</p><blockquote><p>生成token</p></blockquote><p>在github 点击头像  –&gt; setting -&gt; developer setting -&gt; personal acess tokens -&gt;tokens(classic)<br>-&gt; generate new token </p><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250512091128.png" alt="image.png"></p><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250512091358.png" alt="image.png"></p><p>点击generate token ，即可获取token ，复制 并粘贴到picgo中</p><ol start="3"><li>在 obsidian 插件市场中下载image auto upload</li></ol><p>就可以实现粘贴图片到obsidian，就会上传</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>建站笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>从hexo开始的个人博客</title>
     <link href="/2025/05/11/%E5%BB%BA%E7%AB%99/%E4%BB%8Ehexo%E5%BC%80%E5%A7%8B%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <url>/2025/05/11/%E5%BB%BA%E7%AB%99/%E4%BB%8Ehexo%E5%BC%80%E5%A7%8B%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     
-    <content type="html"><![CDATA[<h1 id="使用hexo-建站"><a href="#使用hexo-建站" class="headerlink" title="使用hexo 建站"></a>使用hexo 建站</h1><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h2 id="基础搭建"><a href="#基础搭建" class="headerlink" title="基础搭建"></a>基础搭建</h2><h2 id="github-vercel-托管"><a href="#github-vercel-托管" class="headerlink" title="github+vercel 托管"></a>github+vercel 托管</h2><h2 id="fluid-主题配置"><a href="#fluid-主题配置" class="headerlink" title="fluid 主题配置"></a>fluid 主题配置</h2>]]></content>
+    <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>使用hexo搭建个人博客的步骤：</p><ul><li>环境搭建（node 与git 的安装， github 账号</li><li>hexo基本使用（通过基本命令搭建一个helloworld页面，及如何写博客）</li><li>主题配置 </li><li>部署</li></ul><h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>我部署时的环境：</p><ul><li>系统：windows 10 22hz</li><li>git ： 2.49.0</li><li>nvm： 1.2.2</li><li>node ： 18.20.0</li><li>hexo-cli: 4.3.2</li></ul><h1 id="前置配置"><a href="#前置配置" class="headerlink" title="前置配置"></a>前置配置</h1><p>首先需要安装git与node</p><p>git 是为了与github 进行连接<br>node 是为了安装hexo 及其插件</p><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p>打开官网<a href="https://git-scm.com/downloads/win">Git - Downloading Package</a>，选择windows版本</p><h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>这里推荐使用nvm来进行安装node<br>nvm 是一个node 版本管理器，可以使用它来下载node环境</p><h4 id="nvm-安装"><a href="#nvm-安装" class="headerlink" title="nvm 安装"></a>nvm 安装</h4><p><a href="https://nvm.uihtm.com/doc/download-nvm.html">开始 下载nvm - nvm中文官网</a><br>从这个网站选择自己系统的安装包</p><h1 id="使用hexo搭建"><a href="#使用hexo搭建" class="headerlink" title="使用hexo搭建"></a>使用hexo搭建</h1><h1 id="github-vercel-托管"><a href="#github-vercel-托管" class="headerlink" title="github+vercel 托管"></a>github+vercel 托管</h1><h1 id="fluid-主题配置"><a href="#fluid-主题配置" class="headerlink" title="fluid 主题配置"></a>fluid 主题配置</h1>]]></content>
     
     
     <categories>
