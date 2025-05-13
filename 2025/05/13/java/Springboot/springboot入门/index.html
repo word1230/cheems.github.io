@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fav.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="springboot 入门本文会讲解 为什么需要springboot， springboot入门案例，原理解析，单元测试，项目打包he运行等形成一个完整的开发流程，了解基本的springboot的操作 核心流程 springboot出现的原因：spirng配置繁杂且与业务无关 入门案例 原理解析 单元测试 打包运行  一、springboot出现原因及其历史在springboot之前，大家都是用s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot入门">
+<meta property="og:url" content="http://example.com/2025/05/13/java/Springboot/springboot%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="springboot 入门本文会讲解 为什么需要springboot， springboot入门案例，原理解析，单元测试，项目打包he运行等形成一个完整的开发流程，了解基本的springboot的操作 核心流程 springboot出现的原因：spirng配置繁杂且与业务无关 入门案例 原理解析 单元测试 打包运行  一、springboot出现原因及其历史在springboot之前，大家都是用s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513083029.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513083155.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513084853.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513085100.png">
+<meta property="article:published_time" content="2025-05-12T23:19:37.000Z">
+<meta property="article:modified_time" content="2025-05-13T01:17:15.622Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="技术学习笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513083029.png">
+  
+  
+  
+  <title>springboot入门 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cheems的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="springboot入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-13 07:19" pubdate>
+          2025年5月13日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">springboot入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="springboot-入门"><a href="#springboot-入门" class="headerlink" title="springboot 入门"></a>springboot 入门</h1><p>本文会讲解 为什么需要springboot， springboot入门案例，原理解析，单元测试，项目打包he运行等<br>形成一个完整的开发流程，了解基本的springboot的操作</p>
+<h2 id="核心流程"><a href="#核心流程" class="headerlink" title="核心流程"></a>核心流程</h2><ul>
+<li>springboot出现的原因：spirng配置繁杂且与业务无关</li>
+<li>入门案例</li>
+<li>原理解析</li>
+<li>单元测试</li>
+<li>打包运行</li>
+</ul>
+<h2 id="一、springboot出现原因及其历史"><a href="#一、springboot出现原因及其历史" class="headerlink" title="一、springboot出现原因及其历史"></a>一、springboot出现原因及其历史</h2><p>在springboot之前，大家都是用spring，但是spirng配置繁杂且配置与业务无关。<br>有人就使用注解对spring进行了封装，简化了spring框架的使用，产生了springboot</p>
+<p>后来微服务爆火，快速构建一个spring应用成为刚需，springboot框架完美解决了这个问题</p>
+<h3 id="1-springboot的特性"><a href="#1-springboot的特性" class="headerlink" title="1. springboot的特性"></a>1. springboot的特性</h3><ul>
+<li>可快速建立独立的spring应用</li>
+<li>直接嵌入了tomcat web容器，无需部署war文件</li>
+<li>start依赖，简化了配置构建</li>
+<li>自动配置</li>
+<li>约定大于配置的思想</li>
+</ul>
+<h2 id="二、入门案例"><a href="#二、入门案例" class="headerlink" title="二、入门案例"></a>二、入门案例</h2><h3 id="1-使用idea-springboot直接构建"><a href="#1-使用idea-springboot直接构建" class="headerlink" title="1. 使用idea springboot直接构建"></a>1. 使用idea springboot直接构建</h3><ol>
+<li>点击new project</li>
+<li>选择springboot</li>
+<li>将url替换为 <a target="_blank" rel="noopener" href="https://start.aliyun.com/">https://start.aliyun.com</a></li>
+<li>填入项目名，jdk版本等</li>
+<li>选择spring web </li>
+<li>创建</li>
+</ol>
+<h3 id="2-构建一个普通maven项目，添加springboot依赖构建"><a href="#2-构建一个普通maven项目，添加springboot依赖构建" class="headerlink" title="2. 构建一个普通maven项目，添加springboot依赖构建"></a>2. 构建一个普通maven项目，添加springboot依赖构建</h3><ol>
+<li>新建一个普通maven项目</li>
+<li>在pom文件引入父项目<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.7.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li>引入web依赖<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.6.13<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li>写一个主启动类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        SpringApplication.run(Main.class, args);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>写一个controller 进行测试</li>
+</ol>
+<h2 id="三、springboot原理解析"><a href="#三、springboot原理解析" class="headerlink" title="三、springboot原理解析"></a>三、springboot原理解析</h2><h3 id="1-起步依赖"><a href="#1-起步依赖" class="headerlink" title="1. 起步依赖"></a>1. 起步依赖</h3><h4 id="a-概念"><a href="#a-概念" class="headerlink" title="a. 概念"></a>a. 概念</h4><p>起步依赖是springboot 提供的特殊的maven依赖，封装了特定功能所需要的所有相关的库<br>比如： spring- boot-start-web 包含： spring-web，spring-aop，spring-webmvc等，导入一个就导入了相关的所有。</p>
+<blockquote>
+<p>有一种maven的思想的进一步使用</p>
+</blockquote>
+<h4 id="b-作用："><a href="#b-作用：" class="headerlink" title="b.作用："></a>b.作用：</h4><ul>
+<li>简化依赖导入：只需导入一个</li>
+<li>版本统一：通过Spring Boot的父POM（<code>spring-boot-starter-parent</code>）统一管理所有依赖的版本，避免版本冲突。</li>
+<li>自动配置：根据类路径中的依赖自动注册Bean并完成配置，减少XML或注解的重复编写。</li>
+</ul>
+<h4 id="c-原理"><a href="#c-原理" class="headerlink" title="c. 原理"></a>c. 原理</h4><p>本质是 maven 的依赖传递机制<br>例如 引入 spring- boot-start-web，会自动引入spring-web，spring-aop，spring-webmvc等</p>
+<h4 id="d-区分parent-与其他start"><a href="#d-区分parent-与其他start" class="headerlink" title="d. 区分parent 与其他start"></a>d. 区分parent 与其他start</h4><p>虽然这两个都简化了配置，但是功能不同</p>
+<p>parent 定义了很多个常见组件的依赖版本号，不直接导入依赖<br>普通的starter： 定义了若干坐标，直接引入依赖</p>
+<p>springboot官方实现的starter， spring-boot-starter-xxx<br>其他springboot没有实现，由第三实现的 starter  xxx-spring-boot-starter  且导入需要版本号</p>
+<h3 id="2-自动配置"><a href="#2-自动配置" class="headerlink" title="2. 自动配置"></a>2. 自动配置</h3><p>概述： springboot 采用约定大于配置的思想，将项目可能会遇到的配置信息现提前配置好，写在自动配置的jar包中，当项目运行时，自动检测项目类路径下所有的依赖的jar包，将检测到的Bean注册到spring容器中去，根据检测到的依赖进行自动配置</p>
+<h4 id="a-springbootApplication注解"><a href="#a-springbootApplication注解" class="headerlink" title="a. springbootApplication注解"></a>a. springbootApplication注解</h4><p>它包含了三个注解<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513083029.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li><p>@SpringBootConfiguration<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513083155.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+<li><p>@EnableAutoConfiguration<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513084853.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>@Import({AutoConfigurationImportSelector.class})<br>（1）从SpringBoot自动配置JAR包的META-INF&#x2F;spring.facto<br>ries和META-INF&#x2F;spring&#x2F;org.springframework.boot.autocon<br>figure.AutoConfiguration.imports文件中获取所有候选自动配<br>置类。<br>(2）根据项目pom.xml文件中加入的依赖筛选出最终符合当前<br>项目运行环境对应的自动配置类。</p>
+</li>
+<li><p>@ComponentScan<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513085100.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>组件包扫描器，其主要作用是扫描指定包及其子包下所有注解类文件作为Spring容器 组件使用。</p>
+</li>
+</ul>
+<h3 id="3-执行流程"><a href="#3-执行流程" class="headerlink" title="3. 执行流程"></a>3. 执行流程</h3><p>springApplication 的run（）方法，调用了另一个重载的run方法，被调用的重载run（）方法内部执行了两个操作，分别是1. 创建springApplication容器     2.调用run方法</p>
+<h5 id="1-创建springApplication容器"><a href="#1-创建springApplication容器" class="headerlink" title="1. 创建springApplication容器"></a>1. 创建springApplication容器</h5><ol>
+<li>初始化资源加载器</li>
+<li>初始化资源类集合</li>
+<li>推断当前web容器类型</li>
+<li>设置上下文初始化器</li>
+<li>设置监听器</li>
+<li>推断主应用类</li>
+</ol>
+<p>初始化资源，推断web容器类型，设置上下文初始化器</p>
+<h5 id="2-调用run方法"><a href="#2-调用run方法" class="headerlink" title="2.调用run方法"></a>2.调用run方法</h5><ol>
+<li>创建并刷新ApplicationContext<ol>
+<li>创建应用上下文，加载配置类he自动配置类，注册bean并执行依赖注入的初始化操作</li>
+</ol>
+</li>
+<li>启动嵌入式web服务器</li>
+<li>发布应用已启动事件，对应监听事件会触发</li>
+<li>执行CommandLineRunner和ApplicationRunner</li>
+<li>发布ready事件、应用启动完成 <ol>
+<li>·触发ApplicationReadyEvent，应用进入运行状态，处理业务请求或任务。</li>
+</ol>
+</li>
+</ol>
+<p>创建刷新应用上下文，加载配置类，启动监听器，通知监听器</p>
+<h2 id="四、单元测试"><a href="#四、单元测试" class="headerlink" title="四、单元测试"></a>四、单元测试</h2><p>在test类中使用@springbootTest注解即可</p>
+<h2 id="五、-部署与打包"><a href="#五、-部署与打包" class="headerlink" title="五、 部署与打包"></a>五、 部署与打包</h2><h3 id="1-打包为jar包"><a href="#1-打包为jar包" class="headerlink" title="1. 打包为jar包"></a>1. 打包为jar包</h3><p>概念：将代码源文件组织成一个可执行文件交付给他人使用</p>
+<p>流程：</p>
+<ol>
+<li>在maven中添加打包插件</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">mainClass</span>&gt;</span>com.cheems.springboot01.Springboot01Application<span class="hljs-tag">&lt;/<span class="hljs-name">mainClass</span>&gt;</span> <br>        <span class="hljs-tag">&lt;<span class="hljs-name">skip</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">skip</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">executions</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">execution</span>&gt;</span>  <br>            <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>repackage<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>  <br>            <span class="hljs-tag">&lt;<span class="hljs-name">goals</span>&gt;</span>  <br>                <span class="hljs-tag">&lt;<span class="hljs-name">goal</span>&gt;</span>repackage<span class="hljs-tag">&lt;/<span class="hljs-name">goal</span>&gt;</span>  <br>            <span class="hljs-tag">&lt;/<span class="hljs-name">goals</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;/<span class="hljs-name">execution</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;/<span class="hljs-name">executions</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用maven进行打包</li>
+<li>使用java -jar jar包名 即可运行</li>
+</ol>
+<p>如果报错： 没有主清单属性， 将打包插件的 &lt;skip&gt;true &lt;&#x2F;skip&gt; 删掉</p>
+<h3 id="2-打包为war包"><a href="#2-打包为war包" class="headerlink" title="2. 打包为war包"></a>2. 打包为war包</h3><p>每个jar包都包含独立的web容器，对服务器的消耗较大， 特别是微服务时<br>将其打成war包，分别部署在服务器上，可减少资源的消耗</p>
+<p>步骤：</p>
+<ol>
+<li>在pom文件中声明打包方式为war<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.cheems<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springboot-01<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>war<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span>     <span class="hljs-comment">&lt;!-- 就是这一行--&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li>排除内置的tomcat</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span> <br>	<span class="hljs-tag">&lt;<span class="hljs-name">groupld</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupld</span>&gt;</span> <br>	<span class="hljs-tag">&lt;<span class="hljs-name">artifactld</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactld</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span> <br>	<span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span> <br>		<span class="hljs-tag">&lt;<span class="hljs-name">groupld</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupld</span>&gt;</span> <br>		<span class="hljs-tag">&lt;<span class="hljs-name">artifactld</span>&gt;</span>spring-boot-starter-tomcat<span class="hljs-tag">&lt;/<span class="hljs-name">artifactld</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span> <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>添加插件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span> <br>	<span class="hljs-tag">&lt;<span class="hljs-name">finalName</span>&gt;</span>springboot-war<span class="hljs-tag">&lt;/<span class="hljs-name">finalName</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span> <br>		<span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span> <br>			<span class="hljs-tag">&lt;<span class="hljs-name">groupld</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupld</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">artifactld</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactld</span>&gt;</span><br>		<span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span> <br>	<span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改springboot启动类<br>没有tomcat了 要重写一下</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/springboot/" class="category-chain-item">springboot</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="print-no-link">#技术学习笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>springboot入门</div>
+      <div>http://example.com/2025/05/13/java/Springboot/springboot入门/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/12/%E8%AF%BE%E7%A8%8B/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E6%A6%82%E8%AE%BA%E3%80%81%E7%AC%A6%E5%8F%B7%E4%B8%B2%E4%B8%8E%E8%AF%AD%E6%B3%95/" title="概论、符号串与语法">
+                        <span class="hidden-mobile">概论、符号串与语法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
