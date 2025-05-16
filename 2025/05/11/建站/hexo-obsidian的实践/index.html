@@ -8,8 +8,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/categories/img/fluid.png">
-  <link rel="icon" href="/categories/img/fav.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fav.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -22,7 +22,7 @@
     <meta name="description" content="使用Obsidian高效撰写并发布Hexo博客（集成Terminal与PicGo图床）本文将介绍如何配置Obsidian作为Hexo博客的写作工具，并通过集成Terminal、PicGo、CDN以及GitHub图床，实现高效的文章撰写、图片管理和一键发布流程。 核心流程概述 快捷发布：集成Terminal到Obsidian中，使用Ctrl+T快速打开终端执行Hexo命令。 图片管理：通过PicGo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo+obsidian的实践">
-<meta property="og:url" content="https://cheems-beta.vercel.app/categories/2025/05/11/%E5%BB%BA%E7%AB%99/hexo-obsidian%E7%9A%84%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:url" content="http://example.com/2025/05/11/%E5%BB%BA%E7%AB%99/hexo-obsidian%E7%9A%84%E5%AE%9E%E8%B7%B5/index.html">
 <meta property="og:site_name" content="cheems的博客">
 <meta property="og:description" content="使用Obsidian高效撰写并发布Hexo博客（集成Terminal与PicGo图床）本文将介绍如何配置Obsidian作为Hexo博客的写作工具，并通过集成Terminal、PicGo、CDN以及GitHub图床，实现高效的文章撰写、图片管理和一键发布流程。 核心流程概述 快捷发布：集成Terminal到Obsidian中，使用Ctrl+T快速打开终端执行Hexo命令。 图片管理：通过PicGo">
 <meta property="og:locale" content="zh_CN">
@@ -64,12 +64,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
 
 
-<link  rel="stylesheet" href="/categories/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/categories/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/categories/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -78,15 +78,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cheems-beta.vercel.app","root":"/categories/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/categories/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/categories/js/utils.js" ></script>
-  <script  src="/categories/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -103,7 +103,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/categories/">
+    <a class="navbar-brand" href="/">
       <strong>cheems的博客</strong>
     </a>
 
@@ -122,7 +122,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/categories/" target="_self">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -134,7 +134,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -146,7 +146,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/tags/" target="_self">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -158,7 +158,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/about/" target="_self">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -170,7 +170,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/archives/" target="_self">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>时间轴</span>
               </a>
@@ -200,7 +200,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/categories/img/banner.webp') no-repeat center center; background-size: cover;">
+     style="background: url('/img/banner.webp') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -308,15 +308,15 @@
 <h2 id="二、图片管理：Obsidian-PicGo-CDN-GitHub图床"><a href="#二、图片管理：Obsidian-PicGo-CDN-GitHub图床" class="headerlink" title="二、图片管理：Obsidian + PicGo + CDN + GitHub图床"></a>二、图片管理：Obsidian + PicGo + CDN + GitHub图床</h2><h3 id="1-PicGo-安装"><a href="#1-PicGo-安装" class="headerlink" title="1. PicGo 安装"></a>1. PicGo 安装</h3><p>PicGo是一款优秀的图床上传工具。</p>
 <ol>
 <li>访问 <a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">PicGo Releases 页面</a>。</li>
-<li>找到并下载合适的版本（例如 <code>2.3.1</code>）。对于Windows用户，选择 <code>.exe</code> 安装文件。<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225036.png" srcset="/categories/img/loading.gif" lazyload alt="image.png"></li>
+<li>找到并下载合适的版本（例如 <code>2.3.1</code>）。对于Windows用户，选择 <code>.exe</code> 安装文件。<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225036.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
 <li>按照提示完成安装。</li>
 </ol>
 <h3 id="2-PicGo-配置"><a href="#2-PicGo-配置" class="headerlink" title="2. PicGo 配置"></a>2. PicGo 配置</h3><h4 id="a-插件设置"><a href="#a-插件设置" class="headerlink" title="a. 插件设置"></a>a. 插件设置</h4><p>打开PicGo应用，进入设置界面：</p>
 <ul>
-<li>在“插件设置”中，我们可以选择显示的图床。由于我们主要使用GitHub，可以将其他不常用的图床取消勾选，以简化界面。<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225142.png" srcset="/categories/img/loading.gif" lazyload alt="image.png"></li>
+<li>在“插件设置”中，我们可以选择显示的图床。由于我们主要使用GitHub，可以将其他不常用的图床取消勾选，以简化界面。<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225142.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
 </ul>
 <ul>
-<li>图床设置 -&gt; github  填入参数<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225606.png" srcset="/categories/img/loading.gif" lazyload alt="image.png"></li>
+<li>图床设置 -&gt; github  填入参数<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250511225606.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
 </ul>
 <ul>
 <li>**仓库名 (Repo)**：例如，你的GitHub仓库地址是 <code>https://github.com/your-username/your-repo-name</code>，则仓库名填写 <code>your-username/your-repo-name</code>。</li>
@@ -329,7 +329,7 @@
 <li>登录GitHub，点击右上角头像 -&gt; “Settings”。</li>
 <li>在左侧导航栏找到 “Developer settings”。</li>
 <li>选择 “Personal access tokens” -&gt; “Tokens (classic)”。</li>
-<li>点击 “Generate new token” -&gt; “Generate new token (classic)”。<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250512091128.png" srcset="/categories/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250512091358.png" srcset="/categories/img/loading.gif" lazyload alt="image.png"></li>
+<li>点击 “Generate new token” -&gt; “Generate new token (classic)”。<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250512091128.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250512091358.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
 <li>**Note (Token描述)**：填写一个易于识别的名称，如 <code>PicGo for Obsidian Blog</code>。</li>
 <li>**Expiration (有效期)**：根据需要选择，可以选择 “No expiration” (无过期时间)，但出于安全考虑，建议设置一个有效期。</li>
 <li>**Select scopes (选择权限)**：勾选 <code>repo</code> 权限。这是操作仓库（包括上传文件）所必需的。</li>
@@ -363,7 +363,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/categories/%E5%BB%BA%E7%AB%99%E7%AC%94%E8%AE%B0/" class="category-chain-item">建站笔记</a>
+  <a href="/categories/%E5%BB%BA%E7%AB%99%E7%AC%94%E8%AE%B0/" class="category-chain-item">建站笔记</a>
   
   
 
@@ -378,7 +378,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/categories/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" class="print-no-link">#技术笔记</a>
+        <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" class="print-no-link">#技术笔记</a>
       
     </div>
   
@@ -391,7 +391,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>hexo+obsidian的实践</div>
-      <div>https://cheems-beta.vercel.app/categories/2025/05/11/建站/hexo-obsidian的实践/</div>
+      <div>http://example.com/2025/05/11/建站/hexo-obsidian的实践/</div>
     </div>
     <div class="license-meta">
       
@@ -435,7 +435,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/categories/2025/05/12/PowerToys_Paste_20250512134651/" title="">
+                      <a href="/2025/05/12/PowerToys_Paste_20250512134651/" title="">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
@@ -445,7 +445,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/categories/2025/05/11/%E5%BB%BA%E7%AB%99/%E4%BB%8Ehexo%E5%BC%80%E5%A7%8B%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="从hexo开始的个人博客">
+                      <a href="/2025/05/11/%E5%BB%BA%E7%AB%99/%E4%BB%8Ehexo%E5%BC%80%E5%A7%8B%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="从hexo开始的个人博客">
                         <span class="hidden-mobile">从hexo开始的个人博客</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -574,8 +574,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/categories/js/events.js" ></script>
-<script  src="/categories/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -597,7 +597,7 @@
 
 
   
-    <script  src="/categories/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -696,7 +696,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/categories/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -704,7 +704,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/categories/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   

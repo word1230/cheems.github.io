@@ -8,8 +8,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/categories/img/fluid.png">
-  <link rel="icon" href="/categories/img/fav.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fav.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -22,7 +22,7 @@
     <meta name="description" content="es基础官方文档： https:&#x2F;&#x2F;www.elastic.co&#x2F;guide&#x2F;en&#x2F;elasticsearch&#x2F;reference&#x2F;7.6&#x2F;documents-indices.html 核心流程：es系列会讲   es的介绍（包括本身，创始人） 与其他搜索引擎技术的对比 es的生态圈 基本的操作 springboot集成 实战 面试题  一、 luceueLucene是一套信息检索工具包！jar包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="es基础">
-<meta property="og:url" content="https://cheems-beta.vercel.app/categories/2025/05/13/java/elastic%20search/es%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:url" content="http://example.com/2025/05/13/java/elastic%20search/es%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="cheems的博客">
 <meta property="og:description" content="es基础官方文档： https:&#x2F;&#x2F;www.elastic.co&#x2F;guide&#x2F;en&#x2F;elasticsearch&#x2F;reference&#x2F;7.6&#x2F;documents-indices.html 核心流程：es系列会讲   es的介绍（包括本身，创始人） 与其他搜索引擎技术的对比 es的生态圈 基本的操作 springboot集成 实战 面试题  一、 luceueLucene是一套信息检索工具包！jar包">
 <meta property="og:locale" content="zh_CN">
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
 
 
-<link  rel="stylesheet" href="/categories/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/categories/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/categories/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -76,15 +76,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"cheems-beta.vercel.app","root":"/categories/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/categories/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/categories/js/utils.js" ></script>
-  <script  src="/categories/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -101,7 +101,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/categories/">
+    <a class="navbar-brand" href="/">
       <strong>cheems的博客</strong>
     </a>
 
@@ -120,7 +120,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/categories/" target="_self">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/tags/" target="_self">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/about/" target="_self">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/archives/" target="_self">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>时间轴</span>
               </a>
@@ -198,7 +198,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/categories/img/banner.webp') no-repeat center center; background-size: cover;">
+     style="background: url('/img/banner.webp') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -317,9 +317,9 @@
 </li>
 </ol>
 <h2 id="四、es-安装"><a href="#四、es-安装" class="headerlink" title="四、es 安装"></a>四、es 安装</h2><h3 id="1-下载并解压"><a href="#1-下载并解压" class="headerlink" title="1. 下载并解压"></a>1. 下载并解压</h3><p><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/zip-windows.html">https://www.elastic.co/guide/en/elasticsearch/reference/7.17/zip-windows.html</a></p>
-<h3 id="2-目录结构"><a href="#2-目录结构" class="headerlink" title="2. 目录结构"></a>2. 目录结构</h3><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250515134111.png" srcset="/categories/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="2-目录结构"><a href="#2-目录结构" class="headerlink" title="2. 目录结构"></a>2. 目录结构</h3><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250515134111.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="3-启动"><a href="#3-启动" class="headerlink" title="3. 启动"></a>3. 启动</h3><ol>
-<li><p>在bin目录 执行 <code>elasticsearch.bat</code><br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250515134323.png" srcset="/categories/img/loading.gif" lazyload alt="image.png"></p>
+<li><p>在bin目录 执行 <code>elasticsearch.bat</code><br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250515134323.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 </li>
 <li><p>浏览器打开：localhost：9200</p>
 </li>
@@ -531,7 +531,7 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cheems.springbootes;  <br>  <br><span class="hljs-keyword">import</span> com.cheems.springbootes.mapper.UserMapper;  <br><span class="hljs-keyword">import</span> com.cheems.springbootes.pojo.User;  <br><span class="hljs-keyword">import</span> org.elasticsearch.index.query.MatchQueryBuilder;  <br><span class="hljs-keyword">import</span> org.elasticsearch.index.query.QueryBuilder;  <br><span class="hljs-keyword">import</span> org.elasticsearch.index.query.QueryBuilders;  <br><span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;  <br><span class="hljs-keyword">import</span> org.springframework.boot.test.context.SpringBootTest;  <br><span class="hljs-keyword">import</span> org.springframework.data.domain.Page;  <br><span class="hljs-keyword">import</span> org.springframework.data.domain.PageRequest;  <br><span class="hljs-keyword">import</span> org.springframework.data.domain.Pageable;  <br><span class="hljs-keyword">import</span> org.springframework.data.domain.Sort;  <br><span class="hljs-keyword">import</span> org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;  <br>  <br><span class="hljs-keyword">import</span> javax.annotation.Resource;  <br><span class="hljs-keyword">import</span> java.util.ArrayList;  <br><span class="hljs-keyword">import</span> java.util.Date;  <br><span class="hljs-keyword">import</span> java.util.List;  <br><span class="hljs-keyword">import</span> java.util.Optional;  <br>  <br><span class="hljs-meta">@SpringBootTest</span>  <br>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EsTest</span> &#123;  <br>    <span class="hljs-meta">@Resource</span>  <br>    <span class="hljs-keyword">private</span> UserMapper userMapper;  <br>  <br>  <br>    <span class="hljs-comment">//新增  </span><br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();  <br>        user.setId(<span class="hljs-string">&quot;1&quot;</span>);  <br>        user.setName(<span class="hljs-string">&quot;张三&quot;</span>);  <br>        user.setAge(<span class="hljs-number">18</span>);  <br>  <br>        userMapper.save(user);  <br>  <br>    &#125;  <br>  <br>    <span class="hljs-comment">/**  </span><br><span class="hljs-comment">     * 批量新增  </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">void</span>  <span class="hljs-title function_">testaddall</span><span class="hljs-params">()</span>&#123;  <br>        List&lt;User&gt; users = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();  <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;  <br>            <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();  <br>            user.setId(<span class="hljs-string">&quot;&quot;</span>+i);  <br>  <br>            user.setName(<span class="hljs-string">&quot;cheems&quot;</span>+i);  <br>            user.setAge(i);  <br>  <br>            users.add(user);  <br>  <br>        &#125;  <br>        Iterable&lt;User&gt; users1 = userMapper.saveAll(users);  <br>        <span class="hljs-keyword">for</span> (User user : users1) &#123;  <br>            System.out.println(user);  <br>        &#125;  <br>  <br>    &#125;  <br>  <br>    <span class="hljs-comment">/**  </span><br><span class="hljs-comment">     * 更新  </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testupdate</span><span class="hljs-params">()</span>&#123;  <br>        <span class="hljs-comment">//在之前更新与创建 是 put 与post 都可以做，所以es的更新与创建是一个方法save  </span><br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();  <br>        user.setId(<span class="hljs-string">&quot;1&quot;</span>);  <br>        user.setName(<span class="hljs-string">&quot;&lt;UNK&gt;&quot;</span>);  <br>        user.setAge(<span class="hljs-number">20</span>);  <br>        userMapper.save(user);  <br>    &#125;  <br>  <br>    <span class="hljs-comment">/**  </span><br><span class="hljs-comment">     * 删除  </span><br><span class="hljs-comment">     */</span>  <br>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testdelete</span><span class="hljs-params">()</span>&#123;  <br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();  <br>        user.setId(<span class="hljs-string">&quot;1&quot;</span>);  <br>        <span class="hljs-comment">//方法一： userMapper.delete(user);  </span><br>        <span class="hljs-comment">// 方法二  </span><br>       userMapper.deleteById(<span class="hljs-string">&quot;2&quot;</span>);  <br>  <br>       <span class="hljs-comment">//批量删除与创建一致  </span><br><span class="hljs-comment">//        userMapper.deleteAll();  </span><br><span class="hljs-comment">//        userMapper.deleteAllById();  </span><br>    &#125;  <br>  <br>    <span class="hljs-comment">/**  </span><br><span class="hljs-comment">     * 查找  </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testget</span><span class="hljs-params">()</span>&#123;  <br>  <br>        <span class="hljs-comment">//根据id差  </span><br>        Optional&lt;User&gt; user = userMapper.findById(<span class="hljs-string">&quot;3&quot;</span>);  <br>        System.out.println(user);  <br>        System.out.println(<span class="hljs-string">&quot;=====================&quot;</span>);  <br>        <span class="hljs-comment">//查所有  </span><br>        userMapper.findAll().forEach(System.out::println);  <br>  <br>  <br>        <span class="hljs-comment">//自定义方法  </span><br>        System.out.println(<span class="hljs-string">&quot;******************&quot;</span>);  <br>        <span class="hljs-type">User</span> <span class="hljs-variable">cheems</span> <span class="hljs-operator">=</span> userMapper.findUserByName(<span class="hljs-string">&quot;cheems1&quot;</span>);  <br>        System.out.println(cheems);  <br>  <br>  <br>        System.out.println(<span class="hljs-string">&quot;***************&quot;</span>);  <br>        <span class="hljs-comment">//分页  </span><br>        <span class="hljs-type">PageRequest</span> <span class="hljs-variable">pageRequest</span> <span class="hljs-operator">=</span> PageRequest.of(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>);  <br>        Page&lt;User&gt; users = userMapper.findAll(pageRequest);  <br>        System.out.println(<span class="hljs-string">&quot;当前页数据&quot;</span>+users.getContent());  <br>        System.out.println(<span class="hljs-string">&quot;总页数&quot;</span>+users.getTotalElements());  <br>        System.out.println(<span class="hljs-string">&quot;总记录数&quot;</span>+users.getTotalPages());  <br>  <br>  <br>        <span class="hljs-comment">//排序  </span><br>  <br>        System.out.println(<span class="hljs-string">&quot;----------------------&quot;</span>);  <br>  <br>        <span class="hljs-type">Sort</span> <span class="hljs-variable">sort</span> <span class="hljs-operator">=</span> Sort.by(<span class="hljs-string">&quot;age&quot;</span>).ascending();  <br>  <br>        <span class="hljs-keyword">for</span> (User user1 : userMapper.findAll(sort)) &#123;  <br>            System.out.println(user1);  <br>        &#125;  <br>  <br>        <span class="hljs-comment">//分页+排序  </span><br>  <br>        System.out.println(<span class="hljs-string">&quot;-------------------------&quot;</span>);  <br>  <br>        <span class="hljs-type">Pageable</span> <span class="hljs-variable">pageablewithSort</span> <span class="hljs-operator">=</span> PageRequest.of(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, Sort.by(<span class="hljs-string">&quot;age&quot;</span>).descending());  <br>  <br>        users = userMapper.findAll(pageablewithSort);  <br>        System.out.println(<span class="hljs-string">&quot;分页+排序结果&quot;</span>+users.getContent());  <br>   <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="b-使用QueryBuilders自己构造"><a href="#b-使用QueryBuilders自己构造" class="headerlink" title="b. 使用QueryBuilders自己构造"></a>b. 使用QueryBuilders自己构造</h4><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250515201627.png" srcset="/categories/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="b-使用QueryBuilders自己构造"><a href="#b-使用QueryBuilders自己构造" class="headerlink" title="b. 使用QueryBuilders自己构造"></a>b. 使用QueryBuilders自己构造</h4><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250515201627.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>实例：</p>
 <ol>
 <li><p>范围查询</p>
@@ -569,12 +569,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/categories/java/" class="category-chain-item">java</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
     <span>></span>
     
-  <a href="/categories/categories/java/elasticsearch/" class="category-chain-item">elasticsearch</a>
+  <a href="/categories/java/elasticsearch/" class="category-chain-item">elasticsearch</a>
   
   
 
@@ -591,7 +591,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/categories/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="print-no-link">#技术学习笔记</a>
+        <a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="print-no-link">#技术学习笔记</a>
       
     </div>
   
@@ -604,7 +604,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>es基础</div>
-      <div>https://cheems-beta.vercel.app/categories/2025/05/13/java/elastic search/es基础/</div>
+      <div>http://example.com/2025/05/13/java/elastic search/es基础/</div>
     </div>
     <div class="license-meta">
       
@@ -648,7 +648,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/categories/2025/05/14/java/Springboot/springboot-web%E5%BA%94%E7%94%A8%E6%94%AF%E6%8C%81/" title="web应用支持">
+                      <a href="/2025/05/14/java/Springboot/springboot-web%E5%BA%94%E7%94%A8%E6%94%AF%E6%8C%81/" title="web应用支持">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">web应用支持</span>
                         <span class="visible-mobile">上一篇</span>
@@ -658,7 +658,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/categories/2025/05/13/%E8%AF%BE%E7%A8%8B/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/LL%EF%BC%881%EF%BC%89%E6%96%87%E6%B3%95/" title="LL（1）文法">
+                      <a href="/2025/05/13/%E8%AF%BE%E7%A8%8B/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/LL%EF%BC%881%EF%BC%89%E6%96%87%E6%B3%95/" title="LL（1）文法">
                         <span class="hidden-mobile">LL（1）文法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -787,8 +787,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/categories/js/events.js" ></script>
-<script  src="/categories/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -810,7 +810,7 @@
 
 
   
-    <script  src="/categories/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -909,7 +909,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/categories/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -917,7 +917,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/categories/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   
