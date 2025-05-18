@@ -37,14 +37,28 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517143018.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517143549.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517150516.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518134751.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517155000.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517155041.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517162516.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517155841.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517160410.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250517161219.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518104156.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518104248.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518105201.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518105812.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110007.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110235.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110449.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110610.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110618.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518112307.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518112322.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518205710.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518205853.png">
 <meta property="article:published_time" content="2025-05-16T05:39:52.000Z">
-<meta property="article:modified_time" content="2025-05-17T12:26:09.903Z">
+<meta property="article:modified_time" content="2025-05-18T13:50:07.117Z">
 <meta property="article:author" content="cheems">
 <meta property="article:tag" content="技术学习笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          3.6k 字
         
       </span>
     
@@ -252,7 +266,7 @@
         
         
         
-          20 分钟
+          30 分钟
         
       </span>
     
@@ -521,8 +535,9 @@
 <li>镜像是： 一个独立的可运行的软件包，包含程序的所有文件，及其依赖的库，环境及配置文件等<br>可直接运行</li>
 </ol>
 <h4 id="b-镜像的分层结构"><a href="#b-镜像的分层结构" class="headerlink" title="b.镜像的分层结构"></a>b.镜像的分层结构</h4><ol>
-<li>镜像的结构是ufs 分层结构，是由一层一层的文件系统组成的<br>类似于git 的版本</li>
+<li>镜像的结构是ufs 分层结构，是由一层一层的文件系统组成的<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518134751.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
 </ol>
+<p>类似于git 的版本</p>
 <ul>
 <li>一开始我安装了一个centos 形成了版本一</li>
 <li>后来我安装了 java，那么centos+java形成了版本二</li>
@@ -561,12 +576,115 @@
 <li>需要进入到容器，才能修改配置</li>
 </ol>
 <h3 id="2-数据卷的作用"><a href="#2-数据卷的作用" class="headerlink" title="2. 数据卷的作用"></a>2. 数据卷的作用</h3><p>数据卷是一个数据同步技术<br>我们可以通过数据卷将容器内的数据同步到本地</p>
-<p>本质： 将容器目录挂在到本地目录</p>
+<p>本质： 将容器目录挂在到本地目录，容器与主机共用这个目录</p>
 <p>同时还支持容器间的数据共享</p>
 <h3 id="3-使用数据卷"><a href="#3-使用数据卷" class="headerlink" title="3.使用数据卷"></a>3.使用数据卷</h3><h4 id="1-使用命令来挂载"><a href="#1-使用命令来挂载" class="headerlink" title="1. 使用命令来挂载"></a>1. 使用命令来挂载</h4><p>-v 参数</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -it -v 主机目录：容器目录 <br></code></pre></td></tr></table></figure>
+<ol>
+<li>指定目录绑定<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -it -v 主机目录：容器目录 镜像名<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>但是<code>-v 主机目录：容器目录 </code>  会将主机文件目录的内容覆盖容器目录，所以主机为空，则容器目录会被覆盖<br>2. 匿名绑定</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -it -v 容器内目录 镜像名<br></code></pre></td></tr></table></figure>
+
+<p>会自动在本地挂载 ， 查看时数据卷的名称是一行自动生成id </p>
+<ul>
+<li>对于windows <code>\\wsl.localhost\docker-desktop\mnt\docker-desktop-disk\data\docker\volumes</code> 在这个目录</li>
+<li>linux 就是直接显示的目录</li>
+</ul>
+<p>查看具体目录：<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518104156.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>还可以通过docker inspect  容器id 查看容器源信息来获取<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518104248.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ol start="3">
+<li>具名绑定</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -it -v 数据卷名：容器目录 镜像名<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>这里可以指定数据卷的名称，意味着我们可以<em><strong>先创建数据卷</strong></em>，再将数据卷绑定上去<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 这里是数据卷的一些操作</span><br><br>docker volume create 数据卷名（my_volume） <span class="hljs-comment"># 创建并指定数据卷名</span><br><br>docker run -it -v my_volume : /etc/nginx nginx <span class="hljs-comment"># 绑定数据卷</span><br><br><span class="hljs-comment"># 查看数据卷</span><br>docker volume <span class="hljs-built_in">ls</span> 查看所有<br>docker volume inspect 卷名 查看数据卷的信息<br><br><span class="hljs-comment"># 删除数据卷</span><br>docker volume <span class="hljs-built_in">rm</span> &lt;卷名&gt;<br><br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>示例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker volume create my_nginx_volume<br><br>docker run --name <span class="hljs-string">&quot;mynginx&quot;</span> -it -v my_nginx_volume:/etc/nginx nginx /bin/bash<br><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518105201.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="2-使用dockerfile-挂载"><a href="#2-使用dockerfile-挂载" class="headerlink" title="2. 使用dockerfile 挂载"></a>2. 使用dockerfile 挂载</h4><p>dockerfile 是docker镜像的构建文件，是一个命令脚本<br>也可以使用这个来挂在数据卷，这个在dockerfile 时讲解</p>
+<h3 id="4-数据卷的原理"><a href="#4-数据卷的原理" class="headerlink" title="4.数据卷的原理"></a>4.数据卷的原理</h3><h5 id="a-测试同步："><a href="#a-测试同步：" class="headerlink" title="a. 测试同步："></a>a. 测试同步：</h5><ol>
+<li>主机新建，容器同步</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518105812.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ol start="2">
+<li>容器新建 ，主机同步<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110007.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ol>
+<blockquote>
+<p>结论：<br> 双向同步</p>
+</blockquote>
+<h5 id="b-测试持久化"><a href="#b-测试持久化" class="headerlink" title="b. 测试持久化"></a>b. 测试持久化</h5><ol>
+<li>删除主机数据卷，观察容器<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110235.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110449.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>发现确实没了<br>这里的modules 是无法删除的文件，windows中也有<br>2. 删除容器，观察主机<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110610.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518110618.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到容器的删除，没有影响到主机</p>
+<ol start="3">
+<li>删除容器数据卷，观察主机<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518112307.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518112322.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ol>
+<p>可以看到容器数据卷操作，也是删除掉了</p>
+<blockquote>
+<p>结论<br> 容器删除不会影响 主机的数据卷<br>无论容器还是主机，对数据卷目录删除，就会删除</p>
+</blockquote>
+<h4 id="c-如何做到的"><a href="#c-如何做到的" class="headerlink" title="c. 如何做到的"></a>c. 如何做到的</h4><h5 id="1）对于同步"><a href="#1）对于同步" class="headerlink" title="1）对于同步"></a>1）对于同步</h5><ul>
+<li><strong>正向同步</strong>：容器对挂载目录的改动直接写入宿主机数据卷，因两者共享同一物理存储。</li>
+<li><strong>反向同步</strong>：宿主机对数据卷的修改（包括删除）会立即反映到容器中，因其依赖同一存储位置。 这种双向同步本质是文件系统的直接操作，而非 Docker 的主动复制</li>
+</ul>
+<p>是直接对同一位置的文件进行操作。</p>
+<h5 id="2）-对于删除"><a href="#2）-对于删除" class="headerlink" title="2） 对于删除"></a>2） 对于删除</h5><p>数据卷的本质是宿主机文件系统的独立目录，与容器的UFS分层文件系统解耦</p>
+<p>容器删除时，<em><strong>只会删掉 可写层</strong></em> ，而不会影响到文件目录</p>
+<p>容器通过挂载点（如 <code>/etc/nginx</code>）直接访问宿主机数据卷目录。<strong>若宿主机的数据卷被删除（如通过 <code>docker volume rm</code>），容器内的挂载目录将失去底层存储支撑</strong>，导致数据不可见或丢失。此时容器可能因无法访问数据而报错<br>同理，容器对数据卷目录删除，也会删掉主机文件</p>
+<h4 id="5-数据卷容器"><a href="#5-数据卷容器" class="headerlink" title="5.数据卷容器"></a>5.数据卷容器</h4><p>数据卷不光可以让主机与容器直接同步文件，还可以让容器与容器同步文件</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">docker <span class="hljs-built_in">run</span> <span class="hljs-comment">--volumes-from 数据卷名 镜像名</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="七、dockerfile"><a href="#七、dockerfile" class="headerlink" title="七、dockerfile"></a>七、dockerfile</h2><h3 id="1-什么是dockerfile"><a href="#1-什么是dockerfile" class="headerlink" title="1. 什么是dockerfile"></a>1. 什么是dockerfile</h3><p>dockerfile 是docker镜像的构建文件，是脚本命令，通过dockefile，我们创建出一个镜像</p>
+<p>特点</p>
+<ol>
+<li>一行命令就是一层 ， <ol>
+<li>镜像是分层的，dockerfile也是分层构建的</li>
+</ol>
+</li>
+</ol>
+<h3 id="2-指令"><a href="#2-指令" class="headerlink" title="2.指令"></a>2.指令</h3><p>dockerfile 的指令的几个原则：</p>
+<ul>
+<li>大写</li>
+<li>从上到下执行</li>
+<li># 代表注释</li>
+<li>每个指令创建并提交一个新的镜像层</li>
+</ul>
+<p>dockerfile指令：</p>
+<ol>
+<li>FROM  指定基础镜像       必须作为首条指令</li>
+<li>RUN 构建时执行的指令(如安装软件或配置环境)</li>
+<li>CMD 定义容器启动时的默认命令，可被docker run 覆盖（docker run 后的命令 会直接覆盖掉这个命令）</li>
+<li>ENTRYPOINT  设定容器启动时的默认命令，docker run 后的命令会追加到这个命令之后</li>
+<li>ADD   添加文件到镜像中 （会自动解压和从url下载资源）</li>
+<li>COPY 复制本地文件&#x2F;目录到镜像中 仅支持本地路径</li>
+<li>WORKDIR 指定工作目录 ， 后续指令默认从此路径执行</li>
+<li>ENV  设置环境变量 支持变量引用</li>
+<li>EXPOSE 声明容器监听的端口</li>
+<li>VOLUME 声明数据卷</li>
+</ol>
+<p>官方的镜像都是使用dockerfile 构建的<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518205710.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518205853.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>实例：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Dockerfile"><span class="hljs-keyword">FROM</span> openjdk:<span class="hljs-number">17</span>-jdk-slim<br><span class="hljs-keyword">COPY</span><span class="language-bash"> target/app.jar /app.jar</span><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8080</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;java&quot;</span>, <span class="hljs-string">&quot;-jar&quot;</span>, <span class="hljs-string">&quot;/app.jar&quot;</span>]</span><br><br></code></pre></td></tr></table></figure>
 
 
+
+
+
+<h3 id="3-构建步骤"><a href="#3-构建步骤" class="headerlink" title="3.构建步骤"></a>3.构建步骤</h3><ol>
+<li>编写Dockerfile 文件</li>
+<li>docker bulid -f 指定文件路径 -t 镜像名：tag </li>
+<li>docker run 运行</li>
+<li>docker push 推送</li>
+</ol>
+<h3 id="4-实战练习"><a href="#4-实战练习" class="headerlink" title="4. 实战练习"></a>4. 实战练习</h3><h4 id="1-centos-升级"><a href="#1-centos-升级" class="headerlink" title="1. centos 升级"></a>1. centos 升级</h4><p>之前安装的centos  没有 ifconfig vim 等命令<br>我们构建一个有这两个命令的镜像</p>
+<ol>
+<li>Dockerfile 文件&#96;<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Dockerfile"><span class="hljs-keyword">FROM</span> centos:centos7.<span class="hljs-number">9.2009</span><br><br><span class="hljs-keyword">ENV</span> MYPATH /usr/local<br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> <span class="hljs-variable">$MYPATh</span></span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> yum -y install vim &amp;&amp; yum -y insatll net-tools</span><br><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">80</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$MYPATH</span></span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;----------end------&quot;</span></span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> /bin/bash</span><br><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="5-发布镜像"><a href="#5-发布镜像" class="headerlink" title="5.发布镜像"></a>5.发布镜像</h3><h2 id="八、docker网络"><a href="#八、docker网络" class="headerlink" title="八、docker网络"></a>八、docker网络</h2>
                 
               </div>
             
