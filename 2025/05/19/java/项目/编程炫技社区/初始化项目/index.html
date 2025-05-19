@@ -26,11 +26,13 @@
 <meta property="og:site_name" content="cheems的博客">
 <meta property="og:description" content="编程社区项目首先这个项目的目的  使用练习学习的技术栈（为了技术而技术） 目前已有的技术： rabbitmq nginx（部署用） docker  es springsecurity redis等     我的设想是 一个oj （可以用上docker，rabbitmq）+博客社区（es，redis等）的网站 我将这个项目命名为：cheems 编程炫技社区  项目开发的流程需求分析&#x3D;&amp;gt">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519110423.png">
 <meta property="article:published_time" content="2025-05-19T01:02:57.000Z">
-<meta property="article:modified_time" content="2025-05-19T02:51:26.379Z">
+<meta property="article:modified_time" content="2025-05-19T03:12:05.719Z">
 <meta property="article:author" content="cheems">
 <meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519110423.png">
   
   
   
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.2k 字
         
       </span>
     
@@ -234,7 +236,7 @@
         
         
         
-          10 分钟
+          11 分钟
         
       </span>
     
@@ -389,7 +391,20 @@
 
 <h5 id="5-全局跨域配置"><a href="#5-全局跨域配置" class="headerlink" title="5. 全局跨域配置"></a>5. 全局跨域配置</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CorsConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">WebMvcConfigurer</span> &#123;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addCorsMappings</span><span class="hljs-params">(CorsRegistry registry)</span> &#123;  <br>        <span class="hljs-comment">// 覆盖所有请求  </span><br>        registry.addMapping(<span class="hljs-string">&quot;/**&quot;</span>)  <br>                <span class="hljs-comment">// 允许发送 Cookie                .allowCredentials(true)  </span><br>                <span class="hljs-comment">// 放行哪些域名（必须用 patterns，否则 * 会和 allowCredentials 冲突）  </span><br>                .allowedOriginPatterns(<span class="hljs-string">&quot;*&quot;</span>)  <br>                .allowedMethods(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">&quot;POST&quot;</span>, <span class="hljs-string">&quot;PUT&quot;</span>, <span class="hljs-string">&quot;DELETE&quot;</span>, <span class="hljs-string">&quot;OPTIONS&quot;</span>)  <br>                .allowedHeaders(<span class="hljs-string">&quot;*&quot;</span>)  <br>                .exposedHeaders(<span class="hljs-string">&quot;*&quot;</span>);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="6-测试"><a href="#6-测试" class="headerlink" title="6. 测试"></a>6. 测试</h4>
+<h4 id="6-测试"><a href="#6-测试" class="headerlink" title="6. 测试"></a>6. 测试</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-meta">@RequestMapping(&quot;/&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainController</span> &#123;  <br>  <br>  <br>    <span class="hljs-meta">@GetMapping(&quot;/health&quot;)</span>  <br>    <span class="hljs-keyword">public</span> BaseResponse&lt;String&gt; <span class="hljs-title function_">health</span><span class="hljs-params">()</span>&#123;  <br>        <span class="hljs-keyword">return</span> ResultUtils.success(<span class="hljs-string">&quot;成功&quot;</span>);  <br>    &#125;  <br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-前端初始化"><a href="#2-前端初始化" class="headerlink" title="2.前端初始化"></a>2.前端初始化</h3><h4 id="a-创建vue项目"><a href="#a-创建vue项目" class="headerlink" title="a. 创建vue项目"></a>a. 创建vue项目</h4><ol>
+<li><p>npm create vue<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519110423.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+<li><p>用vs&#x2F;webstorm打开</p>
+</li>
+<li><p>npm install</p>
+</li>
+<li><p>npm run dev 测试能否成功运行</p>
+</li>
+</ol>
+<h4 id="b-导入ant-design-vue组件依赖"><a href="#b-导入ant-design-vue组件依赖" class="headerlink" title="b. 导入ant design vue组件依赖"></a>b. 导入ant design vue组件依赖</h4><p><a target="_blank" rel="noopener" href="https://antdv.com/docs/vue/getting-started-cn">https://antdv.com/docs/vue/getting-started-cn</a></p>
+<h4 id="c-基础布局"><a href="#c-基础布局" class="headerlink" title="c. 基础布局"></a>c. 基础布局</h4><h4 id="d-请求"><a href="#d-请求" class="headerlink" title="d. 请求"></a>d. 请求</h4><h4 id="e-全局状态"><a href="#e-全局状态" class="headerlink" title="e.全局状态"></a>e.全局状态</h4>
                 
               </div>
             
@@ -492,6 +507,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/05/19/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/" title="算法思想">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">算法思想</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
