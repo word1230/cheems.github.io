@@ -57,8 +57,11 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518112322.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518205710.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518205853.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519082800.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519083001.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519083241.png">
 <meta property="article:published_time" content="2025-05-16T05:39:52.000Z">
-<meta property="article:modified_time" content="2025-05-18T13:50:07.117Z">
+<meta property="article:modified_time" content="2025-05-19T00:49:09.336Z">
 <meta property="article:author" content="cheems">
 <meta property="article:tag" content="技术学习笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -255,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          3.7k 字
         
       </span>
     
@@ -266,7 +269,7 @@
         
         
         
-          30 分钟
+          32 分钟
         
       </span>
     
@@ -655,17 +658,35 @@
 </ul>
 <p>dockerfile指令：</p>
 <ol>
-<li>FROM  指定基础镜像       必须作为首条指令</li>
-<li>RUN 构建时执行的指令(如安装软件或配置环境)</li>
-<li>CMD 定义容器启动时的默认命令，可被docker run 覆盖（docker run 后的命令 会直接覆盖掉这个命令）</li>
-<li>ENTRYPOINT  设定容器启动时的默认命令，docker run 后的命令会追加到这个命令之后</li>
-<li>ADD   添加文件到镜像中 （会自动解压和从url下载资源）</li>
-<li>COPY 复制本地文件&#x2F;目录到镜像中 仅支持本地路径</li>
-<li>WORKDIR 指定工作目录 ， 后续指令默认从此路径执行</li>
-<li>ENV  设置环境变量 支持变量引用</li>
-<li>EXPOSE 声明容器监听的端口</li>
-<li>VOLUME 声明数据卷</li>
+<li><p>FROM  指定基础镜像       必须作为首条指令</p>
+</li>
+<li><p>RUN 构建时执行的指令(如安装软件或配置环境)</p>
+</li>
+<li><p>CMD 定义容器启动时的默认命令，可被docker run 覆盖（docker run 后的命令 会直接覆盖掉这个命令）</p>
+</li>
+<li><p>ENTRYPOINT  设定容器启动时的默认命令，docker run 后的命令会追加到这个命令之后</p>
+<ol>
+<li>cmd 与entrypoint  同时存在， cmd 会做为追加参数</li>
 </ol>
+</li>
+<li><p>ADD   添加文件到镜像中 （会自动解压和从url下载资源）</p>
+</li>
+<li><p>COPY 复制本地文件&#x2F;目录到镜像中 仅支持本地路径</p>
+</li>
+<li><p>WORKDIR 指定工作目录 ， 后续指令默认从此路径执行</p>
+</li>
+<li><p>ENV  设置环境变量 支持变量引用</p>
+</li>
+<li><p>EXPOSE 声明容器监听的端口</p>
+</li>
+<li><p>VOLUME 声明数据卷</p>
+</li>
+</ol>
+<h5 id="1）CMD与ENTRYPOINT"><a href="#1）CMD与ENTRYPOINT" class="headerlink" title="1）CMD与ENTRYPOINT"></a>1）CMD与ENTRYPOINT</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"> ENTRYPOINT [<span class="hljs-string">&quot;python3&quot;</span>]  <br>CMD [<span class="hljs-string">&quot;app.py&quot;</span>]  <br><span class="hljs-comment"># 实际执行：python3 app.py</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>CMD</code> 的参数可通过 <code>docker run</code> 命令行覆盖，而 <code>ENTRYPOINT</code> 仅能通过 <code>--entrypoint</code> 标志完全替换。</li>
+<li>示例：若镜像默认执行 <code>ENTRYPOINT [&quot;top&quot;, &quot;-b&quot;]</code> + <code>CMD [&quot;-c&quot;]</code>，运行时参数 <code>-d</code> 将替换 <code>CMD</code>，最终执行 <code>top -b -d</code>。</li>
+</ul>
 <p>官方的镜像都是使用dockerfile 构建的<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518205710.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250518205853.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>实例：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Dockerfile"><span class="hljs-keyword">FROM</span> openjdk:<span class="hljs-number">17</span>-jdk-slim<br><span class="hljs-keyword">COPY</span><span class="language-bash"> target/app.jar /app.jar</span><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8080</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;java&quot;</span>, <span class="hljs-string">&quot;-jar&quot;</span>, <span class="hljs-string">&quot;/app.jar&quot;</span>]</span><br><br></code></pre></td></tr></table></figure>
@@ -680,11 +701,24 @@
 <li>docker run 运行</li>
 <li>docker push 推送</li>
 </ol>
-<h3 id="4-实战练习"><a href="#4-实战练习" class="headerlink" title="4. 实战练习"></a>4. 实战练习</h3><h4 id="1-centos-升级"><a href="#1-centos-升级" class="headerlink" title="1. centos 升级"></a>1. centos 升级</h4><p>之前安装的centos  没有 ifconfig vim 等命令<br>我们构建一个有这两个命令的镜像</p>
+<h3 id="4-实战练习"><a href="#4-实战练习" class="headerlink" title="4. 实战练习"></a>4. 实战练习</h3><h4 id="1-ubuntu-升级"><a href="#1-ubuntu-升级" class="headerlink" title="1. ubuntu 升级"></a>1. ubuntu 升级</h4><p>ubuntu  没有 ifconfig vim 等命令<br>我们构建一个有这两个命令的镜像</p>
 <ol>
-<li>Dockerfile 文件&#96;<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Dockerfile"><span class="hljs-keyword">FROM</span> centos:centos7.<span class="hljs-number">9.2009</span><br><br><span class="hljs-keyword">ENV</span> MYPATH /usr/local<br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> <span class="hljs-variable">$MYPATh</span></span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> yum -y install vim &amp;&amp; yum -y insatll net-tools</span><br><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">80</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$MYPATH</span></span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;----------end------&quot;</span></span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> /bin/bash</span><br><br></code></pre></td></tr></table></figure></li>
+<li><p>Dockerfile 文件&#96;</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Dockerfile"><span class="hljs-keyword">FROM</span> ubuntu<br><br><span class="hljs-keyword">ENV</span> MYPATH /usr/local<br><br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> <span class="hljs-variable">$MYPATH</span></span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> apt-get update &amp;&amp; \</span><br><span class="language-bash"></span><br>    apt-get install -y vim net-tools<br><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">80</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$MYPATH</span></span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;----------end------&quot;</span></span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> /bin/bash</span><br><br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>构建文件<br>docker build -f mydockerfile -t myunbuntu:1.0 .</p>
+</li>
 </ol>
-<h3 id="5-发布镜像"><a href="#5-发布镜像" class="headerlink" title="5.发布镜像"></a>5.发布镜像</h3><h2 id="八、docker网络"><a href="#八、docker网络" class="headerlink" title="八、docker网络"></a>八、docker网络</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519082800.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>可以看到确实是一层一层构建的</p>
+<ol start="3">
+<li>运行验证</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519083001.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以看到cmd 命令只有最后一条生效了<br>即CMD &#x2F;bin&#x2F;bash      前面都没有生效</p>
+<p>使用<code>docker history id </code> 可以看到镜像是如何构建的<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250519083241.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="5-发布镜像"><a href="#5-发布镜像" class="headerlink" title="5.发布镜像"></a>5.发布镜像</h3><p>后面补充，就目前这docker在国内的网络状况，没啥用</p>
+<h2 id="八、docker网络"><a href="#八、docker网络" class="headerlink" title="八、docker网络"></a>八、docker网络</h2>
                 
               </div>
             
