@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513084853.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513085100.png">
 <meta property="article:published_time" content="2025-05-12T23:19:37.000Z">
-<meta property="article:modified_time" content="2025-05-14T13:25:23.935Z">
+<meta property="article:modified_time" content="2025-05-21T00:59:22.345Z">
 <meta property="article:author" content="cheems">
 <meta property="article:tag" content="技术学习笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          14 分钟
+          17 分钟
         
       </span>
     
@@ -289,12 +289,12 @@
 <li>单元测试</li>
 <li>打包运行</li>
 </ul>
-<h2 id="一、springboot出现原因及其历史"><a href="#一、springboot出现原因及其历史" class="headerlink" title="一、springboot出现原因及其历史"></a>一、springboot出现原因及其历史</h2><p>在springboot之前，大家都是用spring，但是spirng配置繁杂且配置与业务无关。<br>有人就使用注解对spring进行了封装，简化了spring框架的使用，产生了springboot</p>
-<p>后来微服务爆火，快速构建一个spring应用成为刚需，springboot框架完美解决了这个问题</p>
+<h2 id="一、springboot出现原因及其历史"><a href="#一、springboot出现原因及其历史" class="headerlink" title="一、springboot出现原因及其历史"></a>一、springboot出现原因及其历史</h2><p>在springboot之前，大家都是用spring，但是spirng配置繁杂且配置与业务关联性不强。<br>为了简化spring应用的初始搭建及开发过程，Pivotal团队（现为VMware）推出了Spring Boot。它通过注解、约定大于配置等思想，极大地简化了spring框架的使用</p>
+<p>后来微服务流行，快速构建一个独立的，可部署的spring应用成为刚需，springboot框架完美解决了这个问题</p>
 <h3 id="1-springboot的特性"><a href="#1-springboot的特性" class="headerlink" title="1. springboot的特性"></a>1. springboot的特性</h3><ul>
 <li>可快速建立独立的spring应用</li>
 <li>直接嵌入了tomcat web容器，无需部署war文件</li>
-<li>start依赖，简化了配置构建</li>
+<li>start依赖，简化了构建配置</li>
 <li>自动配置</li>
 <li>约定大于配置的思想</li>
 </ul>
@@ -313,9 +313,16 @@
 <li>写一个主启动类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        SpringApplication.run(Main.class, args);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure></li>
 <li>写一个controller 进行测试</li>
 </ol>
-<h2 id="三、springboot原理解析"><a href="#三、springboot原理解析" class="headerlink" title="三、springboot原理解析"></a>三、springboot原理解析</h2><h3 id="1-起步依赖"><a href="#1-起步依赖" class="headerlink" title="1. 起步依赖"></a>1. 起步依赖</h3><h4 id="a-概念"><a href="#a-概念" class="headerlink" title="a. 概念"></a>a. 概念</h4><p>起步依赖是springboot 提供的特殊的maven依赖，封装了特定功能所需要的所有相关的库<br>比如： spring- boot-start-web 包含： spring-web，spring-aop，spring-webmvc等，导入一个就导入了相关的所有。</p>
+<h3 id="3-两种构建方式的区别"><a href="#3-两种构建方式的区别" class="headerlink" title="3. 两种构建方式的区别"></a>3. 两种构建方式的区别</h3><ul>
+<li>maven 构建， 如果本地仓库有对应的jar包，就不需要联网<ul>
+<li>需要手动导入 父项目，导入jar包时，需要导入版本号</li>
+</ul>
+</li>
+<li>idea构建，</li>
+</ul>
+<h2 id="三、springboot原理解析"><a href="#三、springboot原理解析" class="headerlink" title="三、springboot原理解析"></a>三、springboot原理解析</h2><h3 id="1-起步依赖"><a href="#1-起步依赖" class="headerlink" title="1. 起步依赖"></a>1. 起步依赖</h3><h4 id="a-概念"><a href="#a-概念" class="headerlink" title="a. 概念"></a>a. 概念</h4><p>起步依赖是springboot 提供的特殊的maven依赖，封装了特定功能所需要的所有相关的库<br>比如： spring- boot-starter-web 包含： spring-web，spring-aop，spring-webmvc等，导入一个就导入了相关的所有。</p>
 <blockquote>
-<p>有一种maven的思想的进一步使用</p>
+<p>可以看作是对Maven依赖管理思想的进一步应用和封装。</p>
 </blockquote>
 <h4 id="b-作用："><a href="#b-作用：" class="headerlink" title="b.作用："></a>b.作用：</h4><ul>
 <li>简化依赖导入：只需导入一个</li>
@@ -323,15 +330,15 @@
 <li>自动配置：根据类路径中的依赖自动注册Bean并完成配置，减少XML或注解的重复编写。</li>
 </ul>
 <h4 id="c-原理"><a href="#c-原理" class="headerlink" title="c. 原理"></a>c. 原理</h4><p>本质是 maven 的依赖传递机制<br>例如 引入 spring- boot-start-web，会自动引入spring-web，spring-aop，spring-webmvc等</p>
-<h4 id="d-区分parent-与其他start"><a href="#d-区分parent-与其他start" class="headerlink" title="d. 区分parent 与其他start"></a>d. 区分parent 与其他start</h4><p>虽然这两个都简化了配置，但是功能不同</p>
+<h4 id="d-区分-spring-boot-starter-parent-与其他-starter"><a href="#d-区分-spring-boot-starter-parent-与其他-starter" class="headerlink" title="d. 区分 spring-boot-starter-parent 与其他 starter"></a>d. 区分 spring-boot-starter-parent 与其他 starter</h4><p>虽然这两个都简化了配置，但是功能不同</p>
 <p>parent 定义了很多个常见组件的依赖版本号，不直接导入依赖<br>普通的starter： 定义了若干坐标，直接引入依赖</p>
-<p>springboot官方实现的starter， spring-boot-starter-xxx<br>其他springboot没有实现，由第三实现的 starter  xxx-spring-boot-starter  且导入需要版本号</p>
-<h3 id="2-自动配置"><a href="#2-自动配置" class="headerlink" title="2. 自动配置"></a>2. 自动配置</h3><p>概述： springboot 采用约定大于配置的思想，将项目可能会遇到的配置信息现提前配置好，写在自动配置的jar包中，当项目运行时，自动检测项目类路径下所有的依赖的jar包，将检测到的Bean注册到spring容器中去，根据检测到的依赖进行自动配置</p>
+<p>springboot官方实现的starter， spring-boot-starter-xxx<br>其他springboot没有实现，由第三实现的 starter  xxx-spring-boot-starter  且导入时可能需要指定版本号（如果该starter版本不由spring-boot-starter-parent管理)</p>
+<h3 id="2-自动配置"><a href="#2-自动配置" class="headerlink" title="2. 自动配置"></a>2. 自动配置</h3><p>概述： springboot 采用约定大于配置的思想，将项目可能会遇到的配置信息现提前配置好，写在各种自动配置模块，当项目运行时，自动检测项目类路径下所有的依赖的jar包，根据类路径下的依赖以及定义的条件（@ConditionalOnClass, @ConditionalOnBean等），自动配置相关的Bean并注册到Spring容器中。</p>
 <h4 id="a-springbootApplication注解"><a href="#a-springbootApplication注解" class="headerlink" title="a. springbootApplication注解"></a>a. springbootApplication注解</h4><p>它包含了三个注解<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513083029.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li><p>@SpringBootConfiguration<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513083155.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 </li>
-<li><p>@EnableAutoConfiguration<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513084853.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>@Import({AutoConfigurationImportSelector.class})<br>（1）从SpringBoot自动配置JAR包的META-INF&#x2F;spring.facto<br>ries和META-INF&#x2F;spring&#x2F;org.springframework.boot.autocon<br>figure.AutoConfiguration.imports文件中获取所有候选自动配<br>置类。<br>(2）根据项目pom.xml文件中加入的依赖筛选出最终符合当前<br>项目运行环境对应的自动配置类。</p>
+<li><p>@EnableAutoConfiguration<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513084853.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>@Import({AutoConfigurationImportSelector.class})<br>（1）从SpringBoot自动配置JAR包的META-INF&#x2F;spring.facto<br>ries和META-INF&#x2F;spring&#x2F;org.springframework.boot.autocon<br>figure.AutoConfiguration.imports文件中获取所有候选自动配<br>置类。<br>(2）根据项目类路径（classpath）中的实际依赖，并结合自动配置类上的条件注解（如 @ConditionalOnClass, @ConditionalOnBean, @ConditionalOnProperty 等），筛选出最终符合当前项目运行环境并需要激活的自动配置类。</p>
 </li>
 <li><p>@ComponentScan<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250513085100.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>组件包扫描器，其主要作用是扫描指定包及其子包下所有注解类文件作为Spring容器 组件使用。</p>
 </li>
@@ -339,20 +346,20 @@
 <h3 id="3-执行流程"><a href="#3-执行流程" class="headerlink" title="3. 执行流程"></a>3. 执行流程</h3><p>springApplication 的run（）方法，调用了另一个重载的run方法，被调用的重载run（）方法内部执行了两个操作，分别是1. 创建springApplication容器     2.调用run方法</p>
 <h5 id="1-创建springApplication容器"><a href="#1-创建springApplication容器" class="headerlink" title="1. 创建springApplication容器"></a>1. 创建springApplication容器</h5><ol>
 <li>初始化资源加载器</li>
-<li>初始化资源类集合</li>
-<li>推断当前web容器类型</li>
-<li>设置上下文初始化器</li>
-<li>设置监听器</li>
+<li>设置主要配置源 (Primary Sources)</li>
+<li>推断Web应用类型 (e.g., SERVLET, REACTIVE, NONE)</li>
+<li>设置上下文初始化器ApplicationContextInitializer</li>
+<li>设置监听器ApplicationListener</li>
 <li>推断主应用类</li>
 </ol>
 <p>初始化资源，推断web容器类型，设置上下文初始化器</p>
 <h5 id="2-调用run方法"><a href="#2-调用run方法" class="headerlink" title="2.调用run方法"></a>2.调用run方法</h5><ol>
 <li>创建并刷新ApplicationContext<ol>
-<li>创建应用上下文，加载配置类he自动配置类，注册bean并执行依赖注入的初始化操作</li>
+<li>创建应用上下文，加载配置类和自动配置类，注册bean并执行依赖注入的初始化操作</li>
 </ol>
 </li>
 <li>启动嵌入式web服务器</li>
-<li>发布应用已启动事件，对应监听事件会触发</li>
+<li>发布应用已启动事件，发布各种应用生命周期事件 (如 ApplicationStartingEvent, ApplicationEnvironmentPreparedEvent, ApplicationPreparedEvent, ApplicationStartedEvent, ApplicationReadyEvent, ApplicationFailedEvent)，监听这些事件的监听器会执行相应逻辑</li>
 <li>执行CommandLineRunner和ApplicationRunner</li>
 <li>发布ready事件、应用启动完成 <ol>
 <li>·触发ApplicationReadyEvent，应用进入运行状态，处理业务请求或任务。</li>
@@ -360,7 +367,13 @@
 </li>
 </ol>
 <p>创建刷新应用上下文，加载配置类，启动监听器，通知监听器</p>
-<h2 id="四、单元测试"><a href="#四、单元测试" class="headerlink" title="四、单元测试"></a>四、单元测试</h2><p>在test类中使用@springbootTest注解即可</p>
+<h2 id="四、单元测试"><a href="#四、单元测试" class="headerlink" title="四、单元测试"></a>四、单元测试</h2><p>在test类中使用@springbootTest注解即可<br>通过@SpringBootTest注解的 webEnvironment 属性可以设置在测试用例中启动Web环境。<br>有几种 webEnvironment 的值：</p>
+<ul>
+<li>MOCK <em><strong>默认</strong></em> ，  会加载一个WebApplicationContext并提供一个模拟servlet环境</li>
+<li>DEFINED_PORT: 加载一个 WebServerApplicationContext 并提供一个真正的servlet环境，使用自定义的端口作为Web服务器端口</li>
+<li>RANDOM_PORT：加载一个EmbeddedWebApplicationContext并提供一个真正的servlet环境，使用随机端口作为Web服务器端口</li>
+<li>NONE：使用SpringApplication加载ApplicationContext，但不启动Web环境</li>
+</ul>
 <h2 id="五、-部署与打包"><a href="#五、-部署与打包" class="headerlink" title="五、 部署与打包"></a>五、 部署与打包</h2><h3 id="1-打包为jar包"><a href="#1-打包为jar包" class="headerlink" title="1. 打包为jar包"></a>1. 打包为jar包</h3><p>概念：将代码源文件组织成一个可执行文件交付给他人使用</p>
 <p>流程：</p>
 <ol>
@@ -387,7 +400,7 @@
 <li><p>修改springboot启动类<br>没有tomcat了 要重写一下</p>
 </li>
 </ol>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.builder.SpringApplicationBuilder;<br><span class="hljs-keyword">import</span> org.springframework.boot.web.servlet.support.SpringBootServletInitializer;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainApplication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">SpringBootServletInitializer</span> &#123; <span class="hljs-comment">// Ensure this is your main class name</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(MainApplication.class, args);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> SpringApplicationBuilder <span class="hljs-title function_">configure</span><span class="hljs-params">(SpringApplicationBuilder application)</span> &#123;<br>        <span class="hljs-comment">// Point to your main application class (this class)</span><br>        <span class="hljs-keyword">return</span> application.sources(MainApplication.class);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             

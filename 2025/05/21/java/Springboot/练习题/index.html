@@ -1,0 +1,779 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fav.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cheems">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="请结合实例说明Spring Boot自动配置的实现原理，并解释@SpringBootApplication注解包含哪些子注解及其作用sprringboot 的自动配置是基于条件注解与自动扫描机制进行的，其核心思想是通过预定义的条件规则（如类路径依赖，配置属性等） 在应用启动时动态加载所需的bean，减少手动配置 夹具体的实现是：@springbootApplication注解@springboot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="练习题">
+<meta property="og:url" content="http://example.com/2025/05/21/java/Springboot/%E7%BB%83%E4%B9%A0%E9%A2%98/index.html">
+<meta property="og:site_name" content="cheems的博客">
+<meta property="og:description" content="请结合实例说明Spring Boot自动配置的实现原理，并解释@SpringBootApplication注解包含哪些子注解及其作用sprringboot 的自动配置是基于条件注解与自动扫描机制进行的，其核心思想是通过预定义的条件规则（如类路径依赖，配置属性等） 在应用启动时动态加载所需的bean，减少手动配置 夹具体的实现是：@springbootApplication注解@springboot">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-21T06:55:03.000Z">
+<meta property="article:modified_time" content="2025-05-21T11:26:16.002Z">
+<meta property="article:author" content="cheems">
+<meta property="article:tag" content="技术学习笔记">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>练习题 - cheems的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cheems的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="练习题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-21 14:55" pubdate>
+          2025年5月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">练习题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="请结合实例说明Spring-Boot自动配置的实现原理，并解释-SpringBootApplication注解包含哪些子注解及其作用"><a href="#请结合实例说明Spring-Boot自动配置的实现原理，并解释-SpringBootApplication注解包含哪些子注解及其作用" class="headerlink" title="请结合实例说明Spring Boot自动配置的实现原理，并解释@SpringBootApplication注解包含哪些子注解及其作用"></a>请结合实例说明Spring Boot自动配置的实现原理，并解释@SpringBootApplication注解包含哪些子注解及其作用</h1><p>sprringboot 的自动配置是基于<em><strong>条件注解</strong></em>与<em><strong>自动扫描</strong></em>机制进行的，其核心思想是通过预定义的条件规则（如类路径依赖，配置属性等） 在应用启动时动态加载所需的bean，减少手动配置</p>
+<p>夹具体的实现是：@springbootApplication注解<br>@springbootApplication是一个复合注解，包含三个注解：</p>
+<ul>
+<li>@EnableAutoConfigration</li>
+<li>@SpringbootConfigration</li>
+<li>@ComponentScan</li>
+</ul>
+<p>@SpringbootConfigration 标识这是一个spring的配置类，等同于传统的xml文件，标明可以通过@bean来定义bean</p>
+<p>@EnableAutoConfigration 开启自动装配的注解， 通过spring factories 机制加载 META-INF&#x2F;spring.factories文件中的自动配置类（如：DataSourceAutoConfiguration），并根据类路径依赖和条件注解决定是启用这些配置</p>
+<p>@ComponentScan  自动扫描并注册bean ，默认扫描主类（@SpringbootApplication的类）所在包及其子包下的组件（@Component，@Service等）</p>
+<p>实例：</p>
+<ol>
+<li>引入spring-boot-starter-web</li>
+<li>@ComponentScan 注解 扫描主类的包（如：com.example.demo）</li>
+<li>@EnableAutoConfigration 出发自动配置，加载spring.factories中的WebMvcAutoConfigration，检测到DispatcherServlet 存在后自动配置mvc核心组件</li>
+<li>无需手动配置</li>
+</ol>
+<p>我们也以得出一个技巧： 我们不知道application.yml能配置什么，可以到xxxAutoConfigration中查看属性</p>
+<h1 id="某项目需在开发、测试、生产环境使用不同数据库配置，请设计两种Spring-Boot多环境配置方案，并结合代码示例说明如何通过-Profile和配置文件实现。"><a href="#某项目需在开发、测试、生产环境使用不同数据库配置，请设计两种Spring-Boot多环境配置方案，并结合代码示例说明如何通过-Profile和配置文件实现。" class="headerlink" title="某项目需在开发、测试、生产环境使用不同数据库配置，请设计两种Spring Boot多环境配置方案，并结合代码示例说明如何通过@Profile和配置文件实现。"></a>某项目需在开发、测试、生产环境使用不同数据库配置，请设计两种Spring Boot多环境配置方案，并结合代码示例说明如何通过@Profile和配置文件实现。</h1><p>第一种：<br>通过配置文件实现</p>
+<ol>
+<li>新建application-dev.yml， application-prod.yml ，application-local.yml</li>
+<li>写入各个环境的配置</li>
+<li>在application.yml 中使用Spring: profile: active : dev 来激活</li>
+</ol>
+<p>第二种<br>使用注解@Profile 来实现</p>
+<p>1. </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 开发环境配置</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@Profile(&quot;dev&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DevConfig</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> DataSource <span class="hljs-title function_">devDataSource</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> DataSourceBuilder.create()<br>            .url(<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/dev_db&quot;</span>)<br>            .username(<span class="hljs-string">&quot;dev_user&quot;</span>)<br>            .password(<span class="hljs-string">&quot;dev_pass&quot;</span>)<br>            .build();<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 生产环境配置</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@Profile(&quot;prod&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProdConfig</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> DataSource <span class="hljs-title function_">prodDataSource</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> DataSourceBuilder.create()<br>            .url(<span class="hljs-string">&quot;jdbc:mysql://prod-db-server:3306/prod_db&quot;</span>)<br>            .username(<span class="hljs-string">&quot;prod_user&quot;</span>)<br>            .password(<span class="hljs-string">&quot;prod_pass&quot;</span>)<br>            .build();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在application.yml 中使用Spring: profile: active : dev 来激活</li>
+</ol>
+<h1 id="在Spring-Boot中整合MyBatis时，如何通过配置文件指定XML映射路径？若需替换为Spring-Data-JPA，请说明实体类映射注解的关键步骤及Repository接口的编写规范。"><a href="#在Spring-Boot中整合MyBatis时，如何通过配置文件指定XML映射路径？若需替换为Spring-Data-JPA，请说明实体类映射注解的关键步骤及Repository接口的编写规范。" class="headerlink" title="在Spring Boot中整合MyBatis时，如何通过配置文件指定XML映射路径？若需替换为Spring Data JPA，请说明实体类映射注解的关键步骤及Repository接口的编写规范。"></a>在Spring Boot中整合MyBatis时，如何通过配置文件指定XML映射路径？若需替换为Spring Data JPA，请说明实体类映射注解的关键步骤及Repository接口的编写规范。</h1><p>mybatis</p>
+<ul>
+<li>在application.yml 中 mybatis： mapper-locations：classpath：mapper/*.xml</li>
+</ul>
+<p>实体注解：</p>
+<ul>
+<li>@Entity  标注这是一个实体</li>
+<li>@Table（name &#x3D;“表名”）指定数据库表名</li>
+<li>@Id 指定主键</li>
+<li>@GeneratedValue(strategy &#x3D; GenerationType.IDENTITY) 主键自增策略</li>
+<li>字段映射： 默认字段名与列表名一致，若不同则@Column(name &#x3D; “列名”)指定</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-meta">@Entity</span><br><span class="hljs-meta">@Table(name=&quot;user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span>&#123;<br><br>	<span class="hljs-meta">@Id</span><br>	<span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span><br>	<span class="hljs-keyword">private</span> Long id;<br><br>	<span class="hljs-meta">@Colume(name = &quot;username&quot;)</span><br>	<span class="hljs-keyword">private</span> String name;	<br>	<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>Repository：</p>
+<ol>
+<li>通过继承 JpaRepository（默认有实现，可以自己再加） 来操作数据库，无需手动实现<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserRepository</span> extend JpaRepository&lt;User,Long&gt;&#123;<br>	<span class="hljs-comment">//根据字段名自动生成方法</span><br>	List&lt;User&gt; <span class="hljs-title function_">findByUserName</span><span class="hljs-params">(String username)</span>;<br><br>	<span class="hljs-comment">//自定义sql</span><br>	<span class="hljs-meta">@Query(&quot;select * from user where id = 1？&quot;)</span><br>	User <span class="hljs-title function_">findById</span><span class="hljs-params">(Long id)</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="某电商平台需对商品详情页进行缓存优化，请基于Spring-Boot设计缓存方案，"><a href="#某电商平台需对商品详情页进行缓存优化，请基于Spring-Boot设计缓存方案，" class="headerlink" title="某电商平台需对商品详情页进行缓存优化，请基于Spring Boot设计缓存方案，"></a>某电商平台需对商品详情页进行缓存优化，请基于Spring Boot设计缓存方案，</h1><p>缓存的技术选型</p>
+<ul>
+<li>本地缓存： caffeine</li>
+<li>分布式缓存： redis</li>
+<li>混合缓存： 本地+分布式</li>
+</ul>
+<p>缓存策略设计：</p>
+<ol>
+<li>键设计<ul>
+<li>商品详情页的键： <code>product:detail:(productId)</code></li>
+<li>根据业务逻辑拆分粒度： 比如库存，价格独立缓存</li>
+</ul>
+</li>
+<li>过期时间与更新策略<ul>
+<li>存活时间：默认为5分钟，热点商品可以设为1分钟</li>
+<li>空闲时间： 若10分钟没人访问，则过期</li>
+<li>主动清理： 在商品信息更新时出发@CacheEvict清除缓存</li>
+</ul>
+</li>
+<li>缓存穿透与雪崩处理<ul>
+<li>布隆过滤器</li>
+<li>随机过期时间</li>
+</ul>
+</li>
+</ol>
+<p>Springboot实现：</p>
+<ol>
+<li><p>导入包</p>
+</li>
+<li><p>caffeine 配置文件：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>	<span class="hljs-attr">cache:</span><br>		<span class="hljs-attr">caffenie:</span><br>			<span class="hljs-attr">spec:</span> <span class="hljs-string">maximumSize=500,expireAfterWrite=5m</span> <span class="hljs-comment"># 最大缓存数500，写入后5分钟过期</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>redis配置文件：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>	<span class="hljs-attr">redis:</span><br>		<span class="hljs-attr">host:</span> <span class="hljs-string">locahost</span><br>		<span class="hljs-attr">port:</span> <span class="hljs-number">6379</span><br>	<span class="hljs-attr">cache:</span><br>		<span class="hljs-attr">redis:</span><br>			<span class="hljs-attr">time-to-live:</span> <span class="hljs-number">300000</span>  <span class="hljs-comment"># Redis缓存过期时间5分钟</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在配置类&#x2F;启动类加<code>@EnableCaching</code>注解</p>
+</li>
+<li><p>在要缓存的方法上加入注解<br>@Cacheable（value&#x3D;””,key&#x3D;”#”） 最终缓存键为：value ：： key  springcahe底层进行组合</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProductService</span>&#123;<br> <span class="hljs-meta">@Autowired</span><br>  <span class="hljs-keyword">private</span> ProductRepository productRepository;<br><br>	<span class="hljs-meta">@Cacheable</span>（value=<span class="hljs-string">&quot;productDetail&quot;</span>,key=<span class="hljs-string">&quot;#productId&quot;</span>）<span class="hljs-comment">// 缓存键为&quot;productDetail::1001&quot;</span><br>	<span class="hljs-keyword">public</span> Product <span class="hljs-title function_">getProductDetail</span><span class="hljs-params">(Long productId)</span>&#123;<br>		<span class="hljs-keyword">return</span>  productRepository.findById(productId);<br>	&#125;<br><span class="hljs-comment">//清除缓存</span><br> <span class="hljs-meta">@CacheEvict(value = &quot;productDetail&quot;, key = &quot;#productId&quot;)</span>  <span class="hljs-comment">// 更新商品时清除缓存</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">updateProduct</span><span class="hljs-params">(Product product)</span> &#123;<br>    productRepository.save(product);<br>  &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>缓存预热</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostConstruct</span>     <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span> &#123;<br>  List&lt;Product&gt; hotProducts = productRepository.findTop10ByIsHotTrue();<br>  <span class="hljs-keyword">for</span> (Product product : hotProducts) &#123;<br>    productService.getProductDetail(product.getId());  <span class="hljs-comment">// 触发缓存写入</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>还可以使用@Async 来异步更新缓存防止阻塞</p>
+<h1 id="如何通过Spring-Security实现基于角色的权限控制和认证？请结合代码示例说明自定义登录页面和权限拦截配置的步骤。"><a href="#如何通过Spring-Security实现基于角色的权限控制和认证？请结合代码示例说明自定义登录页面和权限拦截配置的步骤。" class="headerlink" title="如何通过Spring Security实现基于角色的权限控制和认证？请结合代码示例说明自定义登录页面和权限拦截配置的步骤。"></a>如何通过Spring Security实现基于角色的权限控制和认证？请结合代码示例说明自定义登录页面和权限拦截配置的步骤。</h1><blockquote>
+<p>权限：</p>
+</blockquote>
+<ol>
+<li>添加spring secutiry依赖</li>
+<li>自定义一个登录页</li>
+<li>进行权限控制<ul>
+<li>方法一： 写一个配置类继承 WebSecurityConfigurerAdapter   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ruoyi.springsecurity.config;  <br>  <br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;  <br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;  <br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;  <br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;  <br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;  <br><span class="hljs-keyword">import</span> org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;  <br><span class="hljs-keyword">import</span> org.springframework.security.crypto.password.PasswordEncoder;  <br>  <br><span class="hljs-meta">@Configuration</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityConfig</span>  <span class="hljs-keyword">extends</span> <span class="hljs-title class_">WebSecurityConfigurerAdapter</span> &#123;  <br>  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception &#123;  <br>        http.<span class="hljs-comment">// 1. 配置 URL 权限规则  </span><br>                .authorizeRequests()  <br>                <span class="hljs-comment">// 允许 ADMIN 角色访问 /admin/** 路径  </span><br>                .antMatchers(<span class="hljs-string">&quot;/admin/**&quot;</span>).hasRole(<span class="hljs-string">&quot;ADMIN&quot;</span>)  <br>                <span class="hljs-comment">// 允许 USER 或 ADMIN 角色访问 /user/** 路径  </span><br>                .antMatchers(<span class="hljs-string">&quot;/user/**&quot;</span>).hasAnyRole(<span class="hljs-string">&quot;USER&quot;</span>,<span class="hljs-string">&quot;ADMIN&quot;</span>)  <br>                .antMatchers(<span class="hljs-string">&quot;/login&quot;</span>).permitAll()<br>                <span class="hljs-comment">// 其他所有请求必须认证  </span><br>                .anyRequest().authenticated()  <br>                .and()  <br>  <br>                .formLogin()  <br>                <span class="hljs-comment">// 2. 配置表单登录  </span><br>                        .loginPage(<span class="hljs-string">&quot;/login&quot;</span>)  <br>                <span class="hljs-comment">// 处理登录请求的 URL（默认是 /login）  </span><br>                                .loginProcessingUrl(<span class="hljs-string">&quot;/login&quot;</span>)  <br>                <span class="hljs-comment">// 登录成功后的默认跳转路径（true 表示总是跳转到此路径）  </span><br>                                        .defaultSuccessUrl(<span class="hljs-string">&quot;/index&quot;</span>)  <br>                <span class="hljs-comment">// 登录失败后的跳转路径  </span><br>                .failureUrl(<span class="hljs-string">&quot;/login?error&quot;</span>)  <br>                <span class="hljs-comment">// 允许所有用户访问登录页  </span><br>                        .permitAll()  <br>                                .and()  <br>                .logout()  <br>                <span class="hljs-comment">// 3. 配置登出行为  </span><br>                        .logoutUrl(<span class="hljs-string">&quot;/logout&quot;</span>)  <br>                <span class="hljs-comment">// 登出成功后的跳转路径  </span><br>                                .logoutSuccessUrl(<span class="hljs-string">&quot;/login?logout&quot;</span>)  <br>                <span class="hljs-comment">// 允许所有用户访问登出功能  </span><br>                                        .permitAll()  <br>                .and()  <br>                        .rememberMe()  <br>                <span class="hljs-comment">// 记住我的 Token 有效期为 86400 秒（24 小时）  </span><br>                                .tokenValiditySeconds(<span class="hljs-number">86400</span>)  <br>                <span class="hljs-comment">// 记住我的密钥（用于签名 Token）  </span><br>                                        .key(<span class="hljs-string">&quot;123456&quot;</span>)  <br>                                                .and()  <br>                                                        .csrf().disable();  <br>  <br>  <br><br>    &#125;  <br>  <br>    <span class="hljs-comment">//该方法用于配置 认证（Authentication）机制 ，定义用户存储（内存、数据库等）和密码编码方式。  </span><br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception &#123;  <br>        auth.inMemoryAuthentication()  <br>                <span class="hljs-comment">// 添加用户 user，密码为加密后的 &quot;123&quot;，角色为 USER                .withUser(&quot;user&quot;).password(passwordEncoder().encode(&quot;123&quot;)).roles(&quot;USER&quot;)  </span><br>                .and()  <br>                <span class="hljs-comment">// 添加用户 admin，密码为加密后的 &quot;123&quot;，角色为 ADMIN                .withUser(&quot;admin&quot;).password(passwordEncoder().encode(&quot;123&quot;)).roles(&quot;ADMIN&quot;);  </span><br>    &#125;  <br>  <br>    <span class="hljs-comment">//定义密码编码器，用于安全存储密码。  </span><br>    <span class="hljs-meta">@Bean</span>  <br>    <span class="hljs-keyword">public</span> PasswordEncoder <span class="hljs-title function_">passwordEncoder</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BCryptPasswordEncoder</span>();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>方法二：使用注解@PreAuthorize</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.springframework.security.access.prepost.PreAuthorize;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;<br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HomeController</span> &#123;<br><br>    <span class="hljs-meta">@GetMapping(&quot;/home&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">home</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;home&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@GetMapping(&quot;/admin/dashboard&quot;)</span><br>    <span class="hljs-meta">@PreAuthorize(&quot;hasRole(&#x27;ADMIN&#x27;)&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">adminDashboard</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;admin-dashboard&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@GetMapping(&quot;/user/profile&quot;)</span><br>    <span class="hljs-meta">@PreAuthorize(&quot;hasAnyRole(&#x27;USER&#x27;, &#x27;ADMIN&#x27;)&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">userProfile</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;user-profile&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>认证</p>
+</blockquote>
+<ol>
+<li>自定义UserDetailsService认证</li>
+</ol>
+<p>实现UserDetailsService接口 ,实现loadUserByUsername 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.springframework.security.core.userdetails.UserDetails;<br><span class="hljs-keyword">import</span> org.springframework.security.core.userdetails.UserDetailsService;<br><span class="hljs-keyword">import</span> org.springframework.security.core.userdetails.UsernameNotFoundException;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Service;<br><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomUserDetailsService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserDetailsService</span> &#123;<br><br>	<span class="hljs-meta">@Autowired</span><br>	<span class="hljs-keyword">private</span> UserRepository userRepository;<br>	<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> UserDetails <span class="hljs-title function_">loadUserByUsername</span><span class="hljs-params">(String username)</span> <span class="hljs-keyword">throws</span> UsernameNotFoundException &#123;<br>	    <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userRepository.findByUsername(username);<br>	    <span class="hljs-keyword">if</span> (user == <span class="hljs-literal">null</span>) &#123;<br>	        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UsernameNotFoundException</span>(<span class="hljs-string">&quot;用户不存在&quot;</span>);<br>	    &#125;<br>	    <span class="hljs-keyword">return</span> User.builder()<br>	        .username(user.getUsername())<br>	        .password(user.getPassword())<br>	        .roles(user.getRole())<br>	        .build();<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>配置类中加：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>  <br><span class="hljs-meta">@EnableWebSecurity</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">WebSecurityConfigurerAdapter</span> &#123;  <br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> CustomUserDetailsService customUserDetailsService;  <br>	<span class="hljs-comment">//使用这个detailservice</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">SecurityConfig</span><span class="hljs-params">(CustomUserDetailsService customUserDetailsService)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.customUserDetailsService = customUserDetailsService;  <br>    &#125;  <br><span class="hljs-comment">//使用这个detailservice进行验证</span><br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception &#123;  <br>        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Bean</span>  <br>    <span class="hljs-keyword">public</span> PasswordEncoder <span class="hljs-title function_">passwordEncoder</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BCryptPasswordEncoder</span>();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="设计一个订单超时取消功能，使用RabbitMQ实现延迟队列。请说明Spring-Boot中如何配置交换机、队列及消息监听器。"><a href="#设计一个订单超时取消功能，使用RabbitMQ实现延迟队列。请说明Spring-Boot中如何配置交换机、队列及消息监听器。" class="headerlink" title="设计一个订单超时取消功能，使用RabbitMQ实现延迟队列。请说明Spring Boot中如何配置交换机、队列及消息监听器。"></a>设计一个订单超时取消功能，使用RabbitMQ实现延迟队列。请说明Spring Boot中如何配置交换机、队列及消息监听器。</h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/springboot/" class="category-chain-item">springboot</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="print-no-link">#技术学习笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>练习题</div>
+      <div>http://example.com/2025/05/21/java/Springboot/练习题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cheems</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/05/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E4%B8%AA%E4%BA%BA%E6%84%9F%E6%83%B3/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8%E5%A5%96%E5%8A%B1%E6%9C%BA%E5%88%B6%E6%9D%A5%E6%BF%80%E5%8A%B1%E8%8E%B7%E5%8F%96%E5%AD%A6%E4%B9%A0%E5%8A%A8%E5%8A%9B/" title="关于使用奖励机制来激励获取学习动力">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">关于使用奖励机制来激励获取学习动力</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/20/java/%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%82%AB%E6%8A%80%E7%A4%BE%E5%8C%BA/%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97/" title="用户模块">
+                        <span class="hidden-mobile">用户模块</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -19,16 +19,16 @@
   <meta name="author" content="cheems">
   <meta name="keywords" content="">
   
-    <meta name="description" content="springboot-web应用支持介绍 1. 两种方式注册java web 三大组件  2. springboot管理mvc 3. 文件上传 4. 异常处理 实现对web应用的开发支持 一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）javaweb 三大组件包括： servlet， filter，listener默认springboot不会自动将组">
+    <meta name="description" content="springboot-web应用支持介绍 1. 两种方式注册java web 三大组件  2. springboot管理mvc 3. 文件上传 4. 异常处理 实现对web应用的开发支持 一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）javaweb 三大组件包括： servlet， filter，listener默认springboot会自动将组件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web应用支持">
 <meta property="og:url" content="http://example.com/2025/05/14/java/Springboot/springboot-web%E5%BA%94%E7%94%A8%E6%94%AF%E6%8C%81/index.html">
 <meta property="og:site_name" content="cheems的博客">
-<meta property="og:description" content="springboot-web应用支持介绍 1. 两种方式注册java web 三大组件  2. springboot管理mvc 3. 文件上传 4. 异常处理 实现对web应用的开发支持 一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）javaweb 三大组件包括： servlet， filter，listener默认springboot不会自动将组">
+<meta property="og:description" content="springboot-web应用支持介绍 1. 两种方式注册java web 三大组件  2. springboot管理mvc 3. 文件上传 4. 异常处理 实现对web应用的开发支持 一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）javaweb 三大组件包括： servlet， filter，listener默认springboot会自动将组件">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250514125952.png">
 <meta property="article:published_time" content="2025-05-14T03:16:26.000Z">
-<meta property="article:modified_time" content="2025-05-14T13:25:11.736Z">
+<meta property="article:modified_time" content="2025-05-21T01:19:02.670Z">
 <meta property="article:author" content="cheems">
 <meta property="article:tag" content="技术学习笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.4k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          11 分钟
+          12 分钟
         
       </span>
     
@@ -280,7 +280,7 @@
                 
                 <h1 id="springboot-web应用支持"><a href="#springboot-web应用支持" class="headerlink" title="springboot-web应用支持"></a>springboot-web应用支持</h1><p>介绍 1. 两种方式注册java web 三大组件  2. springboot管理mvc 3. 文件上传 4. 异常处理</p>
 <p>实现对web应用的开发支持</p>
-<h2 id="一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）"><a href="#一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）" class="headerlink" title="一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）"></a>一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）</h2><p>javaweb 三大组件包括： servlet， filter，listener<br>默认springboot不会自动将组件注册到容器中，需要我们手动进行<br>常用的两种方式：</p>
+<h2 id="一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）"><a href="#一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）" class="headerlink" title="一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）"></a>一、注册javaweb三大组件（没啥用，一般也不会用传统javaweb做请求，都是用mvc直接）</h2><p>javaweb 三大组件包括： servlet， filter，listener<br>默认springboot会自动将组件注册到容器中，我们可以自定义一些组件，将其交给spring容器<br>常用的两种方式：</p>
 <ul>
 <li>注解扫描</li>
 <li>Bean注册</li>
@@ -314,7 +314,7 @@
 <p>示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ServletComponentScan</span>  <br><span class="hljs-meta">@SpringBootApplication</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Springboot01Application</span> &#123;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        SpringApplication.run(Springboot01Application.class, args);  <br>    &#125;  <br>  <br>&#125;<br><br><br><br><span class="hljs-meta">@WebServlet(urlPatterns = &quot;/path&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> &#123;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;  <br>        System.out.println(<span class="hljs-string">&quot;doGet111111111111111111&quot;</span>);  <br>        resp.getWriter().write(<span class="hljs-string">&quot;Hello Servlet&quot;</span>);  <br>    &#125;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
 
-<p>使用配置类的方法</p>
+<p>使用配置类进行注册bean的方法（可以不加@ServletComponentScan）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WebConfig</span> &#123;  <br>  <br>    <span class="hljs-meta">@Bean</span>  <br>    <span class="hljs-keyword">public</span> MyServlet <span class="hljs-title function_">myServlet</span><span class="hljs-params">()</span>&#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyServlet</span>();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
 
 
@@ -382,7 +382,7 @@
 
 <p>后端接收：</p>
 <ol>
-<li>yml文件中修改可上传的最大值<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>  <br>  <span class="hljs-attr">servlet:</span>  <br>    <span class="hljs-attr">multipart:</span>  <br>      <span class="hljs-attr">max-file-size:</span> <span class="hljs-string">10MB</span>  <span class="hljs-comment"># 默认只有1M</span><br></code></pre></td></tr></table></figure></li>
+<li>yml文件中修改可上传的最大值<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>  <br>  <span class="hljs-attr">servlet:</span>  <br>    <span class="hljs-attr">multipart:</span>  <br>      <span class="hljs-attr">max-file-size:</span> <span class="hljs-string">10MB</span>  <span class="hljs-comment"># 默认只有1M  上传单个文件的大小</span><br>      <span class="hljs-attr">max-request-size:</span> <span class="hljs-string">200MN</span>  <span class="hljs-comment"># 默认10M  所有上传文件的总大小</span><br></code></pre></td></tr></table></figure></li>
 <li>创建controller 进行接收</li>
 </ol>
 <ul>
