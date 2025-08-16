@@ -19,22 +19,21 @@
   <meta name="author" content="cheems">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、静态数组例子： int[32] a      本质是开辟了一块内存空间， 设置一个指针a指向该内存空间的首地址，即 int[0] 为数组的首地址， int[1]是在首地址+一个数组元素大小得到第二个元素的首地址，这个地址往后存储第二个元素的值 这块空间是连续的  因此我们得到了&#x3D;&#x3D;随机访问&#x3D;&#x3D; 的功能： 只需要输入数组下标就可以得到它的首地址，从而访问这">
+    <meta name="description" content="说说Java中HashMap的原理？hashmap 是一个哈希表，设计一个哈希表需要解决问题：存到哪，如何存（哈希函数），哈希冲突，哈希表的扩容  存到哪？    维护了一个node类型的数组，这个数组通常我们叫他哈希桶，每个桶可以存储一个或多个键值对。  node类包含了键，值，键的哈希，指向下一个的指针   如何存？ 当你put方法时： 首先会调用 hashcode（）计算哈希值，后续还会再对">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数组基本原理">
-<meta property="og:url" content="http://example.com/2025/05/19/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="java热门200面试题">
+<meta property="og:url" content="http://example.com/2025/07/12/java/%E9%9D%A2%E8%AF%95%E9%A2%98/java%E7%83%AD%E9%97%A8200%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="cheems的博客">
-<meta property="og:description" content="一、静态数组例子： int[32] a      本质是开辟了一块内存空间， 设置一个指针a指向该内存空间的首地址，即 int[0] 为数组的首地址， int[1]是在首地址+一个数组元素大小得到第二个元素的首地址，这个地址往后存储第二个元素的值 这块空间是连续的  因此我们得到了&#x3D;&#x3D;随机访问&#x3D;&#x3D; 的功能： 只需要输入数组下标就可以得到它的首地址，从而访问这">
+<meta property="og:description" content="说说Java中HashMap的原理？hashmap 是一个哈希表，设计一个哈希表需要解决问题：存到哪，如何存（哈希函数），哈希冲突，哈希表的扩容  存到哪？    维护了一个node类型的数组，这个数组通常我们叫他哈希桶，每个桶可以存储一个或多个键值对。  node类包含了键，值，键的哈希，指向下一个的指针   如何存？ 当你put方法时： 首先会调用 hashcode（）计算哈希值，后续还会再对">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-19T03:29:50.000Z">
-<meta property="article:modified_time" content="2025-07-14T05:01:47.037Z">
+<meta property="article:published_time" content="2025-07-12T00:27:51.000Z">
+<meta property="article:modified_time" content="2025-08-14T01:12:25.638Z">
 <meta property="article:author" content="cheems">
-<meta property="article:tag" content="算法笔记">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>数组基本原理 - cheems的博客</title>
+  <title>java热门200面试题 - cheems的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数组基本原理"></span>
+            <span id="subtitle" data-typed-text="java热门200面试题"></span>
           
         </div>
 
@@ -211,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-19 11:29" pubdate>
-          2025年5月19日 上午
+        <time datetime="2025-07-12 08:27" pubdate>
+          2025年7月12日 早上
         </time>
       </span>
     
@@ -223,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          339 字
+          2.3k 字
         
       </span>
     
@@ -234,7 +233,7 @@
         
         
         
-          3 分钟
+          19 分钟
         
       </span>
     
@@ -271,50 +270,191 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数组基本原理</h1>
+            <h1 id="seo-header">java热门200面试题</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="一、静态数组"><a href="#一、静态数组" class="headerlink" title="一、静态数组"></a>一、静态数组</h2><p>例子： int[32] a    </p>
+                <h2 id="说说Java中HashMap的原理？"><a href="#说说Java中HashMap的原理？" class="headerlink" title="说说Java中HashMap的原理？"></a>说说Java中HashMap的原理？</h2><p>hashmap 是一个哈希表，设计一个哈希表需要解决问题：存到哪，如何存（哈希函数），哈希冲突，哈希表的扩容</p>
 <ol>
-<li>本质是开辟了一块内存空间，</li>
-<li>设置一个指针a指向该内存空间的首地址，即 int[0] 为数组的首地址， int[1]是在首地址+一个数组元素大小得到第二个元素的首地址，这个地址往后存储第二个元素的值</li>
-<li>这块空间是连续的</li>
+<li>存到哪？   <ol>
+<li>维护了一个node类型的数组，这个数组通常我们叫他哈希桶，每个桶可以存储一个或多个键值对。  node类包含了键，值，键的哈希，指向下一个的指针</li>
 </ol>
-<p>因此我们得到了&#x3D;&#x3D;随机访问&#x3D;&#x3D; 的功能： 只需要输入数组下标就可以得到它的首地址，从而访问这片内存空间，时间复杂度为 o(1)</p>
-<h3 id="1-增删改查"><a href="#1-增删改查" class="headerlink" title="1. 增删改查"></a>1. 增删改查</h3><p>分情况：</p>
-<ol>
-<li>在数组中间</li>
-<li>在数组末尾插入</li>
-<li>数组满了，扩容</li>
-</ol>
-<ul>
-<li><p>在末尾插入，获取到末尾的索引，直接插入</p>
 </li>
-<li><p>在中间插入，需要数据搬迁，给新元素腾出位置</p>
+<li>如何存？<ol>
+<li>当你put方法时： 首先会调用 hashcode（）计算哈希值，后续还会再对哈希值进行处理</li>
+<li>根据哈希值（n-1）&amp; hash计算得出键值对在桶中的位置</li>
+<li>根据计算出的位置使用equals判断是否存在哈希冲突<ol>
+<li>存在哈希冲突： 就使用链地址法解决（下文会提到） </li>
+<li>不存在哈希冲突： <ol>
+<li>键重复： 覆盖掉原来的值</li>
+<li>不重复： 插入新的键值对</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>判断是否需要扩容</li>
+</ol>
+</li>
+<li>如何解决哈希冲突<ol>
+<li>使用的是链地址法</li>
+<li>java7及之前，只使用链表，当发生哈希冲突时，以链表的形式将新的值追加到这个桶里。 <ol>
+<li>如果一个桶的链表的长度过长，那么查询的时间复杂度就会从o（1）退化到o（n）</li>
+</ol>
+</li>
+<li>java8新增了红黑树来优化查询效率：当一个桶中的链表长度达到一定的长度（默认为8），并且hashmap的容量达到64后就会将其转化为红黑树，这样时间复杂度就由o（n）转为o（logn），当节点数量小于6时，又会转为链表来节省内存</li>
+</ol>
+</li>
+<li>如何读取<ol>
+<li>与put类似，get方法： 先计算键的哈希值，并通过同样的方法计算出其在桶中的位置</li>
+<li>查找键值对：<ol>
+<li>判断第一个是不是要找的</li>
+<li>顺着链表&#x2F;红黑树进行遍历，直到找到要找的，返回</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>扩容机制<ol>
+<li>哈希表的性能与： 初始容量（默认16）和加载因子（默认0.75）有关</li>
+<li>当hashmap中的元素数量超过初始容量 *加载因子 ，就会进行扩容，重新计算元素在新哈希表中的位置，并进行移动</li>
+</ol>
+</li>
+</ol>
+<h2 id="Java中的hashCode和equals方法之间有什么关系？"><a href="#Java中的hashCode和equals方法之间有什么关系？" class="headerlink" title="Java中的hashCode和equals方法之间有什么关系？"></a>Java中的hashCode和equals方法之间有什么关系？</h2><p>这两个方法在普通对象与集合类中的作用是不同的</p>
+<p>在java官方文档里规定了这两个的关系：</p>
+<ul>
+<li>如果equals 方法为true ，则两个对象的hashcode必须为真，反之：如果两个对象的hashcode 相同，则equals不一定为真。</li>
+</ul>
+<p>在普通对象中</p>
+<ul>
+<li>hashcode 是根据内存地址获取该对象的哈希值，那其实这并没有什么用，因为普通对象也不需要依靠哈希值存储</li>
+<li>equals 方法的默认行为是通过&#x3D;&#x3D; 判断两个对象的引用地址是否相同。<ul>
+<li>但是我们在对象的比较时，我们更希望：如果两个对象他们的属性，方法都相同，就认为这两个是同一个对象。因此我们使用equals方法时会将其重写，让他按我们的逻辑进行比较。</li>
+<li>&#x3D;&#x3D;但是&#x3D;&#x3D; 因为我们重写了equals方法，导致两个内存地址不同的对象的equals方法的比较也为true，而这两个对象的hashcode却不同。违反了官方文档的要求<ul>
+<li>如果我们只是使用equals来进行比较对象是否相同，而不将其作为集合类的键，不重写hashcode是可以的。<ul>
+<li>但是某些框架它依赖两个方法的一致性，因此重写最好</li>
+<li>后续如果要扩展到集合类，那也是不方便的</li>
+</ul>
+</li>
+<li>如果我们要将其作为集合类的键，则必须重写，保证满足官方文档的要求，否则会导致hashmap等集合类的数据冲突混乱。</li>
+</ul>
 </li>
 </ul>
-<h2 id="二、动态数组"><a href="#二、动态数组" class="headerlink" title="二、动态数组"></a>二、动态数组</h2><p>几个基本操作</p>
-<p>增加：</p>
-<ol>
-<li>add（1） 在末尾增加元素</li>
-<li>add（1，666） 在索引1的位置插入666</li>
-<li>add（-1,666）在头部插入</li>
-<li>remove（arr.size（）-1） 删除末尾元素</li>
-<li>remove（2） 删除索引为2的元素</li>
-<li>get（0） 根据索引查找元素</li>
-<li>set（0,100）设置索引0的值为100</li>
-<li>indexof（100） 根据元素查索引</li>
-</ol>
-<p>手动实现一个动态数组</p>
-<p>关键点：</p>
-<ul>
-<li>自动扩容</li>
-<li>所有越界检查</li>
-<li>删除元素防止内存泄露</li>
+</li>
 </ul>
-
+<p>在集合类中</p>
+<ul>
+<li>hashcode方法是获取键的哈希值，并根据哈希值来判断键值对在哈希表中桶的位置</li>
+<li>equals： 在发生哈希冲突时，用于判断两个对象是否真的相等</li>
+</ul>
+<p>比如在hashmap中</p>
+<ul>
+<li>put方法： 首先使用hashcode方法，获取键的哈希值，并进行扰动<ul>
+<li>然后根据这个值得到其在哈希表中桶的位置</li>
+<li>如果该位置已有元素，使用equals判断是否当前值与输入值相同</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java-中-ConcurrentHashMap-1-7和-1-8-之间有哪些区别"><a href="#Java-中-ConcurrentHashMap-1-7和-1-8-之间有哪些区别" class="headerlink" title="Java 中 ConcurrentHashMap 1.7和 1.8 之间有哪些区别?"></a>Java 中 ConcurrentHashMap 1.7和 1.8 之间有哪些区别?</h2><p>Concurrenthashmap 在hashmap 的基础上增加了并发的安全性</p>
+<p><em><strong>存储与插入的区别：</strong></em><br>java7及之前是分段锁，  segment +HashEntry</p>
+<ol>
+<li>采用segment这样一个结构来存储，每个segment可以视作一个独立的 哈希表，每个segment是独立的，可以并发访问不同的segment</li>
+<li>在segment内部维护了hashentry 的数组，用于存储键值对。</li>
+<li>那么有n个segment ，那么支持的并发量就为n</li>
+<li>默认有16个segment，也就是默认支持16个线程同时访问</li>
+</ol>
+<p>put插入流程：与hashmap是一样的，找segment的步骤</p>
+<ol>
+<li>计算哈希值</li>
+<li>定位到具体的segment， 对该segment进行加锁</li>
+<li>在segment 内部： <ol>
+<li>定位到hashentry数组中的某个桶<ol>
+<li>如果桶为空，则直接插入</li>
+<li>如果不为空，遍历查找key<ol>
+<li>有一样的，更新value</li>
+<li>没有一样的，在链表尾部插入新元素</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>进行扩容检查</li>
+</ol>
+<p>get流程：</p>
+<ol>
+<li>计算hash值</li>
+<li>找到对应的segment</li>
+<li>遍历链表查找匹配的key<ol>
+<li>不需要加锁，因为hashentry的字段是volatile的，能保证可见性</li>
+</ol>
+</li>
+</ol>
+<p>java8 采用 </p>
+<ol>
+<li>node 数组+链表+红黑树的结构，</li>
+<li>取消了segment，改用： synchronized+CAS+volatile实现线程安全。 </li>
+<li>更细粒度的锁的控制，每个桶单独加锁</li>
+</ol>
+<p>put的插入流程：</p>
+<ol>
+<li>计算hash值</li>
+<li>判断桶是否为空<ol>
+<li>如果为空，则使用CAS进行插入，如果成功则返回，否则进入下一步</li>
+<li>桶不为空，则使用synchronized对桶的头结点进行加锁，然后进行插入</li>
+</ol>
+</li>
+</ol>
+<p>get流程：</p>
+<ol>
+<li>与hashmap是一致的，无需加锁，node数组的val与next字段是volatile的</li>
+</ol>
+<p><em><strong>扩容的区别：</strong></em><br>java7，采用的是segment，扩容时，每个segment独立扩容，不会影响其他</p>
+<p>java8， 整个concurrenthashmap变为原来的两倍，使用cas确保线程安全</p>
+<p>同时引入了渐进式扩容，多个线程将旧数据迁移到新数组中</p>
+<h2 id="什么是Java-的-CAS（Compare-And-Swap）-操作"><a href="#什么是Java-的-CAS（Compare-And-Swap）-操作" class="headerlink" title="什么是Java 的 CAS（Compare-And-Swap） 操作?"></a>什么是Java 的 CAS（Compare-And-Swap） 操作?</h2><p>是硬件级别的原子操作，比较内存中的值是否为预期值，如果是，则更新为新值，否则不做修改</p>
+<p>java只要是通过unsafe类提供的本地方法实现的，但是为了安全起见，java不允许直接使用unsafe类，而是使用原子类来间接使用CAS</p>
+<p>优点： </p>
+<ol>
+<li>无锁</li>
+<li>适合轻量级同步场景</li>
+<li>高效</li>
+</ol>
+<p>缺点：</p>
+<ul>
+<li>会导致ABA问题：<ol>
+<li>ABA问题： 线程看到某个值是A，但是中间被其他线程改为B，然后又改回了A</li>
+<li>对CAS来讲始终都是A，它无法察觉到中间的变化，可能引起问题</li>
+<li>解决：<ol>
+<li>使用带版本号的原子引用类：AtomicStampedReference</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>自旋开销大</li>
+<li>只能保证单个变量的原子性</li>
+</ul>
+<h2 id="为什么JDK1-8对HashMap进行了红黑树的改动？"><a href="#为什么JDK1-8对HashMap进行了红黑树的改动？" class="headerlink" title="为什么JDK1.8对HashMap进行了红黑树的改动？"></a>为什么JDK1.8对HashMap进行了红黑树的改动？</h2><p>因为1.8之前，使用链表来解决哈希冲突，当链表足够长，那么查询的效率就从o（1）变为o（n）<br>因此1.8引入了红黑树，当链表长度大于等于8且数组长度大于64（数组长度小于64则扩容）时，将链表转为红黑树，这样查询效率就从o（n）变为了o（logn）</p>
+<p>那为啥不直接使用红黑树，还要等链表过长才转换。<br>因为红黑树的节点是普通节点大小的两倍</p>
+<h2 id="JDK1-8对HashMap除了红黑树还进行了哪些改动"><a href="#JDK1-8对HashMap除了红黑树还进行了哪些改动" class="headerlink" title="JDK1.8对HashMap除了红黑树还进行了哪些改动?"></a>JDK1.8对HashMap除了红黑树还进行了哪些改动?</h2><ol>
+<li>扩容机制<ol>
+<li>改进了扩容时元素的迁移机制，在扩容过程中不再对每个元素重写计算，而是根据数组长度的高位来判断元素是否留在原位置，还是迁移到新的位置</li>
+</ol>
+</li>
+<li>哈希函数<ol>
+<li>1.7进行了四次异或， 1.8将key的哈希值的高16位与低16位进行了异或，使得哈希值的分布更均匀</li>
+</ol>
+</li>
+<li>头插法改为尾插法<ol>
+<li>多线程下，特别是扩容时，头插法会导致指针成环的问题</li>
+<li>1.8改为了尾插法</li>
+</ol>
+</li>
+</ol>
+<h2 id="Java中有哪些集合类？请简单介绍"><a href="#Java中有哪些集合类？请简单介绍" class="headerlink" title="Java中有哪些集合类？请简单介绍"></a>Java中有哪些集合类？请简单介绍</h2><p>java中集合分为：实现Collection接口的类与实现了map接口的类</p>
+<p>Collection接口下又有List，Set，Queue三个接口</p>
+<p>基于list接口的实现类：<br>ArrayList，LinkedList，Vector，Stack<br>基于Set接口的实现类：<br>HashSet，LinkedHahsSet，TreeSet<br>Queue接口的实现类：<br>LinkedList，priorityQueue，ArrayDequeue<br>Map接口的实现类：<br>HashMap，LinkedHashMap，TreeMap</p>
+<h2 id="MySQL索引的最左前缀匹配原则是什么？"><a href="#MySQL索引的最左前缀匹配原则是什么？" class="headerlink" title="MySQL索引的最左前缀匹配原则是什么？"></a>MySQL索引的最左前缀匹配原则是什么？</h2><h2 id="数据库的脏读、不可重复读和幻读分别是什么？"><a href="#数据库的脏读、不可重复读和幻读分别是什么？" class="headerlink" title="数据库的脏读、不可重复读和幻读分别是什么？"></a>数据库的脏读、不可重复读和幻读分别是什么？</h2><h2 id="MySQL的存储引擎有哪些？它们之间有什么区别"><a href="#MySQL的存储引擎有哪些？它们之间有什么区别" class="headerlink" title="MySQL的存储引擎有哪些？它们之间有什么区别?"></a>MySQL的存储引擎有哪些？它们之间有什么区别?</h2><h2 id="MySQL的覆盖索引是什么"><a href="#MySQL的覆盖索引是什么" class="headerlink" title="MySQL的覆盖索引是什么?"></a>MySQL的覆盖索引是什么?</h2><h2 id="MySQL的索引类型有哪些"><a href="#MySQL的索引类型有哪些" class="headerlink" title="MySQL的索引类型有哪些?"></a>MySQL的索引类型有哪些?</h2>
                 
               </div>
             
@@ -322,41 +462,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="print-no-link">#算法笔记</a>
-      
-    </div>
   
 </div>
 
@@ -366,8 +471,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数组基本原理</div>
-      <div>http://example.com/2025/05/19/算法/数组基本原理/</div>
+      <div>java热门200面试题</div>
+      <div>http://example.com/2025/07/12/java/面试题/java热门200面试题/</div>
     </div>
     <div class="license-meta">
       
@@ -379,7 +484,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月19日</div>
+          <div>2025年7月12日</div>
         </div>
       
       
@@ -411,9 +516,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/19/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/" title="算法思想">
+                      <a href="/2025/07/24/java/%E9%A1%B9%E7%9B%AE/ai%E6%99%BA%E8%83%BD%E4%BD%93/ai%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5/" title="ai大模型接入">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">算法思想</span>
+                        <span class="hidden-mobile">ai大模型接入</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -421,8 +526,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/19/java/%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%82%AB%E6%8A%80%E7%A4%BE%E5%8C%BA/%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE/" title="初始化项目">
-                        <span class="hidden-mobile">初始化项目</span>
+                      <a href="/2025/07/09/%E5%B0%8F%E8%AE%B0/%E5%85%B3%E4%BA%8E%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95-%E6%88%92%E8%89%B2%E7%AF%87/" title="戒色的一点记录">
+                        <span class="hidden-mobile">戒色的一点记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

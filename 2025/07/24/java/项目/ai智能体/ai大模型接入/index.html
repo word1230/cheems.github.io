@@ -19,22 +19,21 @@
   <meta name="author" content="cheems">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、静态数组例子： int[32] a      本质是开辟了一块内存空间， 设置一个指针a指向该内存空间的首地址，即 int[0] 为数组的首地址， int[1]是在首地址+一个数组元素大小得到第二个元素的首地址，这个地址往后存储第二个元素的值 这块空间是连续的  因此我们得到了&#x3D;&#x3D;随机访问&#x3D;&#x3D; 的功能： 只需要输入数组下标就可以得到它的首地址，从而访问这">
+    <meta name="description" content="接入大模型的四种方式1. spring ai 导包  spring ai alibaba   编写配置  引入模型  调用模型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数组基本原理">
-<meta property="og:url" content="http://example.com/2025/05/19/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="ai大模型接入">
+<meta property="og:url" content="http://example.com/2025/07/24/java/%E9%A1%B9%E7%9B%AE/ai%E6%99%BA%E8%83%BD%E4%BD%93/ai%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5/index.html">
 <meta property="og:site_name" content="cheems的博客">
-<meta property="og:description" content="一、静态数组例子： int[32] a      本质是开辟了一块内存空间， 设置一个指针a指向该内存空间的首地址，即 int[0] 为数组的首地址， int[1]是在首地址+一个数组元素大小得到第二个元素的首地址，这个地址往后存储第二个元素的值 这块空间是连续的  因此我们得到了&#x3D;&#x3D;随机访问&#x3D;&#x3D; 的功能： 只需要输入数组下标就可以得到它的首地址，从而访问这">
+<meta property="og:description" content="接入大模型的四种方式1. spring ai 导包  spring ai alibaba   编写配置  引入模型  调用模型">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-19T03:29:50.000Z">
-<meta property="article:modified_time" content="2025-07-14T05:01:47.037Z">
+<meta property="article:published_time" content="2025-07-24T12:07:15.000Z">
+<meta property="article:modified_time" content="2025-07-24T12:21:42.649Z">
 <meta property="article:author" content="cheems">
-<meta property="article:tag" content="算法笔记">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>数组基本原理 - cheems的博客</title>
+  <title>ai大模型接入 - cheems的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数组基本原理"></span>
+            <span id="subtitle" data-typed-text="ai大模型接入"></span>
           
         </div>
 
@@ -211,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-19 11:29" pubdate>
-          2025年5月19日 上午
+        <time datetime="2025-07-24 20:07" pubdate>
+          2025年7月24日 晚上
         </time>
       </span>
     
@@ -223,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          339 字
+          26 字
         
       </span>
     
@@ -234,7 +233,7 @@
         
         
         
-          3 分钟
+          1 分钟
         
       </span>
     
@@ -271,49 +270,24 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数组基本原理</h1>
+            <h1 id="seo-header">ai大模型接入</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="一、静态数组"><a href="#一、静态数组" class="headerlink" title="一、静态数组"></a>一、静态数组</h2><p>例子： int[32] a    </p>
+                <h2 id="接入大模型的四种方式"><a href="#接入大模型的四种方式" class="headerlink" title="接入大模型的四种方式"></a>接入大模型的四种方式</h2><h3 id="1-spring-ai"><a href="#1-spring-ai" class="headerlink" title="1. spring ai"></a>1. spring ai</h3><ol>
+<li><p>导包</p>
 <ol>
-<li>本质是开辟了一块内存空间，</li>
-<li>设置一个指针a指向该内存空间的首地址，即 int[0] 为数组的首地址， int[1]是在首地址+一个数组元素大小得到第二个元素的首地址，这个地址往后存储第二个元素的值</li>
-<li>这块空间是连续的</li>
+<li>spring ai alibaba</li>
 </ol>
-<p>因此我们得到了&#x3D;&#x3D;随机访问&#x3D;&#x3D; 的功能： 只需要输入数组下标就可以得到它的首地址，从而访问这片内存空间，时间复杂度为 o(1)</p>
-<h3 id="1-增删改查"><a href="#1-增删改查" class="headerlink" title="1. 增删改查"></a>1. 增删改查</h3><p>分情况：</p>
-<ol>
-<li>在数组中间</li>
-<li>在数组末尾插入</li>
-<li>数组满了，扩容</li>
-</ol>
-<ul>
-<li><p>在末尾插入，获取到末尾的索引，直接插入</p>
 </li>
-<li><p>在中间插入，需要数据搬迁，给新元素腾出位置</p>
+<li><p>编写配置</p>
 </li>
-</ul>
-<h2 id="二、动态数组"><a href="#二、动态数组" class="headerlink" title="二、动态数组"></a>二、动态数组</h2><p>几个基本操作</p>
-<p>增加：</p>
-<ol>
-<li>add（1） 在末尾增加元素</li>
-<li>add（1，666） 在索引1的位置插入666</li>
-<li>add（-1,666）在头部插入</li>
-<li>remove（arr.size（）-1） 删除末尾元素</li>
-<li>remove（2） 删除索引为2的元素</li>
-<li>get（0） 根据索引查找元素</li>
-<li>set（0,100）设置索引0的值为100</li>
-<li>indexof（100） 根据元素查索引</li>
+<li><p>引入模型</p>
+</li>
+<li><p>调用模型</p>
+</li>
 </ol>
-<p>手动实现一个动态数组</p>
-<p>关键点：</p>
-<ul>
-<li>自动扩容</li>
-<li>所有越界检查</li>
-<li>删除元素防止内存泄露</li>
-</ul>
 
                 
               </div>
@@ -322,41 +296,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="print-no-link">#算法笔记</a>
-      
-    </div>
   
 </div>
 
@@ -366,8 +305,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数组基本原理</div>
-      <div>http://example.com/2025/05/19/算法/数组基本原理/</div>
+      <div>ai大模型接入</div>
+      <div>http://example.com/2025/07/24/java/项目/ai智能体/ai大模型接入/</div>
     </div>
     <div class="license-meta">
       
@@ -379,7 +318,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月19日</div>
+          <div>2025年7月24日</div>
         </div>
       
       
@@ -411,9 +350,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/19/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/" title="算法思想">
+                      <a href="/2025/08/12/java/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E5%BD%95/" title="算法题记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">算法思想</span>
+                        <span class="hidden-mobile">算法题记录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -421,8 +360,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/19/java/%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%82%AB%E6%8A%80%E7%A4%BE%E5%8C%BA/%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE/" title="初始化项目">
-                        <span class="hidden-mobile">初始化项目</span>
+                      <a href="/2025/07/12/java/%E9%9D%A2%E8%AF%95%E9%A2%98/java%E7%83%AD%E9%97%A8200%E9%9D%A2%E8%AF%95%E9%A2%98/" title="java热门200面试题">
+                        <span class="hidden-mobile">java热门200面试题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
