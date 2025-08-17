@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>ai服务</title>
+    <link href="/2025/08/17/java/ai%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/langchain4j/ai%E6%9C%8D%E5%8A%A1/"/>
+    <url>/2025/08/17/java/ai%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/langchain4j/ai%E6%9C%8D%E5%8A%A1/</url>
+    
+    <content type="html"><![CDATA[<p>在 快速入门 部分 我们已经讲了最基本的ai服务， 也就是springboot 整合langchain4j</p><h2 id="实现的原理"><a href="#实现的原理" class="headerlink" title="实现的原理"></a>实现的原理</h2><p>在进行springboot 集成 langchain4j 时 需要 新建一个接口， 然后使用@AIService注解标注 或者 使用AIservice.create（interface.class，model） 来完成创建</p><p>他的原理：  使用的是代理</p><blockquote><p>您将接口的 <code>Class</code> 与低级组件一起提供给 <code>AiServices</code>， 然后 <code>AiServices</code> 创建一个实现该接口的代理对象。 目前，它使用反射，但我们也在考虑其他替代方案。 这个代理对象处理所有输入和输出的转换。 在这种情况下，输入是单个 <code>String</code>，但我们使用的是 <code>ChatLanguageModel</code>，它接受 <code>ChatMessage</code> 作为输入。 因此，<code>AiService</code> 会自动将其转换为 <code>UserMessage</code> 并调用 <code>ChatLanguageModel</code>。 由于 <code>chat</code> 方法的输出类型是 <code>String</code>，在 <code>ChatLanguageModel</code> 返回 <code>AiMessage</code> 后， 它将在从 <code>chat</code> 方法返回之前转换为 <code>String</code>。</p></blockquote><h2 id="springboot-中的ai服务"><a href="#springboot-中的ai服务" class="headerlink" title="springboot 中的ai服务"></a>springboot 中的ai服务</h2><h3 id="一、系统提示词"><a href="#一、系统提示词" class="headerlink" title="一、系统提示词"></a>一、系统提示词</h3><ol><li>直接在接口的方法上使用@SystemPrompt ， 即可</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@AiService</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Assistant</span> &#123;  <br>  <br>    <span class="hljs-meta">@SystemMessage(&quot;you only can say  &#x27;haha&#x27;&quot;)</span>   <br>    String <span class="hljs-title function_">chat</span><span class="hljs-params">(String userMessage)</span>;  <br><br><span class="hljs-meta">@SystemMessage(fromRe)</span><br>&#125;<br></code></pre></td></tr></table></figure><ol start="2"><li>在构建时 使用provider<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">  <br><span class="hljs-type">Assistant</span> <span class="hljs-variable">assistant</span> <span class="hljs-operator">=</span> AiServices.builder(Assistant.class)  <br>        .chatLanguageModel(chatModel)  <br>        .systemMessageProvider(memoryId -&gt; <span class="hljs-string">&quot;你只能说 &#x27;哈哈&#x27;&quot;</span>)  <br>        .build();  <br><span class="hljs-type">String</span> <span class="hljs-variable">chat</span> <span class="hljs-operator">=</span> assistant.chat(<span class="hljs-string">&quot;你好&quot;</span>);  <br>System.out.println(chat);<br></code></pre></td></tr></table></figure></li></ol><h3 id="二、用户提示词"><a href="#二、用户提示词" class="headerlink" title="二、用户提示词"></a>二、用户提示词</h3><ol><li>使用@UserMessage</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+      <category>ai开发框架</category>
+      
+      <category>langchain4j</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ai技术</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>langchain4j入门</title>
     <link href="/2025/08/17/java/ai%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/langchain4j/langchain4j%E5%85%A5%E9%97%A8/"/>
     <url>/2025/08/17/java/ai%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/langchain4j/langchain4j%E5%85%A5%E9%97%A8/</url>
