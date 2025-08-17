@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fav.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cheems">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="简介：   langchain4j  是java版本的langchain  本文主要讲一讲 快速入门langchain4j 官方文档：https:&#x2F;&#x2F;docs.langchain4j.info&#x2F;get-startedzread： 快速入门 | langchain4j&#x2F;langchain4j | Zread官方的例子：http:&#x2F;&#x2F;github.com&#x2F;langchain4j&#x2F;langch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="langchain4j入门">
+<meta property="og:url" content="http://example.com/2025/08/17/java/ai%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/langchain4j/langchain4j%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="cheems的博客">
+<meta property="og:description" content="简介：   langchain4j  是java版本的langchain  本文主要讲一讲 快速入门langchain4j 官方文档：https:&#x2F;&#x2F;docs.langchain4j.info&#x2F;get-startedzread： 快速入门 | langchain4j&#x2F;langchain4j | Zread官方的例子：http:&#x2F;&#x2F;github.com&#x2F;langchain4j&#x2F;langch">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250817112443.png">
+<meta property="article:published_time" content="2025-08-17T02:11:09.000Z">
+<meta property="article:modified_time" content="2025-08-17T06:36:44.562Z">
+<meta property="article:author" content="cheems">
+<meta property="article:tag" content="ai技术">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250817112443.png">
+  
+  
+  
+  <title>langchain4j入门 - cheems的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cheems的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="langchain4j入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-17 10:11" pubdate>
+          2025年8月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">langchain4j入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>简介： </p>
+<blockquote>
+<p>langchain4j  是java版本的langchain</p>
+</blockquote>
+<p>本文主要讲一讲 快速入门langchain4j</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.langchain4j.info/get-started">https://docs.langchain4j.info/get-started</a><br>zread： <a target="_blank" rel="noopener" href="https://zread.ai/langchain4j/langchain4j">快速入门 | langchain4j&#x2F;langchain4j | Zread</a><br>官方的例子：<a target="_blank" rel="noopener" href="http://github.com/langchain4j/langchain4j-examples/tree/main">http://github.com/langchain4j/langchain4j-examples/tree/main</a></p>
+<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><p>一、 引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>dev.langchain4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>langchain4j-open-ai<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0-beta3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>dev.langchain4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>langchain4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0-beta3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>以及</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>dev.langchain4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>langchain4j-bom<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0-beta3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>二、 创建一个chatmodel 对象<br>主要设置 apikey  与 model-name 两个</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">OpenAiChatModel</span> <span class="hljs-variable">model</span> <span class="hljs-operator">=</span> OpenAiChatModel.builder()  <br>        .apiKey(<span class="hljs-string">&quot;demo&quot;</span>)  <br>        .baseUrl(<span class="hljs-string">&quot;http://langchain4j.dev/demo/openai/v1&quot;</span>)  <br>        .modelName(<span class="hljs-string">&quot;gpt-4o-mini&quot;</span>)  <br>        .build();  <br><span class="hljs-type">String</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> model.chat(<span class="hljs-string">&quot;你好呀，我是cheems&quot;</span>);  <br>System.out.println(response);<br></code></pre></td></tr></table></figure>
+
+<p>到这里就完成了基本的聊天的调用</p>
+<p>三、 springboot 集成langchain</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.langchain4j.info/tutorials/spring-boot-integration">https://docs.langchain4j.info/tutorials/spring-boot-integration</a></p>
+<ol>
+<li>导入依赖</li>
+</ol>
+<p>Spring Boot 启动器依赖项的命名约定是：<code>langchain4j-&#123;integration-name&#125;-spring-boot-starter</code>。<br>例如，对于 OpenAI (<code>langchain4j-open-ai</code>)，依赖项名称为 <code>langchain4j-open-ai-spring-boot-starter</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>&lt;dependency&gt;<br>    &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;<br>    &lt;artifactId&gt;langchain4j-open-ai-spring-boot-starter&lt;/artifactId&gt;<br>    &lt;version&gt;<span class="hljs-number">1.0</span><span class="hljs-number">.0</span>-beta3&lt;/version&gt;<br>&lt;/dependency&gt;<br><br>&lt;dependency&gt;<br>    &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;<br>    &lt;artifactId&gt;langchain4j-spring-boot-starter&lt;/artifactId&gt;<br>    &lt;version&gt;<span class="hljs-number">1.0</span><span class="hljs-number">.0</span>-beta3&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在application.yml 中进行配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">langchain4j:</span>  <br>  <span class="hljs-attr">open-ai:</span>  <br>    <span class="hljs-attr">chat-model:</span>  <br>      <span class="hljs-attr">api-key:</span> <span class="hljs-string">demo</span>  <br>      <span class="hljs-attr">base-url:</span> <span class="hljs-string">http://langchain4j.dev/demo/openai/v1</span>  <br>      <span class="hljs-attr">model-name:</span> <span class="hljs-string">gpt-4o-mini</span><br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>创建接口 AIservice</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@AiService</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Assistant</span> &#123;  <br>  <br>    <span class="hljs-meta">@SystemMessage(&quot;you only can say  &#x27;haha&#x27;&quot;)</span>  <br>    String <span class="hljs-title function_">chat</span><span class="hljs-params">(String userMessage)</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>四、创建controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AssistantController</span> &#123;  <br>  <br>    <span class="hljs-meta">@Resource</span>  <br>    <span class="hljs-keyword">private</span> Assistant assistant;  <br>    <br>    <span class="hljs-meta">@GetMapping(&quot;/chat&quot;)</span>  <br>    <span class="hljs-keyword">public</span> String  <span class="hljs-title function_">chat</span><span class="hljs-params">(String message)</span>&#123;  <br>        <span class="hljs-keyword">return</span> assistant.chat(message);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>到这里就实现了 简单的整合</p>
+<h2 id="聊天与模型部分"><a href="#聊天与模型部分" class="headerlink" title="聊天与模型部分"></a>聊天与模型部分</h2><h3 id="一、-llm的接口"><a href="#一、-llm的接口" class="headerlink" title="一、 llm的接口"></a>一、 llm的接口</h3><p>目前是只有两种， 而且第一种已经不维护了， 所以这里只介绍第二种</p>
+<ul>
+<li>ChatLanguageModel ： 可以接收多个ChatMessage 作为输入并返回单个AIMessage   ，而且ChatMessage支持&#x3D;&#x3D;多模态&#x3D;&#x3D;的信息</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250817112443.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>除了这个还有其他的模型 的接口类： </p>
+<ul>
+<li><code>EmbeddingModel</code>： 嵌入模型</li>
+<li><code>ScoringModel</code>：排序模型 ，  所谓的rank模型 </li>
+<li>ImageModel： 生成与编辑图片的模型</li>
+</ul>
+<h3 id="二、-chatmessage-的类型"><a href="#二、-chatmessage-的类型" class="headerlink" title="二、 chatmessage 的类型"></a>二、 chatmessage 的类型</h3><ul>
+<li>UserMessage ：用户提示词</li>
+<li>AIMessage： AI的响应</li>
+<li>SystemMessage：系统提示词</li>
+<li>ToolExecutionResultMessage：调用工具后的返回结果</li>
+</ul>
+<blockquote>
+<p>在最简单的情况下，我们可以向 <code>chat</code> 方法提供单个 <code>UserMessage</code> 实例。 这类似于第一个版本的 <code>chat</code> 方法，它接受 <code>String</code> 作为输入。 主要区别在于它现在返回的不是 <code>String</code>，而是 <code>ChatResponse</code>。 除了 <code>AiMessage</code> 外，<code>ChatResponse</code> 还包含 <code>ChatResponseMetadata</code>。 <code>ChatResponseMetadata</code> 包含 <code>TokenUsage</code>，其中包含有关输入包含多少令牌的统计信息 （您提供给 generate 方法的所有 <code>ChatMessages</code>）， 输出（在 <code>AiMessage</code> 中）生成了多少令牌，以及总计（输入 + 输出）。 您需要这些信息来计算给定 LLM 调用的成本。 然后，<code>ChatResponseMetadata</code> 还包含 <code>FinishReason</code>， 这是一个枚举，包含生成停止的各种原因。 通常，如果 LLM 自己决定停止生成，它将是 <code>FinishReason.STOP</code>。<br>  创建 <code>UserMessage</code> 有多种方法，取决于内容。 最简单的是 <code>new UserMessage(&quot;Hi&quot;)</code> 或 <code>UserMessage.from(&quot;Hi&quot;)</code>。</p>
+</blockquote>
+<p>&#x3D;&#x3D;为什么需要多个chatMessage&#x3D;&#x3D;<br>因为一次如果只能传递一个消息， 那就无法实现ai的记忆。 记忆模块后面讲</p>
+<h3 id="三、多模态的消息"><a href="#三、多模态的消息" class="headerlink" title="三、多模态的消息"></a>三、多模态的消息</h3><p>UserMessage  不止可以包含文本， 还可以包含其他类型的内容。  但是如果模型本身不支持多模态，也是无法使用的。</p>
+<p>原理：<br><code>UserMessage</code> 包含 <code>List&lt;Content&gt; contents</code>。 <code>Content</code> 是一个接口，有以下实现：</p>
+<ul>
+<li><code>TextContent</code></li>
+<li><code>ImageContent</code></li>
+<li><code>AudioContent</code></li>
+<li><code>VideoContent</code></li>
+<li><code>PdfFileContent</code></li>
+</ul>
+<p>文本消息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">UserMessage</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> UserMessage.from(  <br>        TextContent.from(<span class="hljs-string">&quot;你好呀，我是cheems&quot;</span>),  <br>        TextContent.from(<span class="hljs-string">&quot;你是什么模型&quot;</span>)  <br>);  <br>  <br>chatModel.chat(message);<br></code></pre></td></tr></table></figure>
+
+
+<p>图片消息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//先读入图片</span><br><span class="hljs-type">byte</span>[] imageBytes = readBytes(<span class="hljs-string">&quot;/home/me/cat.jpg&quot;</span>);<br><span class="hljs-comment">// base64编码</span><br><span class="hljs-type">String</span> <span class="hljs-variable">base64Data</span> <span class="hljs-operator">=</span> Base64.getEncoder().encodeToString(imageBytes);<br><span class="hljs-comment">//交给imageContent</span><br><span class="hljs-type">ImageContent</span> <span class="hljs-variable">imageContent</span> <span class="hljs-operator">=</span> ImageContent.from(base64Data, <span class="hljs-string">&quot;image/jpg&quot;</span>);<br><span class="hljs-type">UserMessage</span> <span class="hljs-variable">userMessage</span> <span class="hljs-operator">=</span> UserMessage.from(imageContent);<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="聊天记忆部分"><a href="#聊天记忆部分" class="headerlink" title="聊天记忆部分"></a>聊天记忆部分</h2><p>关于记忆与历史 两个方面</p>
+<ul>
+<li>历史是指与用户对话的完整的信息 ，在前端的ui上可以看到的 。这个langchain4j 并没有提供</li>
+<li>记忆是指：记忆保存<strong>一些信息</strong>，这些信息呈现给LLM，使其表现得好像”记住”了对话。 记忆与历史有很大不同。根据使用的记忆算法，它可以以各种方式修改历史： 淘汰一些消息，总结多条消息，总结单独的消息，从消息中删除不重要的细节， 向消息中注入额外信息（例如，用于RAG）或指令（例如，用于结构化输出）等等。</li>
+</ul>
+<h3 id="一、-chatMemory"><a href="#一、-chatMemory" class="headerlink" title="一、 chatMemory"></a>一、 chatMemory</h3><p>前面 我们提到了chatMessage 的类型， 一次ai 调用可以输入多个message ， 是为了实现多轮对话的记忆，但是自己写特别麻烦。<br>这里langchain4j 封装了一个chatMemory 接口， 他是chatmessage的容器（List）<br>具体的chatmemory实现有两种：</p>
+<ul>
+<li>MessageWindowChatMessage</li>
+<li>TokenWindowChatMemory</li>
+</ul>
+<h3 id="二、-淘汰策略-及具体实现"><a href="#二、-淘汰策略-及具体实现" class="headerlink" title="二、 淘汰策略 及具体实现"></a>二、 淘汰策略 及具体实现</h3><p>既然chatmemory 是一个list ， 那就有容量限制，同时大模型的上下文也是有限的，并且上下文越多消耗的token就越多，花费时间就越长<br>所以 如果满了就要淘汰</p>
+<p>淘汰就是 基于滑动窗口进行淘汰</p>
+<p>具体的chatmemory实现有两种：</p>
+<ul>
+<li>MessageWindowChatMessage： 比较简单， 就是简单的滑动窗口， 淘汰掉旧数据，保留最近的几条。（具体会更复杂， 可能包含令牌）</li>
+<li>TokenWindowChatMemory： 也是滑动窗口，但专注于保留最近的n个令牌，根据需要淘汰旧消息。<code>TokenWindowChatMemory</code>需要一个<code>Tokenizer</code>来计算每个<code>ChatMessage</code>中的令牌数。</li>
+</ul>
+<h3 id="三、-消息的持久化"><a href="#三、-消息的持久化" class="headerlink" title="三、 消息的持久化"></a>三、 消息的持久化</h3><p>默认情况下，chatMemory 在内存中存储chatmessage</p>
+<p>如果要 实现持久化到数据库&#x2F;文件， 可自行实现</p>
+<p>文档： <a target="_blank" rel="noopener" href="https://docs.langchain4j.info/tutorials/chat-memory#%E8%AE%B0%E5%BF%86%E4%B8%8E%E5%8E%86%E5%8F%B2">https://docs.langchain4j.info/tutorials/chat-memory#%E8%AE%B0%E5%BF%86%E4%B8%8E%E5%8E%86%E5%8F%B2</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">PersistentChatMemoryStore</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ChatMemoryStore</span> &#123;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> List&lt;ChatMessage&gt; <span class="hljs-title function_">getMessages</span><span class="hljs-params">(Object memoryId)</span> &#123;<br>          <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> 实现通过内存ID从持久化存储中获取所有消息。</span><br>          <span class="hljs-comment">// 可以使用ChatMessageDeserializer.messageFromJson(String)和</span><br>          <span class="hljs-comment">// ChatMessageDeserializer.messagesFromJson(String)辅助方法</span><br>          <span class="hljs-comment">// 轻松地从JSON反序列化聊天消息。</span><br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">updateMessages</span><span class="hljs-params">(Object memoryId, List&lt;ChatMessage&gt; messages)</span> &#123;<br>            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> 实现通过内存ID更新持久化存储中的所有消息。</span><br>            <span class="hljs-comment">// 可以使用ChatMessageSerializer.messageToJson(ChatMessage)和</span><br>            <span class="hljs-comment">// ChatMessageSerializer.messagesToJson(List&lt;ChatMessage&gt;)辅助方法</span><br>            <span class="hljs-comment">// 轻松地将聊天消息序列化为JSON。</span><br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteMessages</span><span class="hljs-params">(Object memoryId)</span> &#123;<br>          <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> 实现通过内存ID删除持久化存储中的所有消息。</span><br>        &#125;<br>    &#125;<br><br><span class="hljs-type">ChatMemory</span> <span class="hljs-variable">chatMemory</span> <span class="hljs-operator">=</span> MessageWindowChatMemory.builder()<br>        .id(<span class="hljs-string">&quot;12345&quot;</span>)<br>        .maxMessages(<span class="hljs-number">10</span>)<br>        .chatMemoryStore(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PersistentChatMemoryStore</span>())<br>        .build();<br></code></pre></td></tr></table></figure>
+
+<p>主要是实现三个方法： </p>
+<ul>
+<li>updateMessages： 根据memoryid ， 来区分不同的对话， 然后将对话内容存入数据库</li>
+<li>getMessages： 根据memoryid 来从数据库中获取数据</li>
+<li>deleteMessage ： 根据memoryid删除数据库中的数据</li>
+</ul>
+<blockquote>
+<p>每当向<code>ChatMemory</code>添加新的<code>ChatMessage</code>时，都会调用<code>updateMessages()</code>方法。 这通常在与LLM的每次交互中发生两次： 一次是添加新的<code>UserMessage</code>时，另一次是添加新的<code>AiMessage</code>时。 <code>updateMessages()</code>方法预期会更新与给定内存ID关联的所有消息。 <code>ChatMessage</code>可以单独存储（例如，每条消息一条记录&#x2F;行&#x2F;对象） 或一起存储（例如，整个<code>ChatMemory</code>一条记录&#x2F;行&#x2F;对象）。</p>
+</blockquote>
+<blockquote>
+<p>当<code>ChatMemory</code>的用户请求所有消息时，会调用<code>getMessages()</code>方法。 这通常在与LLM的每次交互中发生一次。 <code>Object memoryId</code>参数的值对应于创建<code>ChatMemory</code>时指定的<code>id</code>。 它可以用来区分多个用户和&#x2F;或对话。 <code>getMessages()</code>方法预期会返回与给定内存ID关联的所有消息。</p>
+</blockquote>
+<blockquote>
+<p>当调用<code>ChatMemory.clear()</code>时，会调用<code>deleteMessages()</code>方法。 如果您不使用此功能，可以将此方法留空。</p>
+</blockquote>
+<h3 id="四、-对于SystemMessage-的特殊处理"><a href="#四、-对于SystemMessage-的特殊处理" class="headerlink" title="四、 对于SystemMessage 的特殊处理"></a>四、 对于SystemMessage 的特殊处理</h3><p>对于系统提示词： </p>
+<ul>
+<li>一旦添加 总是保留</li>
+<li>如果出现相同的系统提示词的添加， 则忽略</li>
+<li>如果不相同 ，则替换</li>
+<li>一次只能保存一个</li>
+</ul>
+<h3 id="五、对于工具消息的特殊处理"><a href="#五、对于工具消息的特殊处理" class="headerlink" title="五、对于工具消息的特殊处理"></a>五、对于工具消息的特殊处理</h3><p>如果包含<code>ToolExecutionRequest</code>的<code>AiMessage</code>被淘汰， 随后的孤立<code>ToolExecutionResultMessage</code>也会自动被淘汰， 以避免与某些LLM提供商（如OpenAI）出现问题， 这些提供商禁止在请求中发送孤立的<code>ToolExecutionResultMessage</code>。</p>
+<h3 id="六-、-例子"><a href="#六-、-例子" class="headerlink" title="六 、 例子"></a>六 、 例子</h3><h4 id="使用内存存储"><a href="#使用内存存储" class="headerlink" title="使用内存存储"></a>使用内存存储</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java">  <br><span class="hljs-meta">@Resource</span>  <br><span class="hljs-keyword">private</span> OpenAiChatModel chatModel;  <br>  <br>  <br><span class="hljs-meta">@Test</span>  <br><span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span>&#123;  <br>  <br>    <span class="hljs-type">MessageWindowChatMemory</span> <span class="hljs-variable">messageWindowChatMemory</span> <span class="hljs-operator">=</span> MessageWindowChatMemory.withMaxMessages(<span class="hljs-number">3</span>);  <br>  <br>    <span class="hljs-type">Assistant</span> <span class="hljs-variable">assistant</span> <span class="hljs-operator">=</span> AiServices.builder(Assistant.class)  <br>            .chatLanguageModel(chatModel)  <br>            .chatMemory(messageWindowChatMemory)  <br>            .build();  <br>  <br>    <span class="hljs-type">String</span> <span class="hljs-variable">chat</span> <span class="hljs-operator">=</span> assistant.chat(<span class="hljs-string">&quot;你好，我叫cheems&quot;</span>);  <br>    System.out.println(chat);  <br>  <br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> assistant.chat(<span class="hljs-string">&quot;我叫什么来着，我告诉过你&quot;</span>);  <br>    System.out.println(s);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="使用文件存储"><a href="#使用文件存储" class="headerlink" title="使用文件存储"></a>使用文件存储</h4><p>这里如果直接让 kryo 进行反序列化 得到的list 是不可修改的， 需要额外的类来完成修改</p>
+<p>在使用上需要手动指定id</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-meta">@Test</span>  <br><span class="hljs-keyword">void</span> <span class="hljs-title function_">testFileMemory</span><span class="hljs-params">()</span>&#123;  <br>  <br>  <br>    <span class="hljs-type">String</span> <span class="hljs-variable">memoryId</span> <span class="hljs-operator">=</span> UUID.randomUUID().toString();  <br>    <span class="hljs-type">MessageWindowChatMemory</span> <span class="hljs-variable">chatMemory</span> <span class="hljs-operator">=</span> MessageWindowChatMemory.builder()  <br>            .chatMemoryStore(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileMemoryStore</span>(System.getProperty(<span class="hljs-string">&quot;user.dir&quot;</span>)+<span class="hljs-string">&quot;/chat-memory&quot;</span>))  <br>            .id(memoryId)  <br>            .maxMessages(<span class="hljs-number">5</span>)  <br>            .build();  <br>  <br>    <span class="hljs-type">Assistant</span> <span class="hljs-variable">assistant</span> <span class="hljs-operator">=</span> AiServices.builder(Assistant.class)  <br>            .chatMemory(chatMemory)  <br>            .chatLanguageModel(chatModel)  <br>            .build();  <br>  <br>  <br>    <span class="hljs-type">String</span> <span class="hljs-variable">m2</span> <span class="hljs-operator">=</span> assistant.chat(<span class="hljs-string">&quot;我叫什么来着，我刚才告诉过你&quot;</span>);  <br>    System.out.println(m2);  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cheems.aicodingagent.chatmemory;  <br>  <br><span class="hljs-keyword">import</span> com.esotericsoftware.kryo.Kryo;  <br><span class="hljs-keyword">import</span> com.esotericsoftware.kryo.Serializer;  <br><span class="hljs-keyword">import</span> com.esotericsoftware.kryo.io.Input;  <br><span class="hljs-keyword">import</span> com.esotericsoftware.kryo.io.Output;  <br><span class="hljs-keyword">import</span> com.esotericsoftware.kryo.serializers.CollectionSerializer;  <br><span class="hljs-keyword">import</span> dev.langchain4j.data.message.ChatMessage;  <br><span class="hljs-keyword">import</span> dev.langchain4j.store.memory.chat.ChatMemoryStore;  <br><span class="hljs-keyword">import</span> org.objenesis.strategy.StdInstantiatorStrategy;  <br>  <br><span class="hljs-keyword">import</span> java.io.*;  <br><span class="hljs-keyword">import</span> java.util.*;  <br>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FileMemoryStore</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ChatMemoryStore</span> &#123;  <br>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String BASE_URL;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Kryo</span> <span class="hljs-variable">kryo</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Kryo</span>();  <br>  <br>    <span class="hljs-keyword">static</span> &#123;  <br>        kryo.setRegistrationRequired(<span class="hljs-literal">false</span>);  <br>        kryo.setInstantiatorStrategy(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StdInstantiatorStrategy</span>());  <br>        kryo.setReferences(<span class="hljs-literal">true</span>);  <br>  <br>        <span class="hljs-comment">// 注册不可修改集合的序列化器  </span><br>        kryo.addDefaultSerializer(Collections.unmodifiableCollection(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;()).getClass(),  <br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">UnmodifiableCollectionSerializer</span>());  <br>        kryo.addDefaultSerializer(Collections.unmodifiableList(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;()).getClass(),  <br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">UnmodifiableListSerializer</span>());  <br>  <br>        <span class="hljs-comment">// 处理 Arrays.asList 返回的不可修改列表  </span><br>        kryo.addDefaultSerializer(Arrays.asList().getClass(),  <br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">UnmodifiableListSerializer</span>());  <br>    &#125;  <br>  <br>    <span class="hljs-comment">// 不可修改 Collection 的序列化器  </span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UnmodifiableCollectionSerializer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Serializer</span>&lt;Collection&gt; &#123;  <br>        <span class="hljs-meta">@Override</span>  <br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">write</span><span class="hljs-params">(Kryo kryo, Output output, Collection collection)</span> &#123;  <br>            kryo.writeObject(output, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(collection));  <br>        &#125;  <br>  <br>  <br>        <span class="hljs-meta">@Override</span>  <br>        <span class="hljs-keyword">public</span> Collection <span class="hljs-title function_">read</span><span class="hljs-params">(Kryo kryo, Input input,Class&lt;? extends Collection&gt; aClass)</span> &#123;  <br>            ArrayList&lt;?&gt; list = kryo.readObject(input, ArrayList.class);  <br>            <span class="hljs-keyword">return</span> Collections.unmodifiableCollection(list);  <br>        &#125;  <br>    &#125;  <br>  <br>    <span class="hljs-comment">// 不可修改 List 的序列化器  </span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UnmodifiableListSerializer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Serializer</span>&lt;List&gt; &#123;  <br>        <span class="hljs-meta">@Override</span>  <br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">write</span><span class="hljs-params">(Kryo kryo, Output output, List list)</span> &#123;  <br>            kryo.writeObject(output, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(list));  <br>        &#125;<br>  <br>  <br>  <br>  <br>        <span class="hljs-meta">@Override</span>  <br>        <span class="hljs-keyword">public</span> List <span class="hljs-title function_">read</span><span class="hljs-params">(Kryo kryo, Input input, Class&lt;? extends List&gt; aClass)</span> &#123;  <br>            ArrayList&lt;?&gt; list = kryo.readObject(input, ArrayList.class);  <br>            <span class="hljs-keyword">return</span> Collections.unmodifiableList(list);  <br>        &#125;  <br>    &#125;  <br>  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">FileMemoryStore</span><span class="hljs-params">(String dir)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.BASE_URL = dir;  <br>        <span class="hljs-type">File</span> <span class="hljs-variable">basedir</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(dir);  <br>        <span class="hljs-keyword">if</span> (!basedir.exists()) &#123;  <br>            basedir.mkdirs();  <br>        &#125;  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> List&lt;ChatMessage&gt; <span class="hljs-title function_">getMessages</span><span class="hljs-params">(Object memoryId)</span> &#123;  <br>        <span class="hljs-keyword">return</span> getOrCreateMemory((String) memoryId);  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">updateMessages</span><span class="hljs-params">(Object memoryId, List&lt;ChatMessage&gt; messageList)</span> &#123;  <br>        List&lt;ChatMessage&gt; messages = getOrCreateMemory((String) memoryId);  <br>        messages.addAll(messageList);  <br>        saveMemory((String) memoryId, messages);  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteMessages</span><span class="hljs-params">(Object memoryId)</span> &#123;  <br>        <span class="hljs-type">File</span> <span class="hljs-variable">memoryFile</span> <span class="hljs-operator">=</span> getMemoryFile((String) memoryId);  <br>        <span class="hljs-keyword">if</span> (memoryFile.exists()) &#123;  <br>            memoryFile.delete();  <br>        &#125;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">saveMemory</span><span class="hljs-params">(String memoryId, List&lt;ChatMessage&gt; messages)</span> &#123;  <br>        <span class="hljs-type">File</span> <span class="hljs-variable">memoryFile</span> <span class="hljs-operator">=</span> getMemoryFile(memoryId);  <br>        <span class="hljs-keyword">try</span> (<span class="hljs-type">Output</span> <span class="hljs-variable">output</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Output</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(memoryFile))) &#123;  <br>            kryo.writeObject(output, messages);  <br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;  <br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);  <br>        &#125;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">private</span> List&lt;ChatMessage&gt; <span class="hljs-title function_">getOrCreateMemory</span><span class="hljs-params">(String memoryId)</span> &#123;  <br>        <span class="hljs-type">File</span> <span class="hljs-variable">memoryFile</span> <span class="hljs-operator">=</span> getMemoryFile(memoryId);  <br>        List&lt;ChatMessage&gt; messages = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();  <br>        <span class="hljs-keyword">if</span> (memoryFile.exists()) &#123;  <br>            <span class="hljs-keyword">try</span> (<span class="hljs-type">Input</span> <span class="hljs-variable">input</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Input</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(memoryFile))) &#123;  <br>                messages = kryo.readObject(input, ArrayList.class);  <br>            &#125; <span class="hljs-keyword">catch</span> (FileNotFoundException e) &#123;  <br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);  <br>            &#125;  <br>        &#125;  <br>        <span class="hljs-keyword">return</span> messages;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">private</span> File <span class="hljs-title function_">getMemoryFile</span><span class="hljs-params">(String memoryId)</span> &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(BASE_URL, memoryId + <span class="hljs-string">&quot;.kryo&quot;</span>);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="模型参数"><a href="#模型参数" class="headerlink" title="模型参数"></a>模型参数</h2><p>在springboot 中 直接使用application.yml 来进行设置即可</p>
+<p>具体每个模型的参数会有不同，详细见模型提供商</p>
+<h2 id="响应流式传输"><a href="#响应流式传输" class="headerlink" title="响应流式传输"></a>响应流式传输</h2><p>langchain4j 也支持流式输出</p>
+<p>对于：ChatLanguageModel 接口， 有相应的 StreamChatLanguageModel 接口 ，这个接口有对应的api 可以流式传输响应,  这个接口的实现类接收<code>StreamingChatResponseHandler</code> 接口作为参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">StreamingChatResponseHandler</span> &#123;  <br>  <br><span class="hljs-keyword">void</span> <span class="hljs-title function_">onPartialResponse</span><span class="hljs-params">(String partialResponse)</span>;  <br>  <br><span class="hljs-keyword">void</span> <span class="hljs-title function_">onCompleteResponse</span><span class="hljs-params">(ChatResponse completeResponse)</span>;  <br>  <br><span class="hljs-keyword">void</span> <span class="hljs-title function_">onError</span><span class="hljs-params">(Throwable error)</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>当生成下一个部分响应时：调用 <code>onPartialResponse(String partialResponse)</code>。 部分响应可以由单个或多个标记组成。 例如，您可以在标记可用时立即将其发送到 UI。</li>
+<li>当 LLM 完成生成时：调用 <code>onCompleteResponse(ChatResponse completeResponse)</code>。 <code>ChatResponse</code> 对象包含完整的响应（<code>AiMessage</code>）以及 <code>ChatResponseMetadata</code>。</li>
+<li>当发生错误时：调用 <code>onError(Throwable error)</code>。</li>
+</ul>
+<h3 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h3><h4 id="正常的new-一个接口作为参数"><a href="#正常的new-一个接口作为参数" class="headerlink" title="正常的new 一个接口作为参数"></a>正常的new 一个接口作为参数</h4><p>存在乱码问题 ， 不知道怎么解决</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java">  <br><span class="hljs-meta">@SpringBootTest</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StreamResponse</span> &#123;  <br>  <br>    <span class="hljs-meta">@Resource</span>  <br>    <span class="hljs-keyword">private</span> OpenAiStreamingChatModel chatModel;  <br>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;  <br>  <br>  <br>        <span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;你好呀，我是cheems&quot;</span>;  <br>  <br>        chatModel.chat(message, <span class="hljs-keyword">new</span> <span class="hljs-title class_">StreamingChatResponseHandler</span>() &#123;  <br>            <span class="hljs-meta">@Override</span>  <br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onPartialResponse</span><span class="hljs-params">(String partialResponse)</span> &#123;  <br>                System.out.println(<span class="hljs-string">&quot;onPartialResponse: &quot;</span> + partialResponse);  <br>            &#125;  <br>            <span class="hljs-meta">@Override</span>  <br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCompleteResponse</span><span class="hljs-params">(ChatResponse completeResponse)</span> &#123;  <br>                System.out.println(<span class="hljs-string">&quot;onCompleteResponse: &quot;</span> + completeResponse);  <br>            &#125;  <br>            <span class="hljs-meta">@Override</span>  <br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onError</span><span class="hljs-params">(Throwable error)</span> &#123;  <br>                error.printStackTrace();  <br>            &#125;  <br>        &#125;);  <br>  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="使用lambda-表达式"><a href="#使用lambda-表达式" class="headerlink" title="使用lambda 表达式"></a>使用lambda 表达式</h4><p>一定要导这个包，不然识别不到</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">  <br><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> dev.langchain4j.model.LambdaStreamingResponseHandler.onPartialResponseAndError;<br><span class="hljs-meta">@Test</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test2</span><span class="hljs-params">()</span> &#123;  <br>  <br>    <span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;你好，我是cheems&quot;</span>;  <br> chatModel.chat(message,onPartialResponseAndError(System.out::println,Throwable::printStackTrace) );  <br>      <br>  chatModel.chat(message,onPartialResponse(System.out::println));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/ai%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="category-chain-item">ai开发框架</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/ai%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/langchain4j/" class="category-chain-item">langchain4j</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ai%E6%8A%80%E6%9C%AF/" class="print-no-link">#ai技术</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>langchain4j入门</div>
+      <div>http://example.com/2025/08/17/java/ai开发框架学习/langchain4j/langchain4j入门/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cheems</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/16/java/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%88%B0transform%E6%9E%B6%E6%9E%84%E5%88%B0gpt/" title="transform架构">
+                        <span class="hidden-mobile">transform架构</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
