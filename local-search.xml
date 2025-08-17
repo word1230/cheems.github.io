@@ -84,12 +84,26 @@
   
   <entry>
     <title>算法题记录</title>
-    <link href="/2025/08/12/java/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
-    <url>/2025/08/12/java/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <link href="/2025/08/12/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    <url>/2025/08/12/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     
     <content type="html"><![CDATA[<h2 id="哈希表-字母处理"><a href="#哈希表-字母处理" class="headerlink" title="哈希表 + 字母处理"></a>哈希表 + 字母处理</h2><h2 id="1-字母异位词"><a href="#1-字母异位词" class="headerlink" title="1. 字母异位词"></a>1. 字母异位词</h2><h3 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h3><h3 id="组合总和（回溯）"><a href="#组合总和（回溯）" class="headerlink" title="组合总和（回溯）"></a>组合总和（回溯）</h3><h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><h3 id="283-移动零"><a href="#283-移动零" class="headerlink" title="283. 移动零"></a>283. 移动零</h3><p>先考虑 0 1   交换01<br>0 1 2  两次交换<br>如果使用选择排序的思路，选出0 ，则会破坏稳定性所以不行<br>但是如果选出 非零， 将他插入前面  ，那依旧保持了稳定性</p><p>所以： 必须要有一个指针 指向非零位置， 如果遇到零 ，则将前面的赋值 ，然后指针之后的赋零</p><h3 id="11-盛水最多的容器"><a href="#11-盛水最多的容器" class="headerlink" title="11 盛水最多的容器"></a>11 盛水最多的容器</h3><p>先考虑 如果只有两条， 那计算 就是  长x宽 ，（ i2-i1） x h（选最小的那个）<br>那如果是三条 ，  那就要依次判断哪个最大：首先如果中间的比 最左边 </p><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250812114711.png" alt="image.png"></p><p><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250812114904.png" alt="image.png"></p><p>因此规律是 ： 面积&#x3D; 长 x宽， 只有移动宽小的那个，才能增加面积<br>所以 移动 左指针，往右走</p><h3 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a>15. 三数之和</h3><p>首先考虑 -1 0 1 这三个数， 那题目就变成了  k -（i+j ）&#x3D;0。<br>所以我们只需要考虑  比如 取 -1 ， 那判断 -1 +0 能不能等于数组中的数 ， 然后取 -1  1 ，看能不能等于数组中的数， 再取 0 1  </p><p>得出结论： 将这些数存起来， 选一个数 与后续的数进行组合， 如果结果可以在数中找到，则添加为一个结果， 然后不断组合，得出结果</p><h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><h3 id="53-最大子数组和"><a href="#53-最大子数组和" class="headerlink" title="53 最大子数组和"></a>53 最大子数组和</h3>]]></content>
     
     
+    <categories>
+      
+      <category>java</category>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>算法笔记</tag>
+      
+    </tags>
     
   </entry>
   
