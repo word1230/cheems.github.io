@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fav.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cheems">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="要通过技术面试中的算法题（尤其是大厂和一线科技公司），你需要系统性地掌握核心数据结构与算法思想，并具备高效解题和代码实现能力。以下是最常考、必须掌握的算法与数据结构清单，按优先级和重要性排序：  🥇 一、绝对核心 &amp; 高频考点（必须熟练掌握）1️⃣ 基础数据结构 数组 &amp; 字符串    操作：双指针（快慢指针、左右指针）、滑动窗口、前缀和、原地修改   高频题：两数之和、三数之和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法模块汇总">
+<meta property="og:url" content="http://example.com/2025/08/18/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%A8%A1%E5%9D%97%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="cheems的博客">
+<meta property="og:description" content="要通过技术面试中的算法题（尤其是大厂和一线科技公司），你需要系统性地掌握核心数据结构与算法思想，并具备高效解题和代码实现能力。以下是最常考、必须掌握的算法与数据结构清单，按优先级和重要性排序：  🥇 一、绝对核心 &amp; 高频考点（必须熟练掌握）1️⃣ 基础数据结构 数组 &amp; 字符串    操作：双指针（快慢指针、左右指针）、滑动窗口、前缀和、原地修改   高频题：两数之和、三数之和">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-18T12:02:04.000Z">
+<meta property="article:modified_time" content="2025-08-18T12:02:13.401Z">
+<meta property="article:author" content="cheems">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>算法模块汇总 - cheems的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>cheems的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="算法模块汇总"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-18 20:02" pubdate>
+          2025年8月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">算法模块汇总</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>要通过技术面试中的算法题（尤其是大厂和一线科技公司），你需要系统性地掌握<strong>核心数据结构与算法思想</strong>，并具备<strong>高效解题和代码实现能力</strong>。以下是<strong>最常考、必须掌握</strong>的算法与数据结构清单，按优先级和重要性排序：</p>
+<hr>
+<h2 id="🥇-一、绝对核心-高频考点（必须熟练掌握）"><a href="#🥇-一、绝对核心-高频考点（必须熟练掌握）" class="headerlink" title="🥇 一、绝对核心 &amp; 高频考点（必须熟练掌握）"></a>🥇 一、<strong>绝对核心 &amp; 高频考点（必须熟练掌握）</strong></h2><h3 id="1️⃣-基础数据结构"><a href="#1️⃣-基础数据结构" class="headerlink" title="1️⃣ 基础数据结构"></a>1️⃣ <strong>基础数据结构</strong></h3><ul>
+<li><p><strong>数组 &amp; 字符串</strong>  </p>
+<ul>
+<li>操作：双指针（快慢指针、左右指针）、滑动窗口、前缀和、原地修改  </li>
+<li>高频题：<code>两数之和</code>、<code>三数之和</code>、<code>移动零</code>、<code>最长无重复子串</code>、<code>最小覆盖子串</code>、<code>旋转数组</code>  </li>
+<li><strong>重点：</strong> 理解 <code>O(1)</code> 随机访问特性，熟练处理边界条件。</li>
+</ul>
+</li>
+<li><p><strong>链表</strong>  </p>
+<ul>
+<li>操作：反转（迭代&#x2F;递归）、环检测（快慢指针）、合并（有序链表）、删除节点、找中点  </li>
+<li>高频题：<code>反转链表</code>、<code>环形链表</code>、<code>合并K个升序链表</code>、<code>LRU缓存</code>（需结合哈希表）  </li>
+<li><strong>重点：</strong> 指针操作要精准，避免内存泄漏（面试中通常不用管，但需理解）。</li>
+</ul>
+</li>
+<li><p><strong>栈 &amp; 队列</strong>  </p>
+<ul>
+<li>栈：括号匹配、单调栈（<code>每日温度</code>、<code>柱状图中最大矩形</code>）  </li>
+<li>队列：BFS基础、双端队列（<code>滑动窗口最大值</code>）  </li>
+<li><strong>重点：</strong> 理解栈的 <code>LIFO</code> 和队列的 <code>FIFO</code> 特性，能用栈模拟队列&#x2F;队列模拟栈。</li>
+</ul>
+</li>
+<li><p><strong>哈希表（字典&#x2F;Map）</strong>  </p>
+<ul>
+<li>应用：快速查找、去重、计数、缓存  </li>
+<li>高频题：<code>两数之和变种</code>、<code>存在重复元素</code>、<code>字母异位词分组</code>  </li>
+<li><strong>重点：</strong> 理解 <code>O(1)</code> 查找原理，掌握冲突处理思想（面试通常不考底层实现）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2️⃣-树（重中之重！）"><a href="#2️⃣-树（重中之重！）" class="headerlink" title="2️⃣ 树（重中之重！）"></a>2️⃣ <strong>树（重中之重！）</strong></h3><ul>
+<li><p><strong>二叉树</strong>  </p>
+<ul>
+<li>遍历：前&#x2F;中&#x2F;后序（递归+迭代）、层序遍历（BFS）  </li>
+<li>高频题：<code>二叉树最大深度</code>、<code>验证BST</code>、<code>对称二叉树</code>、<code>路径总和</code>、<code>最近公共祖先</code>  </li>
+<li><strong>重点：</strong> <strong>必须手写递归和迭代遍历代码</strong>，理解递归栈。</li>
+</ul>
+</li>
+<li><p><strong>二叉搜索树 (BST)</strong>  </p>
+<ul>
+<li>性质：中序遍历有序、查找&#x2F;插入&#x2F;删除 <code>O(h)</code>  </li>
+<li>高频题：<code>验证BST</code>、<code>BST中第K小的元素</code>、<code>将有序数组转为BST</code>  </li>
+<li><strong>重点：</strong> 利用中序遍历的有序性解题。</li>
+</ul>
+</li>
+<li><p><strong>堆（优先队列）</strong>  </p>
+<ul>
+<li>操作：插入、删除堆顶、<code>heapify</code>  </li>
+<li>高频题：<code>Top K 高频元素</code>、<code>前K个高频单词</code>、<code>合并K个有序链表</code>、<code>数据流的中位数</code>  </li>
+<li><strong>重点：</strong> 掌握 <code>heapq</code>（Python）或 <code>PriorityQueue</code>（Java）的使用，理解堆的 <code>O(log n)</code> 操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3️⃣-基础算法思想"><a href="#3️⃣-基础算法思想" class="headerlink" title="3️⃣ 基础算法思想"></a>3️⃣ <strong>基础算法思想</strong></h3><ul>
+<li><p><strong>双指针</strong>  </p>
+<ul>
+<li>类型：快慢指针（链表环）、左右指针（数组&#x2F;字符串）、滑动窗口  </li>
+<li>高频题：<code>盛最多水的容器</code>、<code>删除排序数组中的重复项</code>、<code>滑动窗口最大值</code>  </li>
+<li><strong>重点：</strong> 滑动窗口模板要烂熟于心（<code>left</code>&#x2F;<code>right</code> 指针移动条件）。</li>
+</ul>
+</li>
+<li><p><strong>二分查找</strong>  </p>
+<ul>
+<li>应用：有序数组&#x2F;旋转排序数组、边界查找  </li>
+<li>高频题：<code>搜索插入位置</code>、<code>在排序数组中查找元素的第一个和最后一个位置</code>、<code>x 的平方根</code>  </li>
+<li><strong>重点：</strong> <strong>避免死循环！</strong> 清晰掌握 <code>left &lt;= right</code> vs <code>left &lt; right</code> 的区别，以及 <code>mid</code> 计算方式。</li>
+</ul>
+</li>
+<li><p><strong>BFS &amp; DFS（图论基础）</strong>  </p>
+<ul>
+<li>BFS：层序遍历、最短路径（无权图） → <code>岛屿数量</code>、<code>单词接龙</code>  </li>
+<li>DFS：连通性、路径搜索 → <code>岛屿数量</code>、<code>全排列</code>、<code>N皇后</code>  </li>
+<li><strong>重点：</strong> BFS 用队列，DFS 用栈&#x2F;递归；<strong>必须能手写模板</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🥈-二、进阶必备-高频中高难度考点"><a href="#🥈-二、进阶必备-高频中高难度考点" class="headerlink" title="🥈 二、进阶必备 &amp; 高频中高难度考点"></a>🥈 二、<strong>进阶必备 &amp; 高频中高难度考点</strong></h2><h3 id="4️⃣-动态规划（DP）-面试难点！"><a href="#4️⃣-动态规划（DP）-面试难点！" class="headerlink" title="4️⃣ 动态规划（DP） - 面试难点！"></a>4️⃣ <strong>动态规划（DP） - 面试难点！</strong></h3><ul>
+<li><strong>核心思想：</strong> 状态定义 + 状态转移方程 + 边界条件  </li>
+<li><strong>必刷题型：</strong>  <ul>
+<li>基础：<code>爬楼梯</code>、<code>打家劫舍</code>、<code>最大子数组和</code>  </li>
+<li>串问题：<code>最长递增子序列(LIS)</code>、<code>最长公共子序列(LCS)</code>、<code>编辑距离</code>  </li>
+<li>背包问题：<code>0-1背包</code>（<code>分割等和子集</code>）、<code>完全背包</code>（<code>零钱兑换</code>）  </li>
+<li>股票问题：<code>买卖股票的最佳时机</code> 系列</li>
+</ul>
+</li>
+<li><strong>重点：</strong>  <ul>
+<li>从递归 → 记忆化搜索 → 递推（DP表）  </li>
+<li><strong>空间优化技巧</strong>（滚动数组）常被追问。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5️⃣-回溯算法（递归-剪枝）"><a href="#5️⃣-回溯算法（递归-剪枝）" class="headerlink" title="5️⃣ 回溯算法（递归+剪枝）"></a>5️⃣ <strong>回溯算法（递归+剪枝）</strong></h3><ul>
+<li><strong>应用：</strong> 排列、组合、子集、棋盘问题  </li>
+<li><strong>高频题：</strong> <code>全排列</code>、<code>子集</code>、<code>组合总和</code>、<code>N皇后</code>、<code>解数独</code>  </li>
+<li><strong>重点：</strong>  <ul>
+<li>掌握 <code>path</code>、<code>used</code>、<code>start</code> 等关键变量的含义  </li>
+<li><strong>剪枝是提效关键</strong>（如 <code>组合总和</code> 中的排序剪枝）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6️⃣-图论进阶"><a href="#6️⃣-图论进阶" class="headerlink" title="6️⃣ 图论进阶"></a>6️⃣ <strong>图论进阶</strong></h3><ul>
+<li><strong>拓扑排序</strong>  <ul>
+<li>Kahn算法（入度表+BFS） → <code>课程表</code> 系列  </li>
+<li>DFS + 状态标记 → <code>课程表 II</code></li>
+</ul>
+</li>
+<li><strong>并查集 (Union-Find)</strong>  <ul>
+<li>应用：连通分量、动态连通性 → <code>省份数量</code>、<code>岛屿数量</code>（可替代DFS&#x2F;BFS）  </li>
+<li><strong>重点：</strong> 路径压缩 + 按秩合并优化（面试需知道思想）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🥉-三、重要补充-可能考点"><a href="#🥉-三、重要补充-可能考点" class="headerlink" title="🥉 三、重要补充 &amp; 可能考点"></a>🥉 三、<strong>重要补充 &amp; 可能考点</strong></h2><h3 id="7️⃣-贪心算法"><a href="#7️⃣-贪心算法" class="headerlink" title="7️⃣ 贪心算法"></a>7️⃣ <strong>贪心算法</strong></h3><ul>
+<li><strong>特点：</strong> 局部最优 → 全局最优（<strong>需证明！</strong> 面试中常被质疑）  </li>
+<li><strong>高频题：</strong> <code>分发饼干</code>、<code>跳跃游戏</code>、<code>买卖股票的最佳时机 II</code>、<code>区间调度</code>  </li>
+<li><strong>重点：</strong> 与DP的区别（贪心不回溯，DP有状态转移）。</li>
+</ul>
+<h3 id="8️⃣-位运算"><a href="#8️⃣-位运算" class="headerlink" title="8️⃣ 位运算"></a>8️⃣ <strong>位运算</strong></h3><ul>
+<li><strong>技巧：</strong> <code>&amp;</code>、<code>|</code>、<code>^</code>、<code>&lt;&lt;</code>、<code>&gt;&gt;</code>、掩码  </li>
+<li><strong>高频题：</strong> <code>只出现一次的数字</code>（I, II）、<code>汉明距离</code>、<code>位1的个数</code>  </li>
+<li><strong>重点：</strong> 掌握异或的特性（<code>x ^ x = 0</code>, <code>x ^ 0 = x</code>）。</li>
+</ul>
+<h3 id="9️⃣-排序算法（理解思想，手写1-2种）"><a href="#9️⃣-排序算法（理解思想，手写1-2种）" class="headerlink" title="9️⃣ 排序算法（理解思想，手写1-2种）"></a>9️⃣ <strong>排序算法（理解思想，手写1-2种）</strong></h3><ul>
+<li><strong>必知：</strong>  <ul>
+<li>快速排序（分治，平均 <code>O(n log n)</code>，不稳定）  </li>
+<li>归并排序（分治，稳定 <code>O(n log n)</code>，需额外空间）  </li>
+<li>堆排序（<code>O(n log n)</code>，原地）</li>
+</ul>
+</li>
+<li><strong>了解：</strong> 冒泡、插入、选择（<code>O(n²)</code>，面试很少手写）  </li>
+<li><strong>重点：</strong> 能解释时间复杂度，知道适用场景（如快排在近乎有序时退化）。</li>
+</ul>
+<hr>
+<h2 id="📌-四、如何高效准备？——-关键行动指南"><a href="#📌-四、如何高效准备？——-关键行动指南" class="headerlink" title="📌 四、如何高效准备？—— 关键行动指南"></a>📌 四、<strong>如何高效准备？—— 关键行动指南</strong></h2><ol>
+<li><p><strong>按优先级学习：</strong><br><strong>数组&#x2F;链表 → 栈&#x2F;队列&#x2F;哈希 → 二叉树 → 双指针&#x2F;BFS&#x2F;DFS → 二分查找 → 回溯 → DP → 图论</strong><br><em>不要一上来就啃DP！基础不牢做DP会崩溃。</em></p>
+</li>
+<li><p><strong>刷题平台选择：</strong>  </p>
+<ul>
+<li><strong>LeetCode 精选：</strong>  <ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problem-list/2cktkvj/">LeetCode Hot 100</a>（必刷！）  </li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problem-list/top-interview-questions/">LeetCode Top Interview Questions</a></li>
+</ul>
+</li>
+<li><strong>按标签刷：</strong> 先刷 <code>Array</code>, <code>String</code>, <code>Linked List</code> → 再刷 <code>Tree</code>, <code>BFS/DFS</code> → 最后 <code>DP</code>, <code>Backtracking</code>。</li>
+</ul>
+</li>
+<li><p><strong>刷题方法论（比刷题量更重要！）：</strong>  </p>
+<ul>
+<li><strong>5分钟没思路 → 看题解！</strong> 但要看懂后<strong>自己重写3遍</strong>，理解核心思想。  </li>
+<li><strong>总结模板：</strong> 如滑动窗口模板、回溯模板、DP解题步骤。  </li>
+<li><strong>记录错题本：</strong> 记录卡壳点、最优解法、同类题链接（用Notion或Excel）。  </li>
+<li><strong>模拟面试：</strong> 用 <a target="_blank" rel="noopener" href="https://leetcode.com/interview/">LeetCode Mock Interview</a> 或找伙伴对练，<strong>限时手写代码</strong>（白板&#x2F;在线编辑器）。</li>
+</ul>
+</li>
+<li><p><strong>面试前必做：</strong>  </p>
+<ul>
+<li><strong>手写基础数据结构：</strong> 单链表、二叉树遍历（递归+迭代）、BFS&#x2F;DFS模板。  </li>
+<li><strong>背熟高频题最优解：</strong> 如 <code>两数之和</code>（哈希表）、<code>反转链表</code>（迭代）、<code>滑动窗口最大值</code>（单调队列）。  </li>
+<li><strong>练习讲思路：</strong> 面试时先讲清楚思路再写代码，避免闷头写。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="💡-重要提醒"><a href="#💡-重要提醒" class="headerlink" title="💡 重要提醒"></a>💡 重要提醒</h2><ul>
+<li><strong>不要死记代码！</strong> 理解思想才能应对变种题（如 <code>三数之和</code> → <code>四数之和</code>）。  </li>
+<li><strong>代码规范很重要：</strong> 变量命名清晰（<code>left</code>, <code>right</code> 比 <code>i</code>, <code>j</code> 更好）、加注释、处理边界（空输入、越界）。  </li>
+<li><strong>不同公司侧重点不同：</strong>  <ul>
+<li><em>FAANG&#x2F;一线大厂：</em> DP、图论、设计题（如 <code>LFU Cache</code>）出现频率高。  </li>
+<li><em>国内大厂（BAT等）：</em> 二叉树、链表、双指针、DFS&#x2F;BFS 是基础，DP 也常考。</li>
+</ul>
+</li>
+<li><strong>应届生 vs 资深工程师：</strong>  <ul>
+<li>应届生：侧重基础数据结构与经典算法题。  </li>
+<li>资深岗：可能结合系统设计考算法优化（如海量数据Top K用堆+分治）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="✅-最后-Checklist"><a href="#✅-最后-Checklist" class="headerlink" title="✅ 最后 Checklist"></a>✅ 最后 Checklist</h2><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>你是否已掌握？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>数组&#x2F;字符串</strong></td>
+<td>双指针、滑动窗口、原地修改</td>
+</tr>
+<tr>
+<td><strong>链表</strong></td>
+<td>反转、环检测、合并有序链表</td>
+</tr>
+<tr>
+<td><strong>二叉树</strong></td>
+<td>递归&#x2F;迭代遍历、层序遍历、BST性质</td>
+</tr>
+<tr>
+<td><strong>哈希表</strong></td>
+<td>O(1)查找原理、冲突思想</td>
+</tr>
+<tr>
+<td><strong>堆</strong></td>
+<td>Top K问题、优先队列使用</td>
+</tr>
+<tr>
+<td><strong>BFS&#x2F;DFS</strong></td>
+<td>手写模板、岛屿问题</td>
+</tr>
+<tr>
+<td><strong>二分查找</strong></td>
+<td>无死循环写法、旋转数组查找</td>
+</tr>
+<tr>
+<td><strong>回溯</strong></td>
+<td>全排列&#x2F;子集模板、剪枝技巧</td>
+</tr>
+<tr>
+<td><strong>动态规划</strong></td>
+<td>爬楼梯&#x2F;打家劫舍&#x2F;最大子数组和、状态转移方程</td>
+</tr>
+</tbody></table>
+<p><strong>现在就开始行动：</strong><br>1️⃣ 选一个平台（推荐LeetCode）<br>2️⃣ 从 <a target="_blank" rel="noopener" href="https://leetcode.cn/problem-list/2cktkvj/">Hot 100</a> 开始<br>3️⃣ <strong>每天2-3题，坚持1个月</strong>，你会看到质的飞跃！  </p>
+<blockquote>
+<p><strong>记住：</strong> 面试考的不是“你会多少算法”，而是 <strong>“你能否把已知算法灵活应用到新问题”</strong>。扎实的基础 + 科学的刷题方法 &#x3D; 通关密码。💪🏻</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>算法模块汇总</div>
+      <div>http://example.com/2025/08/18/算法/算法模块汇总/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cheems</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/18/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" title="算法学习方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">算法学习方法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/18/%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" title="回溯算法">
+                        <span class="hidden-mobile">回溯算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
