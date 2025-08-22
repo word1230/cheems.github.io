@@ -19,21 +19,21 @@
   <meta name="author" content="cheems">
   <meta name="keywords" content="">
   
-    <meta name="description" content="思想 选择 (Choose): 在岔路口，选择一条路走。  前进 (Explore): 沿着这条路走下去，直到遇到新的岔路口，再重复“选择”。  撤销 (Unchoose&#x2F;Backtrack): 如果发现这条路是死胡同（或者已经走到了尽头），就退回到上一个走过的岔路口，并撤销当时的选择，然后尝试那个路口的其他选项。   站在回溯树的一个节点上，你只需要思考 3 个问题： 1、路径：也就是">
+    <meta name="description" content="用BFS当你要找【最短路径】或【最近距离】时。 (比如：社交网络中的最短朋友关系链)  用DFS当你需要【遍历所有可能】或【检查是否存在】时，并且不关心深度。 (比如：查找文件、排列组合问题、走通一条路即可的问题)   “深栈广队，深快广优”—— DFS 用栈，走得深，可能快；BFS 用队，扩得广，结果优（最短路径） 步骤bfs  判断root 为空直接返回 新建一个队列， 将root 入队">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回溯算法">
-<meta property="og:url" content="http://example.com/2025/08/18/%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="DFS与BFS">
+<meta property="og:url" content="http://example.com/2025/08/21/%E7%AE%97%E6%B3%95/DFS%E4%B8%8EBFS/index.html">
 <meta property="og:site_name" content="cheems的博客">
-<meta property="og:description" content="思想 选择 (Choose): 在岔路口，选择一条路走。  前进 (Explore): 沿着这条路走下去，直到遇到新的岔路口，再重复“选择”。  撤销 (Unchoose&#x2F;Backtrack): 如果发现这条路是死胡同（或者已经走到了尽头），就退回到上一个走过的岔路口，并撤销当时的选择，然后尝试那个路口的其他选项。   站在回溯树的一个节点上，你只需要思考 3 个问题： 1、路径：也就是">
+<meta property="og:description" content="用BFS当你要找【最短路径】或【最近距离】时。 (比如：社交网络中的最短朋友关系链)  用DFS当你需要【遍历所有可能】或【检查是否存在】时，并且不关心深度。 (比如：查找文件、排列组合问题、走通一条路即可的问题)   “深栈广队，深快广优”—— DFS 用栈，走得深，可能快；BFS 用队，扩得广，结果优（最短路径） 步骤bfs  判断root 为空直接返回 新建一个队列， 将root 入队">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-08-18T11:56:15.000Z">
-<meta property="article:modified_time" content="2025-08-19T23:49:12.182Z">
+<meta property="article:published_time" content="2025-08-20T22:53:08.000Z">
+<meta property="article:modified_time" content="2025-08-21T01:55:45.344Z">
 <meta property="article:author" content="cheems">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>回溯算法 - cheems的博客</title>
+  <title>DFS与BFS - cheems的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="回溯算法"></span>
+            <span id="subtitle" data-typed-text="DFS与BFS"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-08-18 19:56" pubdate>
-          2025年8月18日 晚上
+        <time datetime="2025-08-21 06:53" pubdate>
+          2025年8月21日 早上
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          354 字
+          494 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          3 分钟
+          5 分钟
         
       </span>
     
@@ -270,31 +270,63 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">回溯算法</h1>
+            <h1 id="seo-header">DFS与BFS</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2><ol>
-<li><p><strong>选择 (Choose):</strong> 在岔路口，选择一条路走。</p>
+                <ul>
+<li><p><strong>用BFS当你要找【最短路径】或【最近距离】时。</strong> (比如：社交网络中的最短朋友关系链)</p>
 </li>
-<li><p><strong>前进 (Explore):</strong> 沿着这条路走下去，直到遇到新的岔路口，再重复“选择”。</p>
+<li><p><strong>用DFS当你需要【遍历所有可能】或【检查是否存在】时，并且不关心深度。</strong> (比如：查找文件、排列组合问题、走通一条路即可的问题)</p>
 </li>
-<li><p><strong>撤销 (Unchoose&#x2F;Backtrack):</strong> 如果发现这条路是死胡同（或者已经走到了尽头），就退回到上一个走过的岔路口，并撤销当时的选择，然后尝试那个路口的其他选项。</p>
+</ul>
+<p><strong>“深栈广队，深快广优”</strong><br>—— DFS 用栈，走得深，可能快；BFS 用队，扩得广，结果优（最短路径）</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>bfs</p>
+<ol>
+<li>判断root 为空直接返回</li>
+<li>新建一个队列， 将root 入队   初始化深度为1</li>
+<li>while  获取队列长度， 循环队列长度， 获取元素，并将左右子节点入队， 然后深度++</li>
+<li>返回</li>
+</ol>
+<h2 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h2><h3 id="二叉树的层序遍历"><a href="#二叉树的层序遍历" class="headerlink" title="二叉树的层序遍历"></a>二叉树的层序遍历</h3><h3 id="二叉树的最大深度"><a href="#二叉树的最大深度" class="headerlink" title="二叉树的最大深度"></a>二叉树的最大深度</h3><p>这里 求 最值 ， 使用 BFS  可以 ，  使用动态规划也可以。</p>
+<blockquote>
+<p>首先BFS</p>
+</blockquote>
+<p>按照步骤： </p>
+<ol>
+<li>新建队列 ， 头结点入队， 初始化深度</li>
+<li>根据队列大小 遍历， 如果有左右子节点， 将其入队</li>
+<li>然后更新深度</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">maxDepth</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> ;<br>    &#125;<br>    Queue&lt;TreeNode&gt; q = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>    q.offer(root);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">depth</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span> ;<br>    <span class="hljs-keyword">while</span>(!q.isEmpty())&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">sz</span> <span class="hljs-operator">=</span>q.size();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span> ; i &lt; sz ; i++)&#123;<br>            <span class="hljs-type">TreeNode</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> q.poll();<br>            <span class="hljs-keyword">if</span>(cur.left != <span class="hljs-literal">null</span>) q.offer(cur.left);<br>            <span class="hljs-keyword">if</span>(cur.right != <span class="hljs-literal">null</span>) q.offer(cur.right);<br>        &#125;<br>        depth++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> depth;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后动态规划&#x2F;DFS</p>
+</blockquote>
+<p>按我们的步骤：</p>
+<ol>
+<li><p>找dp[i] 的含义： 要找到最大深度，遍历节点中，变化的是深度， 所以dp[i] 就是深度</p>
+</li>
+<li><p>状态转移方程：那就是左子树的最大深度与右子树最大深度的 最大值。dp[i] &#x3D; Math.max( dp[root.left], dp[root.rigth]) +1 </p>
+</li>
+<li><p>初始值：dp[root] &#x3D; 1 ;</p>
 </li>
 </ol>
-<p>站在回溯树的一个节点上，你只需要思考 3 个问题：</p>
-<p>1、路径：也就是已经做出的选择。</p>
-<p>2、选择列表：也就是你当前可以做的选择。</p>
-<p>3、结束条件：也就是到达决策树底层，无法再做选择的条件。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><br>function backtrack(路径, 选择列表):<br>    <span class="hljs-keyword">if</span> (满足结束条件):<br>        记录结果<br>        <span class="hljs-keyword">return</span><br><br>    <span class="hljs-keyword">for</span> 选择 <span class="hljs-keyword">in</span> 选择列表:<br>        <span class="hljs-number">1.</span> 做选择  // 把这个选择从“选择列表”里拿出来，放到“路径”里<br>        <span class="hljs-number">2.</span> backtrack(路径, 新的选择列表) // 进入下一层决策<br>        <span class="hljs-number">3.</span> 撤销选择 // 把这个选择从“路径”里拿掉，放回“选择列表”<br><br></code></pre></td></tr></table></figure>
+<p>写代码的顺序：</p>
+<ol>
+<li>定义dp 数组</li>
+<li>初始化</li>
+<li>循环 状态转移方程</li>
+</ol>
+<p>这道题是一个树 ， 那他天然支持 递归的写法， 那也就是DFS</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">maxDepth</span><span class="hljs-params">(TreeNode root)</span> &#123;    <br><br>       <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>       &#125;<br>       <br>        <span class="hljs-keyword">return</span> Math.max(maxDepth(root.left),maxDepth(root.right))+<span class="hljs-number">1</span>;<br><br>    &#125;<br></code></pre></td></tr></table></figure>
 
-<p><strong>其核心就是 for 循环里面的递归，在递归调用之前「做选择」，在递归调用之后「撤销选择」</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> 选择 <span class="hljs-keyword">in</span> 选择列表:<br>    <span class="hljs-comment"># 做选择</span><br>    将该选择从选择列表移除<br>    路径.add(选择)<br>    backtrack(路径, 选择列表)<br>    <span class="hljs-comment"># 撤销选择</span><br>    路径.remove(选择)<br>    将该选择再加入选择列表<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h2><h3 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h3>
+<h3 id="岛屿数量"><a href="#岛屿数量" class="headerlink" title="岛屿数量"></a>岛屿数量</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-islands/?envType=study-plan-v2&envId=top-100-liked">https://leetcode.cn/problems/number-of-islands/?envType=study-plan-v2&amp;envId=top-100-liked</a></p>
+
                 
               </div>
             
@@ -332,8 +364,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>回溯算法</div>
-      <div>http://example.com/2025/08/18/算法/回溯算法/</div>
+      <div>DFS与BFS</div>
+      <div>http://example.com/2025/08/21/算法/DFS与BFS/</div>
     </div>
     <div class="license-meta">
       
@@ -345,7 +377,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年8月18日</div>
+          <div>2025年8月21日</div>
         </div>
       
       
@@ -377,9 +409,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/18/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%A8%A1%E5%9D%97%E6%B1%87%E6%80%BB/" title="算法模块汇总">
+                      <a href="/2025/08/22/golang/go%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="go基础学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">算法模块汇总</span>
+                        <span class="hidden-mobile">go基础学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -387,8 +419,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/18/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">
-                        <span class="hidden-mobile">动态规划</span>
+                      <a href="/2025/08/18/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" title="算法学习方法">
+                        <span class="hidden-mobile">算法学习方法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
