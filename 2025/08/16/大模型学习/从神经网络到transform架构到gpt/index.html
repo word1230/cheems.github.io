@@ -19,19 +19,21 @@
   <meta name="author" content="cheems">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="一次实验报告批量制作">
-<meta property="og:url" content="http://example.com/2025/05/22/%E5%B0%8F%E8%AE%B0/%E4%B8%80%E6%AC%A1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%89%B9%E9%87%8F%E5%88%B6%E4%BD%9C/index.html">
+    <meta name="description" content="1.  神经网络 大模型是将一个个的类似函数，可以通过输入的信息根据权重得到一个输出的神经元组合起来形成网络，也就是神经网络 不同功能的神经元形成了不同的层次，具体包括 输入层，隐藏层，输出层。 信息输入给输入层，然后从输出层出来 这个过程叫做前向传播，就是进行一次预测。那大模型在刚开始进行预测，他的结果不会很好，就像一个新手在刚开始做一件事，不会做的很好。所以要通过不断地练习来调整。大模型也是这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="transform架构">
+<meta property="og:url" content="http://example.com/2025/08/16/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%88%B0transform%E6%9E%B6%E6%9E%84%E5%88%B0gpt/index.html">
 <meta property="og:site_name" content="cheems的博客">
+<meta property="og:description" content="1.  神经网络 大模型是将一个个的类似函数，可以通过输入的信息根据权重得到一个输出的神经元组合起来形成网络，也就是神经网络 不同功能的神经元形成了不同的层次，具体包括 输入层，隐藏层，输出层。 信息输入给输入层，然后从输出层出来 这个过程叫做前向传播，就是进行一次预测。那大模型在刚开始进行预测，他的结果不会很好，就像一个新手在刚开始做一件事，不会做的很好。所以要通过不断地练习来调整。大模型也是这">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-22T06:19:39.000Z">
-<meta property="article:modified_time" content="2025-05-22T06:19:39.510Z">
+<meta property="article:published_time" content="2025-08-16T03:12:19.000Z">
+<meta property="article:modified_time" content="2025-08-23T06:22:30.416Z">
 <meta property="article:author" content="cheems">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>一次实验报告批量制作 - cheems的博客</title>
+  <title>transform架构 - cheems的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="一次实验报告批量制作"></span>
+            <span id="subtitle" data-typed-text="transform架构"></span>
           
         </div>
 
@@ -208,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-22 14:19" pubdate>
-          2025年5月22日 下午
+        <time datetime="2025-08-16 11:12" pubdate>
+          2025年8月16日 上午
         </time>
       </span>
     
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          397 字
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -268,18 +270,46 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">一次实验报告批量制作</h1>
+            <h1 id="seo-header">transform架构</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h2 id="1-神经网络"><a href="#1-神经网络" class="headerlink" title="1.  神经网络"></a>1.  神经网络</h2><ul>
+<li>大模型是将一个个的类似函数，可以通过输入的信息根据权重得到一个输出的神经元组合起来形成网络，也就是神经网络</li>
+<li>不同功能的神经元形成了不同的层次，具体包括 输入层，隐藏层，输出层。</li>
+<li>信息输入给输入层，然后从输出层出来 这个过程叫做<em><strong>前向传播</strong></em>，就是进行一次预测。那大模型在刚开始进行预测，他的结果不会很好，就像一个新手在刚开始做一件事，不会做的很好。所以要通过不断地练习来调整。大模型也是这样，通过前向传播得到结果后 将其与预期结果进行对比，就可以得出差值&#x2F;大模型的误差， 然后针对这个误差，从输出层开始，一层层地倒退回去，进行调整。这个过程叫做<em><strong>前向传播</strong></em>。 通过正向传播与反向传播就可以进行<em><strong>前向传播</strong></em></li>
+</ul>
+<h2 id="2-循环神经网络"><a href="#2-循环神经网络" class="headerlink" title="2. 循环神经网络"></a>2. 循环神经网络</h2><h2 id="3-注意力机制"><a href="#3-注意力机制" class="headerlink" title="3. 注意力机制"></a>3. 注意力机制</h2><p>RNN 是通过将文本拆解成一个个短的文本，然后逐个输入，他的问题是输入的长度有限，如果超出了长度，就会丢失信息。</p>
+<p>而注意力机制通过计算词与词之间的相关度，根据关联的分数，来让模型将注意力放在哪个词上。实现了对重要的信息的捕捉，对非重要信息的过滤</p>
+<h2 id="4-transform架构"><a href="#4-transform架构" class="headerlink" title="4.transform架构"></a>4.transform架构</h2>
                 
               </div>
             
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/" class="category-chain-item">大模型学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -290,8 +320,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>一次实验报告批量制作</div>
-      <div>http://example.com/2025/05/22/小记/一次实验报告批量制作/</div>
+      <div>transform架构</div>
+      <div>http://example.com/2025/08/16/大模型学习/从神经网络到transform架构到gpt/</div>
     </div>
     <div class="license-meta">
       
@@ -303,7 +333,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月22日</div>
+          <div>2025年8月16日</div>
         </div>
       
       
@@ -335,9 +365,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/06/16/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8%EF%BC%88%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%89%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" title="链表（链式存储）基本原理">
+                      <a href="/2025/08/17/java/ai%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/langchain4j/langchain4j%E5%85%A5%E9%97%A8/" title="langchain4j入门">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">链表（链式存储）基本原理</span>
+                        <span class="hidden-mobile">langchain4j入门</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -345,8 +375,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/22/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E4%B8%AA%E4%BA%BA%E6%84%9F%E6%83%B3/%E5%85%88%E5%AE%8C%E6%88%90%E5%90%8E%E5%AE%8C%E7%BE%8E/" title="先完成后完美">
-                        <span class="hidden-mobile">先完成后完美</span>
+                      <a href="/2025/08/12/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E5%BD%95/" title="算法题记录">
+                        <span class="hidden-mobile">算法题记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
