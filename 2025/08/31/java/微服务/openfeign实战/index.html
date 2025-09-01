@@ -19,21 +19,21 @@
   <meta name="author" content="cheems">
   <meta name="keywords" content="">
   
-    <meta name="description" content="开发一个新需求的流程： 使用gitclone &#x2F; idea 拉去代码  新建分支 注意分支名称命名  新功能： feat&#x2F;add-doc  修bug： fix&#x2F;update-doc  快乐编码 不断git commit  拉去最新main分支代码， merge 到feat分支  可能需要处理冲突  处理冲突后， push feat 到远程  在网页端发起 pr 进行c">
+    <meta name="description" content="创建 一个微服务项目 创建一个maven项目， 删去src 以该项目为父项目创建模块，同样是maven项目 在父项目的pom文件中，引入公共依赖及依赖声明 将commons 的依赖引入到父项目中  使用openfeign首先需要引入注册中心nacos   在为feign客户端的服务中引入依赖包括 nacos注册中心，配置中心（可选），openfeign，loadbalancer，actuator">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git企业使用">
-<meta property="og:url" content="http://example.com/2025/08/31/java/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git%E4%BC%81%E4%B8%9A%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="openfeign实战">
+<meta property="og:url" content="http://example.com/2025/08/31/java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/openfeign%E5%AE%9E%E6%88%98/index.html">
 <meta property="og:site_name" content="cheems的博客">
-<meta property="og:description" content="开发一个新需求的流程： 使用gitclone &#x2F; idea 拉去代码  新建分支 注意分支名称命名  新功能： feat&#x2F;add-doc  修bug： fix&#x2F;update-doc  快乐编码 不断git commit  拉去最新main分支代码， merge 到feat分支  可能需要处理冲突  处理冲突后， push feat 到远程  在网页端发起 pr 进行c">
+<meta property="og:description" content="创建 一个微服务项目 创建一个maven项目， 删去src 以该项目为父项目创建模块，同样是maven项目 在父项目的pom文件中，引入公共依赖及依赖声明 将commons 的依赖引入到父项目中  使用openfeign首先需要引入注册中心nacos   在为feign客户端的服务中引入依赖包括 nacos注册中心，配置中心（可选），openfeign，loadbalancer，actuator">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-08-31T10:42:02.000Z">
-<meta property="article:modified_time" content="2025-08-31T10:42:35.856Z">
+<meta property="article:published_time" content="2025-08-31T10:45:11.000Z">
+<meta property="article:modified_time" content="2025-09-01T15:48:54.703Z">
 <meta property="article:author" content="cheems">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>git企业使用 - cheems的博客</title>
+  <title>openfeign实战 - cheems的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="git企业使用"></span>
+            <span id="subtitle" data-typed-text="openfeign实战"></span>
           
         </div>
 
@@ -210,7 +210,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-08-31 18:42" pubdate>
+        <time datetime="2025-08-31 18:45" pubdate>
           2025年8月31日 晚上
         </time>
       </span>
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          859 字
+          471 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          8 分钟
+          4 分钟
         
       </span>
     
@@ -270,96 +270,46 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">git企业使用</h1>
+            <h1 id="seo-header">openfeign实战</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="开发一个新需求的流程："><a href="#开发一个新需求的流程：" class="headerlink" title="开发一个新需求的流程："></a>开发一个新需求的流程：</h2><ol>
-<li><p>使用gitclone &#x2F; idea 拉去代码</p>
+                <h2 id="创建-一个微服务项目"><a href="#创建-一个微服务项目" class="headerlink" title="创建 一个微服务项目"></a>创建 一个微服务项目</h2><ol>
+<li>创建一个maven项目， 删去src</li>
+<li>以该项目为父项目创建模块，同样是maven项目</li>
+<li>在父项目的pom文件中，引入公共依赖及依赖声明</li>
+<li>将commons 的依赖引入到父项目中</li>
+</ol>
+<h2 id="使用openfeign"><a href="#使用openfeign" class="headerlink" title="使用openfeign"></a>使用openfeign</h2><p>首先需要引入注册中心nacos </p>
+<ol>
+<li><p>在为feign客户端的服务中引入依赖<br>包括 nacos注册中心，配置中心（可选），openfeign，loadbalancer，actuator </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2021.0.5.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-loadbalancer<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>新建分支 注意分支名称命名</p>
+<li><p>在每个服务的application.yml中设置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>	<span class="hljs-attr">cloud:</span><br>		<span class="hljs-attr">nacos:</span><br>			<span class="hljs-attr">discovery:</span>  <br>			  <span class="hljs-attr">server-addr:</span> <span class="hljs-string">localhost:8848</span><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>新功能： feat&#x2F;add-doc</p>
-</li>
-<li><p>修bug： fix&#x2F;update-doc</p>
-</li>
-<li><p>快乐编码 不断git commit</p>
-</li>
-<li><p>拉去最新main分支代码， merge 到feat分支</p>
-</li>
-<li><p>可能需要处理冲突</p>
-</li>
-<li><p>处理冲突后， push feat 到远程</p>
-</li>
-<li><p>在网页端发起 pr 进行code review</p>
-</li>
-<li><p>通过后合并到main</p>
+<li><p>在每个服务的启动类增加 @EnableDiscoveryClient</p>
 </li>
 </ol>
-<h2 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h2><p>在代码开发完成后， 我们需要先从远程获取最新的main， 然后将其merge到本地feat 分支。</p>
-<p>如果在这个过程中出现了冲突，则解决冲突， 然后再push</p>
-<p>若无冲突， 直接push。</p>
-<p>merge完成后，在push的过程中，main更新了，而且有冲突。</p>
-<p>我们到网页端发起pr时， 会出现无法合并，因为存在冲突。</p>
-<p>此时我们需要重复一遍前面的操作： 切换到main ，拉去最新，merge 到feat ，再次push，刷新网页端，发现可以合并</p>
-<h2 id="加入git-fetch的流程"><a href="#加入git-fetch的流程" class="headerlink" title="加入git fetch的流程"></a>加入git fetch的流程</h2><ol>
-<li><strong>拉取main分支最新代码</strong> (<code>**git checkout main &amp;&amp; git pull**</code>)</li>
-<li><strong>创建特性分支</strong> (<code>**git checkout -b feat/xxx**</code>)</li>
-<li><strong>编码 -&gt; commit</strong> (循环)</li>
-</ol>
-<ul>
-<li><strong>【关键优化点】</strong> 在编码过程中，<strong>每天开始工作前</strong>或<strong>实现一个较大功能点后</strong>，可以定期执行一下4、5两步：</li>
-</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableDiscoveryClient</span>  <br><span class="hljs-meta">@SpringBootApplication</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceApplication</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        SpringApplication.run(UserServiceApplication.class, args);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
 <ol start="4">
-<li><code>**git fetch origin**</code>：默默获取远程所有分支的最新状态，<strong>不会影响你的工作目录</strong>。</li>
-<li><code>**git merge origin/main**</code>：将远程主分支的最新状态直接合并到你的当前分支。_(或者使用_ <code>**_git rebase origin/main_**</code><em>，效果更整洁，但初学者可先熟练掌握merge)</em></li>
-<li>编码完成，进行<strong>最后的同步</strong>：再次执行 <code>**git fetch origin**</code> 和 <code>**git merge origin/main**</code>（或 <code>**git pull origin main**</code>）。</li>
-<li>解决冲突（如果有），测试。</li>
-<li>push feat分支。</li>
-<li>网页端创建PR。</li>
+<li>启动项目，观察nacos网页端</li>
 </ol>
-<h2 id="commit-的规范"><a href="#commit-的规范" class="headerlink" title="commit 的规范"></a>commit 的规范</h2><ul>
-<li><p>**原子性提交 (Atomic Commits)**：</p>
+<p>使用openfeign</p>
+<p>之前我们已经引入了openfeign与 loadbalancer的依赖</p>
+<ol>
+<li><p>在feign客户端新建一个类<br>使用FeignClient注解， 其中的方法与其他服务的controller的名称参数返回值相同，路径相同</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FeignClient(name = &quot;user-service&quot;,path = &quot;/users&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserClient</span> &#123;  <br>  <br>  <br>    <span class="hljs-meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span>  <br>    User <span class="hljs-title function_">getUserById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> <span class="hljs-type">int</span> id)</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
-<li><p><strong>是什么</strong>：每次提交只做一个完整的、小的逻辑变更。例如，修复一个BUG和重构一个函数应该分成两次提交。</p>
+<li><p>主启动类加入@EnableFeignClients注解</p>
 </li>
-<li><p><strong>为什么</strong>：便于回滚。如果某个提交引入了问题，你可以轻松地只回滚这个有问题的更改，而不影响其他好的修改。也让Code Review更容易，评审者可以清晰地看到你的思路变化。</p>
-</li>
-<li><p><strong>提交信息的规范性</strong>：</p>
-</li>
-<li><p>你已经注意到了命名，但这非常重要，值得再强调。好的提交信息能让人一眼看懂历史。</p>
-</li>
-<li><p><strong>格式</strong>：<code>**&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;**</code>。例如：<code>**fix(auth): handle null token exception**</code>。</p>
-</li>
-<li><p><strong>Body</strong>：如果需要，在主题后空一行，写详细描述，说明<strong>为什么</strong>要这个修改，而不是<strong>做了什么</strong>（代码本身能看出做了什么）。</p>
-</li>
-</ul>
-<h2 id="分支命名"><a href="#分支命名" class="headerlink" title="分支命名"></a>分支命名</h2><ul>
-<li><p><strong>分支命名</strong>：你已经做得很好了。除了 <code>**feat/**</code>、<code>**fix/**</code>，还有：</p>
-</li>
-<li><p><code>**docs/**</code>：仅文档更新</p>
-</li>
-<li><p><code>**style/**</code>：代码风格变动（不影响逻辑）</p>
-</li>
-<li><p><code>**refactor/**</code>：代码重构</p>
-</li>
-<li><p><code>**test/**</code>：增加或修改测试</p>
-</li>
-<li><p><code>**chore/**</code>：构建过程或辅助工具的变动</p>
-</li>
-<li><p><strong>长期分支</strong>：除了临时的特性分支，公司通常会有一些长期存在的分支。</p>
-</li>
-<li><p><code>**main**</code>&#x2F;<code>**master**</code>：生产环境代码。</p>
-</li>
-<li><p><code>**develop**</code>：下一版本的集成分支。很多团队会从 <code>**develop**</code> 拉特性分支，完成后合并到 <code>**develop**</code>，测试稳定后，才将 <code>**develop**</code> 合并到 <code>**main**</code> 上线。（这就是著名的 GitFlow 工作流，虽然现在简化了，但你需要了解）。</p>
-</li>
-<li><p><code>**release/***</code>：发布分支，用于测试和修复发布前的最后bug。</p>
-</li>
-<li><p><strong>环境分支</strong>：有些项目会为不同环境创建分支，如 <code>**production**</code>, <code>**staging**</code>。</p>
-</li>
-</ul>
-<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><h2 id="gitignore"><a href="#gitignore" class="headerlink" title="gitignore"></a>gitignore</h2><h2 id="git-stash"><a href="#git-stash" class="headerlink" title="**git stash**"></a><code>**git stash**</code></h2>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableFeignClients</span>  <br><span class="hljs-meta">@EnableDiscoveryClient</span>  <br><span class="hljs-meta">@SpringBootApplication</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderServiceApplication</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        SpringApplication.run(OrderServiceApplication.class, args);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>依赖注入UserClient 类，即可像普通方法一样使用</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">  <br><span class="hljs-meta">@Service</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderService</span> &#123;  <br>    <span class="hljs-meta">@Autowired</span>  <br>    <span class="hljs-keyword">private</span> UserClient userClient;  <span class="hljs-comment">// 注入Feign客户端  </span><br>    <span class="hljs-keyword">public</span> Order <span class="hljs-title function_">getOrderById</span><span class="hljs-params">(Long id)</span> &#123;  <br>        <span class="hljs-type">Order</span> <span class="hljs-variable">order</span> <span class="hljs-operator">=</span> orderMap.get(id);  <br>        <span class="hljs-keyword">if</span> (order != <span class="hljs-literal">null</span>) &#123;  <br>            <span class="hljs-comment">// 使用Feign客户端调用用户服务获取用户信息  </span><br>    order.setUser(userClient.getUserById(Math.toIntExact(order.getUserId())));  <br>        &#125;  <br>        <span class="hljs-keyword">return</span> order;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -377,12 +327,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="category-chain-item">开发工具</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git/" class="category-chain-item">git</a>
+  <a href="/categories/java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
   
   
 
@@ -404,8 +354,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>git企业使用</div>
-      <div>http://example.com/2025/08/31/java/开发工具/git企业使用/</div>
+      <div>openfeign实战</div>
+      <div>http://example.com/2025/08/31/java/微服务/openfeign实战/</div>
     </div>
     <div class="license-meta">
       
@@ -449,9 +399,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/31/java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/openfeign%E5%AE%9E%E6%88%98/" title="openfeign实战">
+                      <a href="/2025/09/01/java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" title="nacos配置中心">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">openfeign实战</span>
+                        <span class="hidden-mobile">nacos配置中心</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -459,8 +409,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/30/java/%E9%A1%B9%E7%9B%AE/AI%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%B9%B3%E5%8F%B0/%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91/" title="基础平台开发">
-                        <span class="hidden-mobile">基础平台开发</span>
+                      <a href="/2025/08/31/java/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git%E4%BC%81%E4%B8%9A%E4%BD%BF%E7%94%A8/" title="git企业使用">
+                        <span class="hidden-mobile">git企业使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
