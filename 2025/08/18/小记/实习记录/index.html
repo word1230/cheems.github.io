@@ -19,23 +19,21 @@
   <meta name="author" content="cheems">
   <meta name="keywords" content="">
   
-    <meta name="description" content="引入依赖 123456789&lt;dependency&gt;      &lt;groupId&gt;com.alibaba.cloud&lt;&#x2F;groupId&gt;      &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;&#x2F;artifactId&gt;      &lt;version&gt;2021.0.5">
+    <meta name="description" content="学到的：  企业开发流程 需求分析，需求分析答疑，分任务，拆解任务，每个人写自己分到的任务的详细设计（接口文档），接口文档评审，编码 ，codereview ，测试， 上线   git企业级应用 微服务的学习 创建微服务项目 nacos 注册中心，配置中心（读取配置等操作） openfeign 的使用   看项目代码的能力 先看懂用到的技术栈（pom文件）及目录结构， 然后从controller接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nacos配置中心">
-<meta property="og:url" content="http://example.com/2025/09/01/java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/nacos%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/index.html">
+<meta property="og:title" content="实习记录">
+<meta property="og:url" content="http://example.com/2025/08/18/%E5%B0%8F%E8%AE%B0/%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="cheems的博客">
-<meta property="og:description" content="引入依赖 123456789&lt;dependency&gt;      &lt;groupId&gt;com.alibaba.cloud&lt;&#x2F;groupId&gt;      &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;&#x2F;artifactId&gt;      &lt;version&gt;2021.0.5">
+<meta property="og:description" content="学到的：  企业开发流程 需求分析，需求分析答疑，分任务，拆解任务，每个人写自己分到的任务的详细设计（接口文档），接口文档评审，编码 ，codereview ，测试， 上线   git企业级应用 微服务的学习 创建微服务项目 nacos 注册中心，配置中心（读取配置等操作） openfeign 的使用   看项目代码的能力 先看懂用到的技术栈（pom文件）及目录结构， 然后从controller接">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250901231608.png">
-<meta property="article:published_time" content="2025-09-01T15:13:16.000Z">
-<meta property="article:modified_time" content="2025-09-02T15:57:29.986Z">
+<meta property="article:published_time" content="2025-08-18T13:31:54.000Z">
+<meta property="article:modified_time" content="2025-09-03T14:47:49.691Z">
 <meta property="article:author" content="cheems">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250901231608.png">
   
   
   
-  <title>nacos配置中心 - cheems的博客</title>
+  <title>实习记录 - cheems的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="nacos配置中心"></span>
+            <span id="subtitle" data-typed-text="实习记录"></span>
           
         </div>
 
@@ -212,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-09-01 23:13" pubdate>
-          2025年9月1日 晚上
+        <time datetime="2025-08-18 21:31" pubdate>
+          2025年8月18日 晚上
         </time>
       </span>
     
@@ -224,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          218 字
+          615 字
         
       </span>
     
@@ -235,7 +233,7 @@
         
         
         
-          2 分钟
+          6 分钟
         
       </span>
     
@@ -272,68 +270,57 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">nacos配置中心</h1>
+            <h1 id="seo-header">实习记录</h1>
             
             
               <div class="markdown-body">
                 
-                <ol>
-<li><p>引入依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2021.0.5.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-bootstrap<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
-<li><p>在nacos网页端设置一个配置文件<br><img src="https://cdn.jsdelivr.net/gh/word1230/picture/resources/20250901231608.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+                <p>学到的：</p>
+<ol>
+<li>企业开发流程<ol>
+<li>需求分析，需求分析答疑，分任务，拆解任务，每个人写自己分到的任务的详细设计（接口文档），接口文档评审，编码 ，codereview ，测试， 上线</li>
+</ol>
 </li>
-<li><p>在我们的服务的application.yml中<br>配置： </p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>	<span class="hljs-attr">application:</span><br>		<span class="hljs-attr">name:</span> <span class="hljs-string">user-service</span><br>	<span class="hljs-attr">cloud:</span><br>		<span class="hljs-attr">nacos:</span><br>			<span class="hljs-attr">discovery:</span><br>				<span class="hljs-attr">server-addr:</span> <span class="hljs-string">localhost:8848</span><br>			<span class="hljs-attr">config:</span><br>				<span class="hljs-attr">file-extension:</span> <span class="hljs-string">yaml</span><br>	<span class="hljs-attr">config:</span><br>		<span class="hljs-attr">import:</span> <span class="hljs-string">optional:nacos:$&#123;spring.application.name&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</span><br>		<br></code></pre></td></tr></table></figure>
+<li>git企业级应用</li>
+<li>微服务的学习<ol>
+<li>创建微服务项目</li>
+<li>nacos 注册中心，配置中心（读取配置等操作）</li>
+<li>openfeign 的使用</li>
+</ol>
 </li>
-<li><p>写一个类 使用属性注入   这里的&#x3D;&#x3D;get set&#x3D;&#x3D;方法一定要写 ， 不然属性无法注入</p>
+<li>看项目代码的能力<ol>
+<li>先看懂用到的技术栈（pom文件）及目录结构， 然后从controller接口进行调试，了解业务</li>
+<li>借助ai 进行阅读代码</li>
+</ol>
+</li>
+<li>大声说话的练习 <ol>
+<li></li>
+</ol>
 </li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span>  <br><span class="hljs-meta">@Component</span>  <br><span class="hljs-meta">@RefreshScope</span>  <br><span class="hljs-meta">@ConfigurationProperties(prefix = &quot;custom&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomConfig</span> &#123;  <br>    <span class="hljs-keyword">private</span> List&lt;Buttons&gt; buttons;  <br>    <span class="hljs-meta">@Data</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Buttons</span> &#123;  <br>        <span class="hljs-keyword">private</span> String text;  <br>        <span class="hljs-keyword">private</span> String name;  <br>        <span class="hljs-keyword">private</span> Integer cost;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol start="5">
-<li><p>在主启动类上加上注解 @EnableConfigurationProperties </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableConfigurationProperties</span>     <span class="hljs-comment">//这个一定要加 </span><br><span class="hljs-meta">@EnableDiscoveryClient</span>  <br><span class="hljs-meta">@SpringBootApplication</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceApplication</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        SpringApplication.run(UserServiceApplication.class, args);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>依赖注入即可使用</p>
-</li>
+<p>2025&#x2F;8&#x2F;18   自己决定去上海    希望不会后悔吧。</p>
+<p>2025&#x2F;8&#x2F;24  来上海的第一天 ， 坐飞机跟坐高铁差不多，刚开始有点晕， 买一些生活用品，熟悉周围环境， 准备明天入职和面试   先观察一周， 写一份实习与秋招平衡计划</p>
+<p>2025&#x2F;8&#x2F;25 第一天 入职培训，领电脑，装环境 ， 面了字节 凉</p>
+<p>2025&#x2F;8&#x2F;26 第二天 ，看代码， 头都大了，还没看完。索性leader还挺好。明天正式写需求了，希望不会出问题</p>
+<p>2025&#x2F;8&#x2F;27   跑ocr接口，测正确率整理文档。  看代码  。开了需求评审会   生活上自己找到了外卖，快递的地方。 但是舍友没有开口说话， 到是与我一起实习的非同组同学看着还行</p>
+<p>2025&#x2F;8&#x2F;28   第四天 ， 继续看代码 。开了需求答疑会， 今天接到了需求，但是下周三开发。 这个期间了解开发工具及流程。 </p>
+<p>2025&#x2F;8&#x2F;29 继续写文档   </p>
+<p>周末： 写了AI答题项目的用户模块与AI生成代码模块 ， 学习了feign的使用</p>
+<p>2025&#x2F;9&#x2F;1 今天早上看代码 ，以及学习tapd的使用 ，下午进行详细设计， 设计自己的接口， 不会就问，反正都问明白，然后将接口设计出来</p>
+<p>2025&#x2F;9&#x2F;2   今天进行接口文档评审 ， 讨论一顿，最后给出了实现方案</p>
+<p>2025&#x2F;9&#x2F;3  今天进行编码， 之前下班时间学习微服务，这就用上了， 然后也是很快写完了，但是没nacos权限， 等开通， 然后稍微测试一下，  明天继续看项目找要删除的代码</p>
+<p>问题：</p>
+<ol>
+<li>和周围人多说话 </li>
+<li>说话声音</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span>  <br><span class="hljs-keyword">private</span> CustomConfig customConfig;<br></code></pre></td></tr></table></figure>
+
                 
               </div>
             
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/java/" class="category-chain-item">java</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -344,8 +331,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>nacos配置中心</div>
-      <div>http://example.com/2025/09/01/java/微服务/nacos配置中心/</div>
+      <div>实习记录</div>
+      <div>http://example.com/2025/08/18/小记/实习记录/</div>
     </div>
     <div class="license-meta">
       
@@ -357,7 +344,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年9月1日</div>
+          <div>2025年8月18日</div>
         </div>
       
       
@@ -389,9 +376,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/09/03/java/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pagehelper%E7%9A%84%E4%BD%BF%E7%94%A8/" title="pagehelper的使用">
+                      <a href="/2025/08/21/%E7%AE%97%E6%B3%95/DFS%E4%B8%8EBFS/" title="DFS与BFS">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pagehelper的使用</span>
+                        <span class="hidden-mobile">DFS与BFS</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -399,8 +386,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/31/java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/openfeign%E5%AE%9E%E6%88%98/" title="openfeign实战">
-                        <span class="hidden-mobile">openfeign实战</span>
+                      <a href="/2025/08/18/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" title="算法学习方法">
+                        <span class="hidden-mobile">算法学习方法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
