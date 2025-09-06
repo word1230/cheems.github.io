@@ -27,7 +27,7 @@
 <meta property="og:description" content="开发一个新需求的流程： 使用gitclone &#x2F; idea 拉去代码  新建分支 注意分支名称命名  新功能： feat&#x2F;add-doc  修bug： fix&#x2F;update-doc  快乐编码 不断git commit  拉去最新main分支代码， merge 到feat分支  可能需要处理冲突  处理冲突后， push feat 到远程  在网页端发起 pr 进行c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-31T10:42:02.000Z">
-<meta property="article:modified_time" content="2025-08-31T10:42:35.856Z">
+<meta property="article:modified_time" content="2025-09-06T14:36:25.701Z">
 <meta property="article:author" content="cheems">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          859 字
+          1.2k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          8 分钟
+          10 分钟
         
       </span>
     
@@ -303,6 +303,43 @@
 <p>merge完成后，在push的过程中，main更新了，而且有冲突。</p>
 <p>我们到网页端发起pr时， 会出现无法合并，因为存在冲突。</p>
 <p>此时我们需要重复一遍前面的操作： 切换到main ，拉去最新，merge 到feat ，再次push，刷新网页端，发现可以合并</p>
+<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>当我们push时失败了</p>
+<ol>
+<li><p>pull 代码， 解决冲突</p>
+</li>
+<li><p>对代码逐行选择</p>
+</li>
+<li><p>此时再次push ， 会将之前失败的push 一同提交</p>
+</li>
+</ol>
+<h2 id="merge-与rabase-的使用"><a href="#merge-与rabase-的使用" class="headerlink" title="merge 与rabase 的使用"></a>merge 与rabase 的使用</h2><p>merge 是将两条分支合并， 生成了一个新的提交</p>
+<p>rabase是在 要合并的分支上将另一个分支的提交的记录拼接上，最新的</p>
+<p>当前情况：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">         C —— D     ← feature 分支<br>        /<br><span class="hljs-selector-tag">A</span> —— <span class="hljs-selector-tag">B</span> —— E —— F   ← <span class="hljs-selector-tag">main</span> 分支（HEAD）<br></code></pre></td></tr></table></figure>
+
+<p>merge ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">         C ————— D<br>        /         \<br><span class="hljs-selector-tag">A</span> —— <span class="hljs-selector-tag">B</span> —— E —— F —— M   ← <span class="hljs-selector-tag">main</span>（合并提交 M）<br>                    ↑<br>                feature 也指向 M<br></code></pre></td></tr></table></figure>
+
+<p>git新创建了一个分支M ， 他的父提交 是F 与 D</p>
+<p>保留了分支结构</p>
+<p>rabase:</p>
+<p>操作</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css">git checkout feature<br>git rebase <span class="hljs-selector-tag">main</span>    # 把 feature 的 C、D “重放”到 <span class="hljs-selector-tag">main</span> 的 F 之后<br><br># （可选）然后 fast-forward 合并到 <span class="hljs-selector-tag">main</span><br>git checkout <span class="hljs-selector-tag">main</span><br>git merge feature  # 或者直接 git checkout <span class="hljs-selector-tag">main</span> &amp;&amp; git rebase feature<br></code></pre></td></tr></table></figure>
+
+<p>Rebase 后图形</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">A</span> —— <span class="hljs-variable">B</span> —— <span class="hljs-built_in">E</span> —— <span class="hljs-variable">F</span>        ← <span class="hljs-variable">main</span><br>                 \<br>                  <span class="hljs-built_in">C</span><span class="hljs-operator">&#x27;</span> —— <span class="hljs-built_in">D</span><span class="hljs-operator">&#x27;</span>   ← <span class="hljs-variable">feature</span>（<span class="hljs-built_in">C</span>、<span class="hljs-built_in">D</span> 被复制重放，基于 <span class="hljs-variable">F</span>）<br></code></pre></td></tr></table></figure>
+
+<p>C’ 是 C 的副本，但它的父提交是 F（而不是原来的 B）</p>
+<p>D’ 是 D 的副本，父提交是 C’</p>
+<p>最终合并后（fast-forward）</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">A</span> —— <span class="hljs-variable">B</span> —— <span class="hljs-built_in">E</span> —— <span class="hljs-variable">F</span> —— <span class="hljs-built_in">C</span><span class="hljs-operator">&#x27;</span> —— <span class="hljs-built_in">D</span><span class="hljs-operator">&#x27;</span>   ← <span class="hljs-variable">main</span> 和 <span class="hljs-variable">feature</span> 都指向 <span class="hljs-built_in">D</span><span class="hljs-operator">&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>没有合并提交，历史是<strong>完全线性</strong>的</li>
+<li>看起来像是你在 <code>F</code> 之后“接着”开发了 <code>C&#39;</code> 和 <code>D&#39;</code></li>
+<li>更“干净”，适合提交 PR &#x2F; MR 前整理历史</li>
+<li>如果 <code>C/D</code> 与 <code>E/F</code> 有冲突，<strong>rebase 过程中会逐个提交暂停让你解决冲突</strong></li>
+</ul>
 <h2 id="加入git-fetch的流程"><a href="#加入git-fetch的流程" class="headerlink" title="加入git fetch的流程"></a>加入git fetch的流程</h2><ol>
 <li><strong>拉取main分支最新代码</strong> (<code>**git checkout main &amp;&amp; git pull**</code>)</li>
 <li><strong>创建特性分支</strong> (<code>**git checkout -b feat/xxx**</code>)</li>
