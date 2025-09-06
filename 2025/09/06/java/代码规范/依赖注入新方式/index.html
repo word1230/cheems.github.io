@@ -19,21 +19,21 @@
   <meta name="author" content="cheems">
   <meta name="keywords" content="">
   
-    <meta name="description" content="学到的：  企业开发流程 需求分析，需求分析答疑，分任务，拆解任务，每个人写自己分到的任务的详细设计（接口文档），接口文档评审，编码 ，codereview ，测试， 上线   git企业级应用 分支命名  git命令的使用 git push git pull git rebase  解决冲突   commit 的规范   微服务的学习 创建微服务项目 nacos 注册中心，配置中心（读取配置等操">
+    <meta name="description" content="使用@RequiredArgsConstructor这个注解的作用是 给 被final 修饰的字段 使用构造器赋值， 举个例子： 12345678910@Service@RequiredArgsConstructor &#x2F;&#x2F; ← 自动生成构造函数public class UserService &#123;    private final UserRepository userRepository">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实习记录">
-<meta property="og:url" content="http://example.com/2025/08/18/%E5%B0%8F%E8%AE%B0/%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="依赖注入新方式">
+<meta property="og:url" content="http://example.com/2025/09/06/java/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%96%B0%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="cheems的博客">
-<meta property="og:description" content="学到的：  企业开发流程 需求分析，需求分析答疑，分任务，拆解任务，每个人写自己分到的任务的详细设计（接口文档），接口文档评审，编码 ，codereview ，测试， 上线   git企业级应用 分支命名  git命令的使用 git push git pull git rebase  解决冲突   commit 的规范   微服务的学习 创建微服务项目 nacos 注册中心，配置中心（读取配置等操">
+<meta property="og:description" content="使用@RequiredArgsConstructor这个注解的作用是 给 被final 修饰的字段 使用构造器赋值， 举个例子： 12345678910@Service@RequiredArgsConstructor &#x2F;&#x2F; ← 自动生成构造函数public class UserService &#123;    private final UserRepository userRepository">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-08-18T13:31:54.000Z">
-<meta property="article:modified_time" content="2025-09-06T10:42:09.747Z">
+<meta property="article:published_time" content="2025-09-06T10:11:02.000Z">
+<meta property="article:modified_time" content="2025-09-06T10:13:01.907Z">
 <meta property="article:author" content="cheems">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>实习记录 - cheems的博客</title>
+  <title>依赖注入新方式 - cheems的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="实习记录"></span>
+            <span id="subtitle" data-typed-text="依赖注入新方式"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-08-18 21:31" pubdate>
-          2025年8月18日 晚上
+        <time datetime="2025-09-06 18:11" pubdate>
+          2025年9月6日 晚上
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          997 字
+          226 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          9 分钟
+          2 分钟
         
       </span>
     
@@ -270,83 +270,26 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">实习记录</h1>
+            <h1 id="seo-header">依赖注入新方式</h1>
             
             
               <div class="markdown-body">
                 
-                <p>学到的：</p>
+                <p>使用@RequiredArgsConstructor<br>这个注解的作用是 给 被final 修饰的字段 使用构造器赋值，</p>
+<p>举个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-meta">@RequiredArgsConstructor</span> <span class="hljs-comment">// ← 自动生成构造函数</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> UserRepository userRepository; <span class="hljs-comment">// final → 必须通过构造函数注入</span><br><br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">findById</span><span class="hljs-params">(Long id)</span> &#123;<br>        <span class="hljs-keyword">return</span> userRepository.findById(id).orElse(<span class="hljs-literal">null</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>将省略的代码加回来</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> UserRepository userRepository;<br><br>    <span class="hljs-comment">// Lombok 自动生成这个构造函数</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">UserService</span><span class="hljs-params">(UserRepository userRepository)</span> &#123;<br>        <span class="hljs-built_in">this</span>.userRepository = userRepository;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">findById</span><span class="hljs-params">(Long id)</span> &#123;<br>        <span class="hljs-keyword">return</span> userRepository.findById(id).orElse(<span class="hljs-literal">null</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样就替代了@autowried 注解</p>
+<p>从 <strong>Spring 4.3 开始</strong>，如果一个类<strong>只有一个构造函数</strong>，Spring 会<strong>自动使用该构造函数进行依赖注入</strong>，无需显式添加 <code>@Autowired</code></p>
+<p>如果说这个类的构造器只有一个，那就会使用这个构造器，如果有多个，仍需要手动进行</p>
+<p>所以使用的条件：</p>
 <ol>
-<li>企业开发流程<ol>
-<li>需求分析，需求分析答疑，分任务，拆解任务，每个人写自己分到的任务的详细设计（接口文档），接口文档评审，编码 ，codereview ，测试， 上线</li>
-</ol>
-</li>
-<li>git企业级应用<ol>
-<li>分支命名 </li>
-<li>git命令的使用<ol>
-<li>git push git pull git rebase </li>
-<li>解决冲突</li>
-</ol>
-</li>
-<li>commit 的规范</li>
-</ol>
-</li>
-<li>微服务的学习<ol>
-<li>创建微服务项目</li>
-<li>nacos 注册中心，配置中心（读取配置等操作）</li>
-<li>openfeign 的使用</li>
-</ol>
-</li>
-<li>看项目代码的能力<ol>
-<li>先看懂用到的技术栈（pom文件）及目录结构， 然后从controller接口进行调试，了解业务</li>
-<li>借助ai 进行阅读代码</li>
-</ol>
-</li>
-<li>代码的规范<ol>
-<li>controller -&gt; facade(聚合service，实现业务的功能) -&gt; service提供各种基础的能力- mapper - db<ol>
-<li>或者  facade -&gt; feign</li>
-</ol>
-</li>
-<li>对于依赖的注入不使用@Autowried ，而是在类上加上@RequiredArgsConstructor </li>
-<li>feign 的使用结构<ol>
-<li>使用api结合业务封装client 业务直接调用</li>
-<li>使用一个工程 来处理失败的回调</li>
-</ol>
-</li>
-<li>nacos 的使用<ol>
-<li>一个命名空间为一个类 ，要加入新的配置，就 在这个类中加入</li>
-</ol>
-</li>
-<li>对于接口， 一定要两个类有逻辑上的关系才能继承，否则耦合度高， 尽量别用interface&#x2F;继承对于 实体类&#x2F;dto&#x2F;vo </li>
-<li>每个包放的代码一定是相同格式的， 比如dto 就全是dto ，vo 全是vo ，不能多出一个接口&#x2F;其他的</li>
-<li>写代码时先安装框架先搭起来结构， 然后再写业务实现</li>
-<li>application 中配置域名前缀 用户区分不同的环境</li>
-</ol>
-</li>
-<li>社交能力<ol>
-<li>大声说话的练习 </li>
-<li>组织语言的逻辑性</li>
-</ol>
-</li>
-</ol>
-<p>2025&#x2F;8&#x2F;18   自己决定去上海    希望不会后悔吧。</p>
-<p>2025&#x2F;8&#x2F;24  来上海的第一天 ， 坐飞机跟坐高铁差不多，刚开始有点晕， 买一些生活用品，熟悉周围环境， 准备明天入职和面试   先观察一周， 写一份实习与秋招平衡计划</p>
-<p>2025&#x2F;8&#x2F;25 第一天 入职培训，领电脑，装环境 ， 面了字节 凉</p>
-<p>2025&#x2F;8&#x2F;26 第二天 ，看代码， 头都大了，还没看完。索性leader还挺好。明天正式写需求了，希望不会出问题</p>
-<p>2025&#x2F;8&#x2F;27   跑ocr接口，测正确率整理文档。  看代码  。开了需求评审会   生活上自己找到了外卖，快递的地方。 但是舍友没有开口说话， 到是与我一起实习的非同组同学看着还行</p>
-<p>2025&#x2F;8&#x2F;28   第四天 ， 继续看代码 。开了需求答疑会， 今天接到了需求，但是下周三开发。 这个期间了解开发工具及流程。 </p>
-<p>2025&#x2F;8&#x2F;29 继续写文档   </p>
-<p>周末： 写了AI答题项目的用户模块与AI生成代码模块 ， 学习了feign的使用</p>
-<p>2025&#x2F;9&#x2F;1 今天早上看代码 ，以及学习tapd的使用 ，下午进行详细设计， 设计自己的接口， 不会就问，反正都问明白，然后将接口设计出来</p>
-<p>2025&#x2F;9&#x2F;2   今天进行接口文档评审 ， 讨论一顿，最后给出了实现方案</p>
-<p>2025&#x2F;9&#x2F;3  今天进行编码， 之前下班时间学习微服务，这就用上了， 然后也是很快写完了，但是没nacos权限， 等开通， 然后稍微测试一下，  明天继续看项目找要删除的代码</p>
-<p>2025&#x2F;9&#x2F;4 今天还是继续看代码， 没啥活要干， 感觉需要调整一下方法。 </p>
-<p>2025&#x2F;9&#x2F;5 今天发现是在旧逻辑前加一段逻辑， 如果满足条件就选择增加这段逻辑。  mt 指出我的说话的问题， 下一周要调整</p>
-<p>总结： 写了一个需求， 体会了一下开发流程以及git 的使用。  mt 指出的交流的问题，考虑方法进行解决</p>
-<p>问题：</p>
-<ol>
-<li>和周围人多说话 </li>
-<li>说话声音</li>
+<li>引入lombok</li>
+<li>在需要依赖注入的类上使用@ RequiredArgsConstructor 注解</li>
+<li>对于要注入的类使用final 修饰</li>
 </ol>
 
                 
@@ -355,6 +298,34 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="category-chain-item">代码规范</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -365,8 +336,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>实习记录</div>
-      <div>http://example.com/2025/08/18/小记/实习记录/</div>
+      <div>依赖注入新方式</div>
+      <div>http://example.com/2025/09/06/java/代码规范/依赖注入新方式/</div>
     </div>
     <div class="license-meta">
       
@@ -378,7 +349,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年8月18日</div>
+          <div>2025年9月6日</div>
         </div>
       
       
@@ -410,9 +381,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/21/%E7%AE%97%E6%B3%95/DFS%E4%B8%8EBFS/" title="DFS与BFS">
+                      <a href="/2025/09/06/java/%E4%B8%9A%E5%8A%A1%E5%A4%84%E7%90%86/%E9%A2%84%E6%8E%88%E6%9D%83/" title="预授权">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">DFS与BFS</span>
+                        <span class="hidden-mobile">预授权</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -420,8 +391,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/18/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" title="算法学习方法">
-                        <span class="hidden-mobile">算法学习方法</span>
+                      <a href="/2025/09/03/java/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pagehelper%E7%9A%84%E4%BD%BF%E7%94%A8/" title="pagehelper的使用">
+                        <span class="hidden-mobile">pagehelper的使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

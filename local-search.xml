@@ -4,6 +4,61 @@
   
   
   <entry>
+    <title>域名前缀以及各种环境</title>
+    <link href="/2025/09/06/java/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/%E5%9F%9F%E5%90%8D%E5%89%8D%E7%BC%80%E7%9A%84%E4%BD%9C%E7%94%A8%E5%8F%8A%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83/"/>
+    <url>/2025/09/06/java/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/%E5%9F%9F%E5%90%8D%E5%89%8D%E7%BC%80%E7%9A%84%E4%BD%9C%E7%94%A8%E5%8F%8A%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83/</url>
+    
+    <content type="html"><![CDATA[<h2 id="域名前缀"><a href="#域名前缀" class="headerlink" title="域名前缀"></a>域名前缀</h2><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>在application-dev.yml中配置</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">domain:</span><br><span class="hljs-attr">prefix:</span> <span class="hljs-string">-t</span><br></code></pre></td></tr></table></figure><p>在其他文件中配置相对应的</p><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>好处：</p><ul><li>环境隔离<ul><li>有多种环境， 每个环境都有一个应用运行</li><li>那每个环境的前缀url一定是不同的</li><li>使用这个， 就可以在启动任何环境时，就直接连接上对应环境中的应用，做相应的工作</li><li>也就是- <strong>一套代码，多处部署</strong>。无需修改任何代码，只需在启动时指定 <code>spring.profiles.active=dev</code> 或 <code>prod</code>，应用程序就会自动连接到对应环境的地址。<ul><li>如果不隔离，就需要手动修改代码，然后才能进行部署</li></ul></li></ul></li><li>还有易于维护，如果以后前缀要修改，直接修改这里</li><li>保证一致性： 避免手滑打错字了</li></ul><h2 id="不同环境"><a href="#不同环境" class="headerlink" title="不同环境"></a>不同环境</h2><h3 id="为什么要有环境"><a href="#为什么要有环境" class="headerlink" title="为什么要有环境"></a>为什么要有环境</h3><ol><li>你不能在开发时往生产的数据库中写数据</li><li>你不能让测试用你本地的代码跑</li><li>你不能把调试日志，配置开关等带到线上</li></ol><p>总之，开发，测试，生产等的数据，配置，资源不能混在一起。</p><h3 id="企业中的环境"><a href="#企业中的环境" class="headerlink" title="企业中的环境"></a>企业中的环境</h3><p><strong>不同环境 &#x3D; 不同配置 + 不同数据 + 不同权限 + 不同用途</strong><br>企业中一般会有四个核心的环境 ：</p><ol><li>开发环境</li><li>测试环境</li><li>预发布环境</li><li>生产环境</li></ol><h4 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h4><ol><li>使用人： 全体开发</li><li>部署位置： 公司内网</li><li>数据库： 所有开发共享</li><li>用途： 开发进行调试 ， 多人联调</li><li>配置文件： application-dev.yml</li></ol><h4 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h4><ol><li>使用人： 测试人员（QA）</li><li>部署位置： 独立的测试服务器</li><li>数据库： 独立的测试数据库</li><li>用途： <ol><li>测试进行功能测试， 回归测试，压力测试</li><li>bug修复验证</li><li>产品验收</li></ol></li><li>配置文件： application-test.yml</li></ol><h4 id="预发布环境"><a href="#预发布环境" class="headerlink" title="预发布环境"></a>预发布环境</h4><ol><li>使用人： 测试，运维，产品</li><li>部署位置： 与生产同架构的服务器</li><li>数据库： 生产库的只读副本</li><li>用途：<ol><li>进行部署脚本的测试，配置，性能等的测试</li><li>产品验收</li></ol></li><li>配置文件： application-pre.yml</li></ol><h3 id="生产环境"><a href="#生产环境" class="headerlink" title="生产环境"></a>生产环境</h3><ol><li>使用人： 用户</li><li>部署位置：线上服务器集群</li><li>数据库： 真是生产库（有备份，容灾，主从等）</li><li>用途：<ol><li>对外提供服务</li><li>产生真实的业务数据</li></ol></li><li>配置文件： application-prod.yml</li></ol>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>预授权</title>
+    <link href="/2025/09/06/java/%E4%B8%9A%E5%8A%A1%E5%A4%84%E7%90%86/%E9%A2%84%E6%8E%88%E6%9D%83/"/>
+    <url>/2025/09/06/java/%E4%B8%9A%E5%8A%A1%E5%A4%84%E7%90%86/%E9%A2%84%E6%8E%88%E6%9D%83/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+      <category>业务处理</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>依赖注入新方式</title>
+    <link href="/2025/09/06/java/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%96%B0%E6%96%B9%E5%BC%8F/"/>
+    <url>/2025/09/06/java/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%96%B0%E6%96%B9%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<p>使用@RequiredArgsConstructor<br>这个注解的作用是 给 被final 修饰的字段 使用构造器赋值，</p><p>举个例子：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-meta">@RequiredArgsConstructor</span> <span class="hljs-comment">// ← 自动生成构造函数</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> UserRepository userRepository; <span class="hljs-comment">// final → 必须通过构造函数注入</span><br><br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">findById</span><span class="hljs-params">(Long id)</span> &#123;<br>        <span class="hljs-keyword">return</span> userRepository.findById(id).orElse(<span class="hljs-literal">null</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>将省略的代码加回来</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> UserRepository userRepository;<br><br>    <span class="hljs-comment">// Lombok 自动生成这个构造函数</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">UserService</span><span class="hljs-params">(UserRepository userRepository)</span> &#123;<br>        <span class="hljs-built_in">this</span>.userRepository = userRepository;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">findById</span><span class="hljs-params">(Long id)</span> &#123;<br>        <span class="hljs-keyword">return</span> userRepository.findById(id).orElse(<span class="hljs-literal">null</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>这样就替代了@autowried 注解</p><p>从 <strong>Spring 4.3 开始</strong>，如果一个类<strong>只有一个构造函数</strong>，Spring 会<strong>自动使用该构造函数进行依赖注入</strong>，无需显式添加 <code>@Autowired</code></p><p>如果说这个类的构造器只有一个，那就会使用这个构造器，如果有多个，仍需要手动进行</p><p>所以使用的条件：</p><ol><li>引入lombok</li><li>在需要依赖注入的类上使用@ RequiredArgsConstructor 注解</li><li>对于要注入的类使用final 修饰</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+      <category>代码规范</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>pagehelper的使用</title>
     <link href="/2025/09/03/java/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pagehelper%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <url>/2025/09/03/java/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pagehelper%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
@@ -243,7 +298,7 @@
     <link href="/2025/08/18/%E5%B0%8F%E8%AE%B0/%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
     <url>/2025/08/18/%E5%B0%8F%E8%AE%B0/%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
     
-    <content type="html"><![CDATA[<p>学到的：</p><ol><li>企业开发流程<ol><li>需求分析，需求分析答疑，分任务，拆解任务，每个人写自己分到的任务的详细设计（接口文档），接口文档评审，编码 ，codereview ，测试， 上线</li></ol></li><li>git企业级应用<ol><li>分支命名 </li><li>git命令的使用<ol><li>git push git pull git rebase </li><li>解决冲突</li></ol></li><li>commit 的规范</li></ol></li><li>微服务的学习<ol><li>创建微服务项目</li><li>nacos 注册中心，配置中心（读取配置等操作）</li><li>openfeign 的使用</li></ol></li><li>看项目代码的能力<ol><li>先看懂用到的技术栈（pom文件）及目录结构， 然后从controller接口进行调试，了解业务</li><li>借助ai 进行阅读代码</li></ol></li><li>代码的规范<ol><li>controller -&gt; facade(聚合service，实现业务的功能) -&gt; service提供各种基础的能力- mapper - db<ol><li>或者  facade -&gt; feign</li></ol></li><li>对于依赖的注入不使用@Autowried ，而是在类上加上@RequiredArgsConstructor </li><li>feign 的使用结构<ol><li>使用api结合业务封装client 业务直接调用</li><li>使用一个工程 来处理失败的回调</li></ol></li><li>nacos 的使用<ol><li>一个命名空间为一个类 ，要加入新的配置，就 在这个类中加入</li></ol></li><li>对于接口， 一定要两个类有逻辑上的关系才能继承，否则耦合度高， 尽量别用interface&#x2F;继承对于 实体类&#x2F;dto&#x2F;vo </li><li>每个包放的代码一定是相同格式的， 比如dto 就全是dto ，vo 全是vo ，不能多出一个接口&#x2F;其他的</li></ol></li><li>大声说话的练习 </li><li>组织语言的逻辑性</li></ol><p>2025&#x2F;8&#x2F;18   自己决定去上海    希望不会后悔吧。</p><p>2025&#x2F;8&#x2F;24  来上海的第一天 ， 坐飞机跟坐高铁差不多，刚开始有点晕， 买一些生活用品，熟悉周围环境， 准备明天入职和面试   先观察一周， 写一份实习与秋招平衡计划</p><p>2025&#x2F;8&#x2F;25 第一天 入职培训，领电脑，装环境 ， 面了字节 凉</p><p>2025&#x2F;8&#x2F;26 第二天 ，看代码， 头都大了，还没看完。索性leader还挺好。明天正式写需求了，希望不会出问题</p><p>2025&#x2F;8&#x2F;27   跑ocr接口，测正确率整理文档。  看代码  。开了需求评审会   生活上自己找到了外卖，快递的地方。 但是舍友没有开口说话， 到是与我一起实习的非同组同学看着还行</p><p>2025&#x2F;8&#x2F;28   第四天 ， 继续看代码 。开了需求答疑会， 今天接到了需求，但是下周三开发。 这个期间了解开发工具及流程。 </p><p>2025&#x2F;8&#x2F;29 继续写文档   </p><p>周末： 写了AI答题项目的用户模块与AI生成代码模块 ， 学习了feign的使用</p><p>2025&#x2F;9&#x2F;1 今天早上看代码 ，以及学习tapd的使用 ，下午进行详细设计， 设计自己的接口， 不会就问，反正都问明白，然后将接口设计出来</p><p>2025&#x2F;9&#x2F;2   今天进行接口文档评审 ， 讨论一顿，最后给出了实现方案</p><p>2025&#x2F;9&#x2F;3  今天进行编码， 之前下班时间学习微服务，这就用上了， 然后也是很快写完了，但是没nacos权限， 等开通， 然后稍微测试一下，  明天继续看项目找要删除的代码</p><p>2025&#x2F;9&#x2F;4 今天还是继续看代码， 没啥活要干， 感觉需要调整一下方法。 </p><p>2025&#x2F;9&#x2F;5 今天发现是在旧逻辑前加一段逻辑， 如果满足条件就选择增加这段逻辑。  mt 指出我的说话的问题， 下一周要调整</p><p>总结： 写了一个需求， 体会了一下开发流程以及git 的使用。  mt 指出的交流的问题，考虑方法进行解决</p><p>问题：</p><ol><li>和周围人多说话 </li><li>说话声音</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>学到的：</p><ol><li>企业开发流程<ol><li>需求分析，需求分析答疑，分任务，拆解任务，每个人写自己分到的任务的详细设计（接口文档），接口文档评审，编码 ，codereview ，测试， 上线</li></ol></li><li>git企业级应用<ol><li>分支命名 </li><li>git命令的使用<ol><li>git push git pull git rebase </li><li>解决冲突</li></ol></li><li>commit 的规范</li></ol></li><li>微服务的学习<ol><li>创建微服务项目</li><li>nacos 注册中心，配置中心（读取配置等操作）</li><li>openfeign 的使用</li></ol></li><li>看项目代码的能力<ol><li>先看懂用到的技术栈（pom文件）及目录结构， 然后从controller接口进行调试，了解业务</li><li>借助ai 进行阅读代码</li></ol></li><li>代码的规范<ol><li>controller -&gt; facade(聚合service，实现业务的功能) -&gt; service提供各种基础的能力- mapper - db<ol><li>或者  facade -&gt; feign</li></ol></li><li>对于依赖的注入不使用@Autowried ，而是在类上加上@RequiredArgsConstructor </li><li>feign 的使用结构<ol><li>使用api结合业务封装client 业务直接调用</li><li>使用一个工程 来处理失败的回调</li></ol></li><li>nacos 的使用<ol><li>一个命名空间为一个类 ，要加入新的配置，就 在这个类中加入</li></ol></li><li>对于接口， 一定要两个类有逻辑上的关系才能继承，否则耦合度高， 尽量别用interface&#x2F;继承对于 实体类&#x2F;dto&#x2F;vo </li><li>每个包放的代码一定是相同格式的， 比如dto 就全是dto ，vo 全是vo ，不能多出一个接口&#x2F;其他的</li><li>写代码时先安装框架先搭起来结构， 然后再写业务实现</li><li>application 中配置域名前缀 用户区分不同的环境</li></ol></li><li>社交能力<ol><li>大声说话的练习 </li><li>组织语言的逻辑性</li></ol></li></ol><p>2025&#x2F;8&#x2F;18   自己决定去上海    希望不会后悔吧。</p><p>2025&#x2F;8&#x2F;24  来上海的第一天 ， 坐飞机跟坐高铁差不多，刚开始有点晕， 买一些生活用品，熟悉周围环境， 准备明天入职和面试   先观察一周， 写一份实习与秋招平衡计划</p><p>2025&#x2F;8&#x2F;25 第一天 入职培训，领电脑，装环境 ， 面了字节 凉</p><p>2025&#x2F;8&#x2F;26 第二天 ，看代码， 头都大了，还没看完。索性leader还挺好。明天正式写需求了，希望不会出问题</p><p>2025&#x2F;8&#x2F;27   跑ocr接口，测正确率整理文档。  看代码  。开了需求评审会   生活上自己找到了外卖，快递的地方。 但是舍友没有开口说话， 到是与我一起实习的非同组同学看着还行</p><p>2025&#x2F;8&#x2F;28   第四天 ， 继续看代码 。开了需求答疑会， 今天接到了需求，但是下周三开发。 这个期间了解开发工具及流程。 </p><p>2025&#x2F;8&#x2F;29 继续写文档   </p><p>周末： 写了AI答题项目的用户模块与AI生成代码模块 ， 学习了feign的使用</p><p>2025&#x2F;9&#x2F;1 今天早上看代码 ，以及学习tapd的使用 ，下午进行详细设计， 设计自己的接口， 不会就问，反正都问明白，然后将接口设计出来</p><p>2025&#x2F;9&#x2F;2   今天进行接口文档评审 ， 讨论一顿，最后给出了实现方案</p><p>2025&#x2F;9&#x2F;3  今天进行编码， 之前下班时间学习微服务，这就用上了， 然后也是很快写完了，但是没nacos权限， 等开通， 然后稍微测试一下，  明天继续看项目找要删除的代码</p><p>2025&#x2F;9&#x2F;4 今天还是继续看代码， 没啥活要干， 感觉需要调整一下方法。 </p><p>2025&#x2F;9&#x2F;5 今天发现是在旧逻辑前加一段逻辑， 如果满足条件就选择增加这段逻辑。  mt 指出我的说话的问题， 下一周要调整</p><p>总结： 写了一个需求， 体会了一下开发流程以及git 的使用。  mt 指出的交流的问题，考虑方法进行解决</p><p>问题：</p><ol><li>和周围人多说话 </li><li>说话声音</li></ol>]]></content>
     
     
     
